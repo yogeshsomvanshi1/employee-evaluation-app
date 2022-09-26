@@ -1,0 +1,144 @@
+<!-- <div class="auth">
+    <div class="auth_left">
+        <div class="card">
+            <div class="text-center mb-2">
+                <a class="header-brand" href="javascript:void(0)"><i class="fe fe-command brand-logo"></i></a>
+            </div>
+            <form [formGroup]="createAdmin">
+                <div class="card-body">
+                    <div class="card-title">ADMIN SIGN IN</div>
+                    <div class="form-group">
+                    <select class="custom-select"> 
+                        <option>HR Dashboard</option>
+                        <option>Project Dashboard</option>
+                        <option>Job Portal</option>
+                    </select>
+                </div>
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="email" formControlName="username" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Username" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password
+                            <a [routerLink]="['/forgot-password']" href="javascript:void(0)"
+                            class="float-right small">I forgot
+                            password</a>
+                        </label> 
+                        <input [type]="passwordType" formControlName="password" class="form-control"
+                            id="exampleInputPassword1" placeholder="Password" />
+                            <span class="p-viewer2">
+                                <i class="fa" [ngClass]="passwordShown?'fa-eye':'fa-eye-slash'" aria-hidden="true" (click)="togglePassword()"></i>
+                            </span>
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" />
+                            <span class="custom-control-label">Remember me</span>
+                        </label>
+                    </div>
+                    <div class="form-footer">
+                        <button (click)="submit()" class="btn btn-primary btn-color btn-block" title="">Sign
+                            in</button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center text-muted">
+                Don't have account yet?
+                <a [routerLink]="['/register']" href="javascript:void(0)">Sign up</a>
+            </div>
+            <div class="text-center mt-2 text-danger text-muted">
+                <a [routerLink]="['/forgot-password']" href="javascript:void(0)">
+                    Forgot Password</a>
+            </div>
+            <div class="text-center text-danger mt-2 alert alert-danger" *ngIf="invalidUser">
+                Invalid Username or Password
+            </div>
+
+            <div class="text-center text-danger mt-2 alert alert-danger" >Invalid Username or Password</div>
+        </div>
+    </div>
+    <div class="auth_right">
+        <carousel [isAnimated]="true">
+            <slide>
+                <img src="assets/images/slider1.svg" class="img-fluid" alt="first slide" />
+                <div class="px-4 mt-4">
+                    <h4>Fully Responsive</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+            </slide>
+            <slide>
+                <img src="assets/images/slider2.svg" class="img-fluid" alt="second slide" />
+                <div class="px-4 mt-4">
+                    <h4>Quality Code and Easy Customizability</h4>
+                    <p>There are many variations of passages of Lorem Ipsum available.</p>
+                </div>
+            </slide>
+            <slide>
+                <img src="assets/images/slider3.svg" class="img-fluid" alt="third slide" />
+                <div class="px-4 mt-4">
+                    <h4>Cross Browser Compatibility</h4>
+                    <p>Overview We're a group of women who want to learn JavaScript.</p>
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div> -->
+
+
+
+  
+<section>
+    <div class="avisys-main-image-section">
+      <img src="/assets/images/avisys-latest-logo-removebg-preview.png" class="avisys-image-section" alt="">
+    </div>
+  </section>
+
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/assets/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
+        </div>
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              <div class="mb-4">
+                <h3 class="avisys-signup-heading">Admin</h3>
+              
+              </div>
+              <form >
+                <div class="form-group first avisys-first-input-filled">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username">
+
+                </div>
+                <div class="form-group last mb-4">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password">
+
+                </div>
+
+                <div class="d-flex mb-5 align-items-center">
+                  <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                    <input type="checkbox" checked="checked" />
+                    <div class="control__indicator"></div>
+                  </label>
+                  <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+                </div>
+
+                <!-- <input type="submit" value="Log In" class="btn btn-block btn-primary"> -->
+
+                <div class="">
+                  <button class="avisys-login-button" type="button" (click)="loginAdmin()"><a class="avisys-hlink-section">Log In</a></button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>

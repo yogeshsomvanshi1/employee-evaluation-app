@@ -1,0 +1,32 @@
+.product-template{
+    margin: 20px;
+}
+
+.sub-head {
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+    background-color: rgb(49, 57, 73);
+    margin-bottom: 20px;
+    padding: 5px 10px;
+}
+
+/* / section css / */
+
+.delete
+{
+    background-color: #e62e00;
+    color: #ffffff;
+    border-radius: 4px;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.delete:hover{
+    color: #ffffff;
+}
+
+.field-width{
+    width: 340px;
+}

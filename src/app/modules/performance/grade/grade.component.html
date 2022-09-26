@@ -1,0 +1,88 @@
+
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="row pt-30">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">
+                        <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
+                       Grade 
+                    </h3>
+                </div>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
+                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event , template2)"
+                    [content]="dataDataTable?.content">
+                </app-data-table-ui>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #template2 class="height-1">
+    <div class="modal-header">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title prod-name avisys-table-heading">Grade</h3>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true" (click)="modalRef.hide()">×</span>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="performance-evaluation-form-parent">
+                <form [formGroup]="gradeForm">
+                    <div class="container-fluid performance-evaluation-form">
+                        <!-- <div class="per-heading">Grade</div> -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex per-flex-section">
+                                    <label for="" class="per-subheading" id="division_id">Grade ID</label>
+                                    <div class="">
+                                        <select formControlName="gradeId" name="cars" id="cars" class="per-dropdown">
+                                            <option value="volvo"></option>
+                                            <option value="saab">Saab</option>
+                                            <option value="opel">Opel</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="d-flex per-flex-section">
+                                    <label for="" class="per-subheading" id="division_name">Grade Name</label>
+                                    <div class="">
+                                        <select formControlName="gradeName" name="cars" id="cars" class="per-dropdown">
+                                            <option value="volvo"></option>
+                                            <option value="saab">Saab</option>
+                                            <option value="opel">Opel</option>
+                                            <option value="audi">Audi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <label for="" class="per-subheading">Grade Description</label>
+                                    <div class="">
+                                        <textarea formControlName="gradeDescription" name="" id="" cols="30" rows="3"
+                                            class="per-textarea"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </form>
+            
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="per-buttons-section">
+            <div class="d-flex justify-content-end w-100 per-buttons align-items-center per-inner-button-section">
+                <button class="per-buttons-one" (click)="submit()" type="submit"><a
+                        class="per-buttons-a-one">Submit</a></button>
+                <button class="per-buttons-two"><a href="" class="per-buttons-a-two">Cancel</a></button>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,18 @@
+{
+    "headerlist":[
+        {"header":"","value":"policyId","width":5,"type":"radio","search_key":"policy_id"},
+        {"header":"Name","value":"policyName","width":25,"type":"","search_key":"policy_name"},
+        {"header":"Description","value":"policyDescription","width":25,"type":"","search_key":"policy_name"},
+        {"header":"Type","value":"policyType","width":25,"type":"","search_key":"policy_name"}
+    ],
+    "page":{
+        "content":[
+            {"policyId":1,"policyName":"Admin", "policyDescription":"Admin","policyType":"role","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false}
+           
+        ],
+        "pageable":{"offset":0,"pageSize":5},
+        "first":true,"last":false,"totalPages":2,"totalElements":6,"pageNumber":1,"numberOfElements":5,
+        "sort":{"empty":false,"sorted":true,"unsorted":false},
+        "sortObjects":{"key":"authId","value":"ASC"}
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "header":{
+
+        "menu":{
+            "item1":"Heimat",
+            "item2":"CRM",
+            "item3":"Produkt Management",
+            "item4":"Nummernverwaltung"
+        },
+        "profile":{
+            "profileHeading":"PERFIL DEL USUARIO",
+            "profileImage": "Imagen de perfil",
+            "first-name":"Primer nombre",
+            "last-name":"Apellido",
+            "email" : "Correo electrónico",
+            "contact":"Contacto"
+        },
+        "userSetting":{
+            "profile":"Perfil",
+            "setting":"Entorno",
+            "change-password": "Cambia la contraseña",
+            "inbox":"bandeja de",
+            "message":"Mensaje",
+            "need-help":"¿Necesitas ayuda?",
+            "sign-out":"Desconectar"
+        }
+    }
+}

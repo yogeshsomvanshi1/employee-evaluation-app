@@ -1,0 +1,20 @@
+{
+    "headerlist":[
+        {"header":"","value":"authId","width":5,"type":"radio","search_key":"auth_id"},
+        {"header":"Name","value":"authName","width":80,"type":"","search_key":"auth_name"},
+        {"header":"Actions","value":"action","width":15,"type":"button","search_key":""}
+    ],
+    "page":{
+        "content":[
+            {"authId":1,"authName":"create", "createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false,"action": [{
+				"label": "Create Permission",
+				"color": "green"
+			}]}
+           
+        ],
+        "pageable":{"offset":0,"pageSize":5},
+        "first":true,"last":false,"totalPages":2,"totalElements":6,"pageNumber":1,"numberOfElements":5,
+        "sort":{"empty":false,"sorted":true,"unsorted":false},
+        "sortObjects":{"key":"authId","value":"ASC"}
+    }
+}

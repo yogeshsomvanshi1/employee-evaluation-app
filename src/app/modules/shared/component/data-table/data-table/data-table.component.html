@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mt-3">
+    <div class="form-group  w-25 form-inline">
+      <input placeholder="Search here" class="form-control" type="text" (keyup)="changeFn($event)" name="searchTerm"
+        [(ngModel)]="serchingParmeter" />
+    </div>
+
+    <div class="form-group form-inline datatable-w30 text-end">
+      <select class="btn ml-1 active touched pagination-box" (change)="pageChane()" [(ngModel)]="pageSize">
+        <option>5</option>
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+      <button type="button" *ngIf="permission[0]==true" (click)="buttonEvent('add')"
+        class="btn btn-success btn-margin-x"><i class="fa fa-plus" aria-hidden="true"></i></button>
+      <button type="button" *ngIf="permission[1]==true" (click)="buttonEvent('edit')"
+        class="btn btn-success btn-margin"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+      <button type="button" *ngIf="permission[2]==true" class="btn btn-danger " (click)="buttonEvent('delete')"><i
+          class="fa fa-trash-o" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="container-section"></div>
+  <div class="container-body">
+    <table class="table table-stripedd ">
+      <thead>
+        <tr>
+          <th scope="col" [style.width.%]="column?.width" class="sorting" *ngFor="let column of columns,let i = index;"
+            (click)="sorting(column?.mappedBy)">{{column?.header}}
+            <i *ngIf="sortKey==column?.mappedBy && sortType=='DESC'" class='fa fa-sort-alpha-desc sort-icon'></i>
+            <i *ngIf="sortKey==column?.mappedBy && sortType=='ASC'" class='fa fa-sort-alpha-asc sort-icon'></i>
+            <i *ngIf="sortKey!=column?.mappedBy" class="fa fa-sort sort-icon-white" aria-hidden="true"></i>
+          </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row   of content;let I=index" [ngClass]="selectedData==row?'selected':''"
+          (click)="radioButton(row)">
+          <td scope="col" [style.width.%]="column?.width" *ngFor="let column of columns">
+            <input type="radio" [checked]="selectedData==row" (click)="radioButton(row)" id="name" name="name"
+              *ngIf="column?.type=='radio'">
+            <div *ngIf="column?.type!='radio' && column?.type!='icon' && column?.type!='button'">
+              {{row[column.mappedBy]}}
+            </div>
+            <div *ngIf="column?.type=='button'">
+              <button [style.backgroundColor]="btnRow?.color" class="btn btn-primary btn-sm ml-1"
+                *ngFor="let btnRow of row[column.mappedBy]"
+                (click)="btnEventInside(row,btnRow.label)">{{btnRow.label}}</button>
+            </div>
+            <div *ngIf="column?.type=='icon'">
+              <img [src]="row[column.value]" [width]="column?.width" [height]="column?.width">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="height-10"></div>
+  <nav aria-label="Page navigation example" class="page-float">
+    <ul class="pagination">
+      <li (click)="chnagePageNo(pageno-1)" class="page-item" [hidden]="pageno == 0 || pageList.length==0">
+        <a class="page-link">Previous</a></li>
+      <li (click)="pageno==x?true:chnagePageNo(x)" *ngFor="let x of pageList" class="page-item"
+        [ngClass]="{'active': pageno === x}"><a class="page-link">{{x+1}}</a></li>
+      <li class="page-item" (click)="chnagePageNo(pageno+1)" [hidden]="pageno == pageList.length-1 || pageList.length==0">
+        <a class="page-link">Next</a></li>
+    </ul>
+  </nav>

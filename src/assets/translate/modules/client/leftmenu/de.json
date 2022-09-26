@@ -1,0 +1,32 @@
+{
+    "leftmenu":{
+
+        "menu1":{
+            "mainHead":"Materias",
+            "subHead1":"Product Family",
+            "subHead2":"Familia de productos",
+            "subHead3":"Grupo de entidades"
+        },
+        "menu2":{
+            "mainHead":"Plantilla de producto",
+            "subHead1":"Plantilla de producto",
+            "subHead2":"Pestaña de producto",
+            "subHead3":"Atributo del producto"
+        },
+        "menu3":{
+            "mainHead":"Transacción ",
+            "subHead1":"Transacción 1",
+            "subHead2":"Transacción 2",
+            "subHead3":"Transacción 3"
+        }
+    },
+    "masters_main_menu_title":"Masters",
+    "master_submenu_product_family": "Product Family",
+    "master_submenu_product_line": "Product Line",
+    "master_submenu_entity_group": "Entity Group",
+    "product_main_menu_title": "Product Template",
+    "product_submenu_product_template": "Product Template",
+    "product_submenu_product_tab": "Product Tab",
+    "product_submenu_product_attribute": "Product Attribute",
+    "product_submenu_product_attribute_summary": "Product Attribute Summary"
+}

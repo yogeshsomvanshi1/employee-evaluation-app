@@ -1,0 +1,107 @@
+<!-- header -->
+<div class="header-parent">
+    <nav class="navbar navbar-expand-lg black-navbar">
+        <div class="container">
+            <div class="d-flex header-navbar flex-navbar">
+                <div class="navbar-logo">
+                    <a [routerLink]="[]" class="navbar-brand ">
+                        <img src="assets/images/crm/avisyslogo.png" height="28" alt="CoolBrand" class="avisys-logo">
+                    </a>
+                </div>
+            </div>
+                <div class="navbar-content">
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ">
+                            <i class="fa fa-search avisys-search-icon"></i>
+                            <a [routerLink]="[]"  class="nav-item nav-link list-names">Support</a>
+                            <a [routerLink]="[]" class="nav-item nav-link list-names">Contact Us</a>
+                            <a  [routerLink]="[]" class="nav-item nav-link list-names" (click)="logout()">Logout</a>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            
+        </div>
+    </nav>
+</div> 
+<!-- header end -->
+
+<!-- CRM Layout -->     
+    <div class="crm-layout">
+        <div class="container">
+            <div class="row">
+                <div (click)="activeSection('crmActive')"  class="col-md-4 cursor crm-first-section">
+                    
+                    <div class="crm-inner-section ">
+                         <div class="crm-heading">Customer Relationship Management</div>
+                        <div class="crm-subheading">Customer experience platform that helps you deliver an exceptional
+                            experience </div>
+                         <!-- <a [routerLink]="['/crm']" class="ml-10">  <button type="button" class="btn btn-outline-primary ">Learn More</button></a>  -->
+                        <!-- <button class="crm-button">Buy</button> -->
+                    </div>
+                    <div class="crm-left-thumb">
+                        <img src="assets/images/crm/Picture3-removebg-preview.png" class="crm-image-one img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-md-8 cursor">
+                    <!-- rights side first card -->
+                    <div class="d-flex crm-second-section" (click)="activeSection('productActive')"  >
+                        <div class="col-md-7 ">
+                            <div class="crm-first-box">
+                                <div class="crm-heading">Product Management</div>
+                                <div class="crm-subheading1">Powerful financial platform for growing business</div>
+                                <!-- <button class="crm-button">Buy</button> -->
+                                <!-- <a routerLink="/crm" class="ml-10">  <button type="button" class="btn btn-outline-primary ">Learn More</button></a>  -->
+                            </div>
+                        </div>
+                        <div class="col-md-5  cursor">
+                            <div class="crm-second-section">
+                                <img src="assets/images/crm/Picture.png" class="crm-image-two" alt="">
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <!-- right side first card end -->
+                    <div class="d-flex crm-third-section" (click)="activeSection('numberActive')" >
+                        <div class="col-md-5">
+                            <div class=" d-flex  justify-content-start mt-3">
+                                <img src="assets/images/crm/Picture2.png" class="crm-image-three" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="crm-second-box" >
+                                <div class="crm-heading1">Number Management</div>
+                                <div class="crm-subheading2">Give your IT the cloud advantage and secure your hybrid environment
+                                    optimal productivity</div>
+                                <!-- <button class="crm-button">Buy</button> -->
+                            </div>
+                        </div>
+                    </div>
+                
+
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- crm layout end -->
+  <!-- footer -->
+
+  <div class="footer-last-section">
+    <div class=" crm-footer-section d-flex ">
+        <div class="crm-copyright-section">
+            <div class="copyright-content">@ Copyright 2021 Avisys Services Pvt. Ltd. </div>
+        </div>
+        <div class="crm-icon-section">
+            <i class="fa fa-facebook crm-icon1" ></i>
+            <i class="fa fa-linkedin crm-icon " ></i>
+        </div>
+    </div>
+
+</div>
+<!-- end -->

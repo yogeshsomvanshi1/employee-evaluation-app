@@ -1,0 +1,33 @@
+{
+    "leftmenu":{
+
+        "menu1":{
+            "mainHead":"Masters",
+            "subHead1":"Product Family",
+            "subHead2":"Product Line",
+            "subHead3":"Entity Group"
+        },
+        "menu2":{
+            "mainHead":"Product Template",
+            "subHead1":"Product Template",
+            "subHead2":"Product Tab",
+            "subHead3":"Product Attribute"
+        },
+        "menu3":{
+            "mainHead":"Transaction",
+            "subHead1":"Transaction 1",
+            "subHead2":"Transaction 2",
+            "subHead3":"Transaction 3"
+        }
+    },
+    "masters_main_menu_title":"Masters 123",
+    "master_submenu_product_family": "Product Family 12",
+    "master_submenu_product_line": "Product Line",
+    "master_submenu_entity_group": "Entity Group",
+    "product_main_menu_title": "Product Template",
+    "product_submenu_product_template": "Product Template",
+    "product_submenu_product_tab": "Product Tab",
+    "product_submenu_product_attribute": "Product Attribute",
+    "product_submenu_product_attribute_summary": "Product Attribute Summary"
+    
+}

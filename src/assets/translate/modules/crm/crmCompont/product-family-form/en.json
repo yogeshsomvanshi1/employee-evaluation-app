@@ -1,0 +1,102 @@
+{
+    "forms": {
+
+        "productFamily": {
+            "title": "PRODUCT FAMILY ",
+            "productFamily": "Product Family ",
+            "description": "Description",
+            "icon": "Product Family Icon"
+        },
+        "productLine": {
+            "Product-Line-heading": "PRODUCT LINE",
+            "product-family": "Product Family Id",
+            "product-line": "Product Line ",
+            "description": "Description",
+            "product-line-icon": "Product Line Icon"
+        },
+        "ProductEntityType": {
+            "Product-Entity-Type-heading": "Product Entity Type",
+            "productEntityType": "Product Entity Type",
+            "description": "Product Entity Type Description",
+            "isLaunchable": "Is Launchable"
+        },
+        "entityGroup": {
+            "Entity-group-heading": "ENTITY GROUP",
+            "product-family": "Product Family Id",
+            "product-line": "Product Line ",
+            "entity-group": "Entity Group ",
+            "description": "Description",
+            "entity-icon": "Entity Group Icon"
+        },
+        "productHierarchy": {
+            "hierarchy-heading": "Product Hierarchy"
+        },
+        "template-form": {
+            "template-form-heading": "PRODUCT ENTITY TEMPLATES",
+            "product-entity-template": "Product Entity Template Name ",
+            "product-entity-template-type": "Product Entity Template Type",
+            "description": "Description",
+            "version": "Version",
+            "state": "State",
+            "screenLayout": "Screen Layout",
+            "productHierarchy": "Product Hierarchy",
+            "numberOfTabPagesSections": "Number Of Tab Pages Sections"
+        },
+        "template-tab": {
+            "template-tab-heading": "PRODUCT TEMPLATE TAB",
+            "product-entity-template": "Product Template  ",
+            "add-tab": "Add Tab ",
+            "add-section": "Add Section",
+            "tab-name": "Tab Name",
+            "sequence": "Sequence ",
+            "parent-id": "Parent Id",
+            "section-name": "Section Name",
+            "screenlayout": "Screen Layout"
+        },
+        "template-attribute": {
+            "template-attribute-heading": "PRODUCT ENTITY TEMPLATE ATTRIBUTES",
+            "product-entity-template-name": "Product Entity Template Name",
+            "section-name": "Section Name",
+            "tab-name": "Tab Name",
+            "sequence-no": "Sequence Number",
+            "product-attribute": "Product Attribute",
+            "description": "Description",
+            "attribute-data-type": "Product Attribute Data Type",
+            "attribute-length": "Product Attribute Length",
+            "data-capture": "Data Capture Control",
+            "values": "Values",
+            "mandatory": "Mandatory",
+            "readonly": "Read only"
+        },
+        "template-attribute-master": {
+            "template-master": "PRODUCT  ATTRIBUTE",
+            "Product-Attribute-Id": "Product Attribute ID ",
+            "Product-Attribute-Name": "Product Attribute Name ",
+            "Description": " Description",
+            "Data-Type": "Data Type",
+            "ProductAttributeLength": "Product Attribute Length ",
+            "data-capture": "Data Capture Control",
+            "default-values": "Default Value",
+            "read-only": "Read Only",
+            "visible": "Visible",
+            "Has-Rule": "Has Rule",
+            "Filterable": "Filterable",
+            "hidden": "Hidden",
+            "required": "Required",
+            "Run-time-configuration": "Run Time Configuration",
+            "assetizable": "Assetizable",
+            "status": "Status",
+            "key": "Key",
+            "value": "Value",
+            "template-option-heading": "Template Option"
+        },
+        "common-master": {
+            "mstHeading": "Common Master",
+            "mstName": "Master Name",
+            "value": "Value",
+            "code": "Code",
+            "foreignKey": "Foreign Key",
+            "isMst": "Is Master"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "forms": {
+
+        "productFamily": {
+            "title": "PRODUKTFAMILIE ",
+            "productFamily": "Produktfamilie",
+            "description": "Beschreibung",
+            "icon": "Symbol für die Produktfamilie"
+        },
+        "productLine": {
+            "Product-Line-heading": "PRODUKTPALETTE",
+            "product-line": "Produktline",
+            "description": "Beschreibung",
+            "product-line-icon": "Symbol für die Produktlinie"
+        },
+        "entityGroup": {
+            "Entity-group-heading": "ENTITÄTSGRUPPE",
+            "product-family": "Produktfamilie",
+            "product-line": "Produktfamilie",
+            "entity-group": "Entitätsgruppen ",
+            "description": "Beschreibung",
+            "entity-icon": "Symbol für die Entitätsgruppe"
+        },
+        "productHierarchy": {
+            "hierarchy-heading": "Produkthierarchie"
+        },
+        "template-form": {
+            "template-form-heading": "PRODUCT ENTITY TEMPLATES",
+            "product-entity-template": "Product Entity Template Name ",
+            "product-entity-template-type": "Product Entity Template Type",
+            "description": "Description",
+            "version": "Version",
+            "state": "State",
+            "screenLayout": "Screen Layout",
+            "productHierarchy": "Product Hierarchy",
+            "numberOfTabPagesSections": "Number Of Tab Pages Sections"
+        },
+        "template-tab": {
+            "template-tab-heading": "PRODUKTVORLAGEN-TAB",
+            "product-entity-template": "Name der Produktentitätsvorlage  ",
+            "tab-name": "Registerkartenname",
+            "add-tab": " Hinzufügen Tab ",
+            "add-section": " Hinzufügen Abschnitt",
+            "sequence": "Reihenfolge ",
+            "parent-id": "Eltern ID",
+            "section-name": "Abteilungsname",
+            "screenlayout": "Bildschirmgestaltung"
+        },
+        "template-attribute": {
+            "template-attribute-heading": "PRODUKTENTITÄTSVORLAGEN-ATTRIBUTE",
+            "product-entity-template-id": "Produktvorlagen-ID ",
+            "tab": "Tab ",
+            "section": " Abschnitt",
+            "tab-name": "Registerkartenname",
+            "sequence": "Sequenz-ID ",
+            "product-attribute": "Produkteigenschaft ",
+            "description": "Beschreibung",
+            "attribute-data-type": "Produktattribut-Datentyp",
+            "attribute-length": "Länge des Produktattributs",
+            "data-capture": "Steuerung der Datenerfassung",
+            "values": "Werte",
+            "mandatory": "Verpflichtend",
+            "editable": "Bearbeitbar"
+        },
+        "template-attribute-master": {
+            "template-master": "PRODUKTATTRIBUT ",
+            "Product-Attribute-Id": "Produktattribut-ID ",
+            "Product-Attribute-Name": "Name des Produktattributs ",
+            "Description": " Beschreibung",
+            "Data-Type": "Datentyp",
+            "ProductAttributeLength": "Länge des Produktattributs ",
+            "data-capture": "Steuerung der Datenerfassung",
+            "default-values": "Standardwert",
+            "read-only": "Schreibgeschützt",
+            "visible": "Sichtbar",
+            "Has-Rule": "Hat Regel",
+            "Filterable": "Filterbar",
+            "hidden": "Versteckt",
+            "required": "Erforderlich",
+            "Run-time-configuration": "Laufzeitkonfiguration",
+            "assetizable": "Aktivierbar",
+            "status": "Status"
+        },
+        "common-master": {
+            "mstHeading": "Maestro común",
+            "mstName": "Nombre maestro",
+            "value": "Valor",
+            "code": "Código",
+            "foreignKey": "Clave externa",
+            "isMst": "Es maestra"
+        }
+
+    }
+}

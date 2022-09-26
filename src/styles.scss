@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Lato-Light';
+  src: url(./assets/fonts/Lato-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-bold';
+  src: url(./assets/fonts/Lato-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Black';
+  src: url(./assets/fonts/Lato-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url(./assets/fonts/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Thin';
+  src: url(./assets/fonts/Lato-Thin.ttf) format('truetype');
+}
+
+.card-height {
+    min-height: calc(100vh - 150px);
+}
+
+.selected-image {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: block;
+    object-fit: cover;
+}
+
+.validate-text {
+    font-size: 12px;
+    color: red;
+}
+
+.mandatory {
+    border-left: 4px solid #f27b77 !important;
+}
+
+.mandatoryG {
+    border-left: 4px solid green !important;
+}
+
+.pt-30{
+    padding: 30px 0 0 0;
+}
+
+.HideDiv {
+    display: none !important;
+  }
+
+  .ShowDiv {
+    display: block !important;
+  }
+
+  .overlay {
+    background-color: rgba(23, 25, 28, 0.5);
+    position: fixed;
+    cursor: pointer;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  .overlay.open {
+    display: block;
+  }
+
+  .sidebar-scroll {
+    height: calc(100vh - 65px);
+    overflow: auto;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .sticky-top {
+    width: calc(100% - 280px);
+    position: fixed;
+  }
+
+  .marginTop {
+    margin-top: 7.1% !important;
+  }
+
+
+  // uml css
+  .bg-grey {
+    background-color: #f1f1f1;
+    border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+
+.padding-head {
+    padding: 3px 10px;
+}
+
+.create-btn {
+    margin: 0 5px 0 auto;
+}
+
+
+
+.f12,
+.table-common td,
+.table-common th {
+    font-size: 12px;
+}
+
+.table-common .search-header {
+    display: flex;
+    align-items: center;
+}
+
+.table-common .btn {
+    border-radius: 0.1rem;
+}
+
+.table-common .dropdown-menu {
+    inset: 100% 0px auto auto !important;
+}
+
+.table-common .dropdown-menu:before {
+    border-bottom-color: #ffffff;
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    display: inline-block;
+    right: 4px;
+    position: absolute;
+    top: -8px;
+}
+
+.error-container{
+	  height: 24px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+// Prathmesh 22-09-2022 starts performance 
+
+.avisys-table-heading{
+  font-size: 14px !important;
+  font-family: 'Lato-Bold' !important;
+}
+
+// Ends

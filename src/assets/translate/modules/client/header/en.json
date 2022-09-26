@@ -1,0 +1,29 @@
+{
+    "header":{
+
+        "menu":{
+            "item1":"Home",
+            "item2":"CRM",
+            "item3":"Product Management",
+            "item4":"Number Management"
+        }, 
+        "profile":{
+            "profileHeading":"USER PROFILE",
+            "profileImage": "Profile Image",
+            "first-name":"First Name",
+            "last-name":"Last Name",
+            "email" : "Email",
+            "contact":"Contact"
+        },
+        "userSetting":{
+            "profile":"Profile",
+            "setting":"Setting",
+            "change-password": "Change Password",
+            "inbox":"Inbox",
+            "message":"Message",
+            "need-help":"Need Help?",
+            "sign-out":"Sign Out"
+        }
+
+    }
+}

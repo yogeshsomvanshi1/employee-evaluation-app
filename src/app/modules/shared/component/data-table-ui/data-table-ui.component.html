@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mt-3">
+        <div class="form-group  w-25 form-inline">
+            <input placeholder="Search here" class="form-control" type="text" (keyup)="pageChange()" name="searchTerm" [(ngModel)]="pagination.serchingParmeter" />
+        </div>
+        <div class="form-group form-inline datatable-w30 text-end">
+            <!-- <select class="btn ml-1 active touched pagination-box mb" (change)="pageChange()" [(ngModel)]="pagination.pageSize">
+          <option>5</option>
+          <option>10</option>
+          <option>15</option> 
+          <option>20</option>
+        </select> -->
+            <div class="btn-group mb" role="group" aria-label="Basic example">
+                <button type="button" *ngIf="permission[0]==true" (click)="buttonEvent('add')" class="btn btn-success btn-margin-x"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button type="button" *ngIf="permission[1]==true" (click)="buttonEvent('edit')" class="btn btn-success btn-margin"><i class="fa fa-pen-to-square" aria-hidden="true"></i></button>
+                <button type="button" *ngIf="permission[2]==true" class="btn btn-danger " (click)="buttonEvent('delete')"><i
+            class="fa fa-trash-can" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="container-section"></div>
+    <div class="container-body">
+        <table class="table" [style.height]="height">
+            <thead>
+                <tr>
+                    <ng-container *ngFor="let column of columns?.columnsMetadata,let i = index;">
+                    <th *ngIf="column?.type!='icon' && column?.type!='button' && column?.type!='radio'"  scope="col" [style.width.%]="column?.width" class="sorting"  (click)="sorting(column?.mappedBy)">
+                        {{column?.name}}
+                        <i *ngIf="pagination.sortKey==column?.mappedBy && pagination.sortType=='DESC'  " class='fa fa-sort-alpha-desc sort-icon'></i>
+                        <i *ngIf="pagination.sortKey==column?.mappedBy && pagination.sortType=='ASC'" class='fa fa-sort-alpha-asc sort-icon'></i>
+                        <i *ngIf="pagination.sortKey!=column?.mappedBy" class="fa fa-sort sort-icon-white" aria-hidden="true"></i>
+                    </th>
+                    <th  *ngIf="column?.type=='icon' || column?.type=='button' || column?.type=='radio'" scope="col" [style.width.%]="column?.width" class="sorting" class="avisys-data-table-header">
+                        {{column?.name}}
+                    </th>
+                </ng-container>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row   of content;let I=index" [ngClass]="selectedData==row?'selected':''" (click)="radioButton(row)">
+                    <td scope="col" [style.width.%]="column?.width" *ngFor="let column of columns?.columnsMetadata">
+                        <container-element [ngSwitch]="column?.type">
+                            <input type="radio" [checked]="selectedData==row" (click)="radioButton(row)" [id]="idRadio"  *ngSwitchCase="'radio'">
+                            <div *ngSwitchCase="'text'" class="text-break">
+                                {{getValue(row,column.mappedBy)}}
+                            </div>
+                            <div *ngSwitchCase="'date'">
+                                {{getDate(row,column.mappedBy)}}
+                            </div>
+                            <div *ngSwitchCase="'button'">
+                                <button [style.backgroundColor]="btnRow?.color" class="btn btn-primary btn-sm ml-1" *ngFor="let btnRow of row[column.mappedBy]" (click)="$event.stopPropagation();btnEventInside(row,btnRow.label)">{{btnRow.label}}</button>
+                            </div>
+                            <div *ngSwitchCase="'icon'">
+                                <img [src]="getValue(row,column.mappedBy)" [width]="column?.width" [height]="column?.width">
+                            </div>
+                            <div *ngSwitchCase="'Boolean'">
+                                {{getValueForBoolen(row,column.mappedBy,column.booleanValue)  }}
+            
+                            </div>
+                            
+                        </container-element>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="height-10"></div>
+    <nav aria-label="Page navigation example" class="page-float">
+        <ul class="pagination">
+            <li (click)="changePageNo(pagination.pageNumber-1)" class="page-item" [hidden]="pagination.pageNumber==0 ||pageList.length==0">
+                <a class="page-link">Previous</a>
+            </li>
+            <li (click)="pagination.pageNumber==pageNumber?true:changePageNo(pageNumber)" *ngFor="let pageNumber of pageList" class="page-item" [ngClass]="{'active': pagination.pageNumber === pageNumber}"><a class="page-link">{{pageNumber+1}}</a></li>
+            <li class="page-item" (click)="changePageNo(pagination.pageNumber+1)" [hidden]="pagination.pageNumber==pageList.length-1  || pageList.length==0">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav> 

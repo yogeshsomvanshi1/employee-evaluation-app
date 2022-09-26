@@ -1,0 +1,23 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Grade ID",
+		"mappedBy": "name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Grade Name",
+		"mappedBy": "type",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Grade Description",
+		"mappedBy": "description",
+		"type": "text",
+		"width": 30
+	}]
+}

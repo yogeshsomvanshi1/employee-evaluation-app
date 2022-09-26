@@ -1,0 +1,21 @@
+{
+    "headerlist":[
+        {"header":"","value":"numberSchemeBlockId","width":10,"type":"radio","search_key":"number_scheme_block_id"},
+        {"header":"Scheme Name","value":"schemeName","width":20,"type":"","search_key":"scheme_name"},
+        {"header":"Block Name","value":"blockName","width":20,"type":"","search_key":"block_name"},
+        {"header":"Approval Date","value":"approvalDate","width":20,"type":"","search_key":"approval_date"},
+        {"header":"Range","value":"range","width":20,"type":"","search_key":"range"},
+        {"header":"Status","value":"status","width":10,"type":"","search_key":"status"}
+    ],
+    "page":{
+        "content":[
+            {"numberSchemeBlockId":1,"schemeName":"schemeName-1", "blockName":"Block-1","approvalDate":"17/01/2022","range":"1000000-200000","status":"Active","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"numberSchemeBlockId":2,"schemeName":"schemeName-2", "blockName":"Block-2","approvalDate":"17/02/2022","range":"2000000-300000","status":"Active","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"numberSchemeBlockId":3,"schemeName":"schemeName-3", "blockName":"Block-3","approvalDate":"17/03/2022","range":"3000000-400000","status":"Active","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false}
+        ],
+        "pageable":{"offset":0,"pageSize":5},
+        "first":true,"last":false,"totalPages":2,"totalElements":6,"pageNumber":1,"numberOfElements":5,
+        "sort":{"empty":false,"sorted":true,"unsorted":false},
+        "sortObjects":{"key":"numberSchemeBlockId","value":"ASC"}
+    }
+}

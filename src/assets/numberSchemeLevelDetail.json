@@ -1,0 +1,22 @@
+{
+    "headerlist":[
+        {"header":"","value":"numberSchemeId","width":10,"type":"radio","search_key":"number_scheme_id"},
+        {"header":"Level Name","value":"levelName","width":15,"type":"","search_key":"level_name"},
+        {"header":"Description","value":"description","width":15,"type":"","search_key":"description"},
+        {"header":"Length","value":"length","width":15,"type":"","search_key":"length"},
+        {"header":"Value Type","value":"valueType","width":15,"type":"","search_key":"value_type"},
+        {"header":"Value","value":"value","width":15,"type":"","search_key":"value"},
+        {"header":"Delimiter","value":"delimiter","width":15,"type":"","search_key":"delimiter"}
+    ],
+    "page":{
+        "content":[
+            {"numberSchemeId":1,"levelName":"Level 1", "description":"Level 1 description","length":"2","valueType":"numerice","value":"123","delimiter":"-","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"numberSchemeId":1,"levelName":"Level 2", "description":"Level 2 description","length":"2","valueType":"Maharshtra","value":"123","delimiter":"-","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"numberSchemeId":1,"levelName":"Level 3", "description":"Level 3 description","length":"6","valueType":"Maharshtra","value":"123","delimiter":"-","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false}
+        ],
+        "pageable":{"offset":0,"pageSize":5},
+        "first":true,"last":false,"totalPages":2,"totalElements":6,"pageNumber":1,"numberOfElements":5,
+        "sort":{"empty":false,"sorted":true,"unsorted":false},
+        "sortObjects":{"key":"numberSchemeId","value":"ASC"}
+    }
+}

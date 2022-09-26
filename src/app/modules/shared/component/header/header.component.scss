@@ -1,0 +1,31 @@
+.icon-menu::before{
+    content: none !important;
+}
+.icon-menu{
+    font-family: "Nunito",sans-serif;
+}
+::ng-deep.sticky-note {
+    z-index: 13!important;
+}
+.home-head{
+    color:#BABDBF;
+    margin-right:13px;
+}
+.home-head:hover{
+    color:#ffffff;
+}
+.right .home-head:hover{
+    color:#ffffff ;  
+}
+.notification .home-head:hover{
+    color:#ffffff;
+}
+
+.dropdown-item.active{
+    background-color: #E8E9E9 !important;
+} 
+
+.drop-nav-link{
+    color: #fff;
+    box-shadow: none;
+}
