@@ -3,4 +3,3 @@ node_modules
 package-lock.json
 dist
 src/app/modules/product-management/components/.DS_Store
-src/environments/environment.ts
