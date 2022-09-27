@@ -119,7 +119,7 @@ export class DataTableUiComponent implements OnInit {
 
   createUrl() {
     let params = new HttpParams();
-    params = params.append('offset', this.pagination.pageNumber* this.pagination.pageSize+1);
+    params = params.append('offset', this.pagination.pageNumber* this.pagination.pageSize);
     params = params.append('limit', this.pagination.pageSize);
     if (this.pagination.serchingParmeter != "" && this.pagination.serchingParmeter != undefined && this.pagination.serchingParmeter != null) {
       params = params.append('name', this.pagination.serchingParmeter);

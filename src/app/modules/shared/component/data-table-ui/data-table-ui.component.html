@@ -29,9 +29,12 @@
                     <ng-container *ngFor="let column of columns?.columnsMetadata,let i = index;">
                     <th *ngIf="column?.type!='icon' && column?.type!='button' && column?.type!='radio'"  scope="col" [style.width.%]="column?.width" class="sorting"  (click)="sorting(column?.mappedBy)">
                         {{column?.name}}
-                        <i *ngIf="pagination.sortKey==column?.mappedBy && pagination.sortType=='DESC'  " class='fa fa-sort-alpha-desc sort-icon'></i>
+                        <span
+                        innerHtml="<i class='{{pagination.sortKey==column?.mappedBy && pagination.sortType=='DESC' ? 'fa fa-sort-alpha-desc sort-icon' : pagination.sortKey==column?.mappedBy && pagination.sortType=='ASC' ? 'fa fa-sort-alpha-asc sort-icon' : 'fa fa-sort sort-icon-white'}}'></i>">
+                    </span>
+                        <!-- <i *ngIf="pagination.sortKey==column?.mappedBy && pagination.sortType=='DESC'  " class='fa fa-sort-alpha-desc sort-icon'></i>
                         <i *ngIf="pagination.sortKey==column?.mappedBy && pagination.sortType=='ASC'" class='fa fa-sort-alpha-asc sort-icon'></i>
-                        <i *ngIf="pagination.sortKey!=column?.mappedBy" class="fa fa-sort sort-icon-white" aria-hidden="true"></i>
+                        <i *ngIf="pagination.sortKey!=column?.mappedBy" class="fa fa-sort sort-icon-white" aria-hidden="true"></i> -->
                     </th>
                     <th  *ngIf="column?.type=='icon' || column?.type=='button' || column?.type=='radio'" scope="col" [style.width.%]="column?.width" class="sorting" class="avisys-data-table-header">
                         {{column?.name}}
