@@ -5,19 +5,20 @@
 		"type": "radio",
 		"width": 10
 	}, {
-		"name": "Department ID",
-		"mappedBy": "name",
+		"name": "Dept Code",
+		"mappedBy": "dept_code",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Department Name",
-		"mappedBy": "type",
+		"mappedBy": "dept_name",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Department Description",
-		"mappedBy": "description",
+		"mappedBy": "dept_description",
 		"type": "text",
 		"width": 30
 	}]
 }
+

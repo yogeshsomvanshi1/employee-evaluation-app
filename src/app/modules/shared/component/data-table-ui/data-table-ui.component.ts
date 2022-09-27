@@ -16,7 +16,7 @@ export class DataTableUiComponent implements OnInit {
 
   @Input() content: Array<object> = [];
   @Input() permission: Array<boolean>;
-  @Input() totalPages: Number;
+  @Input() count: Number;
   // FIXME: RENAME: This is not not just columns this contains whole Table Metadata.
   @Input() columns: TableHeaderMetaData;
   @Input() height: string = '50vh';
@@ -37,7 +37,8 @@ export class DataTableUiComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     let pageListTemp = []
-    for (let i = 0; i < this.totalPages; i++) {
+    let totalPAges= Number(this.count) /this.pagination.pageSize;
+    for (let i = 0; i < totalPAges; i++) {
       pageListTemp.push(i);
     }
     this.pageList = pageListTemp;
@@ -118,8 +119,8 @@ export class DataTableUiComponent implements OnInit {
 
   createUrl() {
     let params = new HttpParams();
-    params = params.append('page', this.pagination.pageNumber);
-    params = params.append('size', this.pagination.pageSize);
+    params = params.append('offset', this.pagination.pageNumber* this.pagination.pageSize+1);
+    params = params.append('limit', this.pagination.pageSize);
     if (this.pagination.serchingParmeter != "" && this.pagination.serchingParmeter != undefined && this.pagination.serchingParmeter != null) {
       params = params.append('name', this.pagination.serchingParmeter);
     }

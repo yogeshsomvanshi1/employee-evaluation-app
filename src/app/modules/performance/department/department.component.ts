@@ -4,6 +4,7 @@ import { PerformanceService } from "../services/performance.service";
 import { forkJoin } from "rxjs";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpParams } from "@angular/common/http";
 
 @Component({
   selector: "app-department",
@@ -17,7 +18,7 @@ export class DepartmentComponent implements OnInit {
   dataDataTable: any;
   modalRef: BsModalRef;
   permission: Array<boolean> = [true, true, true];
- 
+  params: HttpParams = new HttpParams();
   departmentForm: FormGroup;
 
   constructor(
@@ -30,10 +31,11 @@ export class DepartmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.params = this.params.append('offset', 0);
+    this.params = this.params.append('limit', 5);
     forkJoin({
       tableHeader: this.performanceService.getHeaderColumes(),
-
-      tableData: this.performanceService.getContentColumes(),
+      tableData: this.performanceService.getContentColumes(this.params),
     }).subscribe(
       (response) => {
         console.log(response);
@@ -45,6 +47,13 @@ export class DepartmentComponent implements OnInit {
 
       (error) => {}
     );
+  }
+
+  changePageSortSearch(data:HttpParams){
+this.performanceService.getContentColumes(data).subscribe((sucess:any)=>{
+  this.dataDataTable = sucess;
+  
+})
   }
  
   initForm(): FormGroup {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -10,8 +10,11 @@ export class PerformanceService {
     return this.httpClient.get("./assets/data-table-header.json");
   }
 
-  getContentColumes(){
-    return this.httpClient.get("./assets/data-table-content.json");
+  getContentColumes(param: HttpParams){
+    const options = {
+      params: param
+  };
+    return this.httpClient.get("http://192.168.1.11:9999/core/department/",options);
   }
 
   getDivisionHeaderColumes(){

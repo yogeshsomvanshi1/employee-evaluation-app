@@ -7,9 +7,9 @@
                         Department 
                     </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
-                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event, template2)"
-                    [content]="dataDataTable?.content">
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" (changePageSortSearch)="changePageSortSearch($event)"
+                    [count]="dataDataTable?.count" (buttonEvent1)="buttonEvent1($event, template2)"
+                    [content]="dataDataTable?.results">
                 </app-data-table-ui>
             </div>
         </div>
