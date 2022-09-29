@@ -1,3 +1,4 @@
+import { EmployeeComponent } from './employee/employee.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { DesignationComponent } from './designation/designation.component';
 
@@ -16,9 +17,11 @@ const routes: Routes = [
     {path: 'division-table' , component : DivisionComponent},
     {path: 'grades-table' , component : GradeComponent},
     {path: 'role-table' , component : RoleComponent},
-    {path: 'designation-table' , component : DesignationComponent}
+    {path: 'designation-table' , component : DesignationComponent},
+    {path: 'employee-table' , component : EmployeeComponent},
+    {path:'' , redirectTo: 'welcome' , pathMatch:'full'}
   ]},
-  {path:'' , redirectTo: 'welcome' , pathMatch:'full'}
+
 ];
 
 @NgModule({
