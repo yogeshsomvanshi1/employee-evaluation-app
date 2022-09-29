@@ -4,15 +4,12 @@
         <div class="row pt-30">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">
-                        <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
-                      Designation
-                    </h3>
+                    <h3 class="card-title">Designation </h3>
                 </div>
                 <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
-                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event, template2)"
-                    [content]="dataDataTable?.content">
-                </app-data-table-ui>
+                (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                (buttonEvent1)="buttonEvent1($event, template2)" [content]="dataDataTable?.results">
+            </app-data-table-ui>
             </div>
         </div>
     </div>
@@ -35,35 +32,24 @@
             <div class="performance-evaluation-form-parent">
                 <form [formGroup]="designationForm">
                     <div class="container-fluid performance-evaluation-form">
-                        <!-- <div class="per-heading">Divison</div> -->
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_id">Designation ID</label>
                                     <div class="">
-                                        <select formControlName="designationId" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        <input type="text" formControlName="des_code" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_name">Designation Name</label>
                                     <div class="">
-                                        <select formControlName="designationName" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        <input type="text" formControlName="des_name" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <label for="" class="per-subheading">Designation Description</label>
                                     <div class="">
-                                        <textarea formControlName="designationDescription" name="" id="" cols="30" rows="3"
+                                        <textarea formControlName="des_description" name="" id="" cols="30" rows="3"
                                             class="per-textarea"></textarea>
                                     </div>
                                 </div>
