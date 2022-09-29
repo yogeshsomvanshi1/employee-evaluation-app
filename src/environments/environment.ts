@@ -13,7 +13,8 @@ export const environment = {
   baseUrlNM: "http://192.168.1.11:8060/number-management",
   baseUrlPM: "http://192.168.1.11:8050/product-management",
   baseUrlUM: "http://192.168.1.11:8040",
-  emailFileUpload:"http://192.168.1.11:8020"
+  emailFileUpload:"http://192.168.1.11:8020",
+  performance: "http://192.168.1.11:9999/"
 
 
 
