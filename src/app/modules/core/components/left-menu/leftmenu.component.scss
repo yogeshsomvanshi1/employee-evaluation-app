@@ -7,7 +7,7 @@
 }
 .performance-avisys-header{
   font-size: 16px;
-  font-family: 'Lato-Bold';
+  
   margin-bottom: 20px;
 }
 #left-sidebar{
@@ -22,7 +22,10 @@
 .metismenu ul a {
   font-size: 12px !important;
 }
-
+.metismenu .active > a{
+  font-family: 'Lato-Bold' !important;
+  font-size: 13px !important;
+}
 .avisys-left-menu-logo{
   height: 85px;
   width: 85px;
@@ -30,4 +33,5 @@
 }
 #left-sidebar .brand-name{
   margin-top: 20px !important;
+  font-family: 'Lato-Bold' !important;
 }
