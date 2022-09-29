@@ -8,10 +8,10 @@
                        Role 
                     </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
-                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event, template2)"
-                    [content]="dataDataTable?.content">
-                </app-data-table-ui>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                (changePageSortSearch)="changePageSortSearch($event)"
+                (buttonEvent1)="buttonEvent1($event , template2)" [content]="dataDataTable?.results">
+            </app-data-table-ui>
             </div>
         </div>
     </div>
@@ -39,30 +39,13 @@
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_id">Role ID</label>
                                     <div class="">
-                                        <select formControlName="roleId" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
+                                        <input type="text" formControlName="role_code" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_name">Role Name</label>
                                     <div class="">
-                                        <select formControlName="roleName" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <label for="" class="per-subheading">Role Description</label>
-                                    <div class="">
-                                        <textarea formControlName="roleDescription" name="" id="" cols="30" rows="3"
-                                            class="per-textarea"></textarea>
+                                        <input type="text" formControlName="role_name" class="per-subheading">
                                     </div>
                                 </div>
                             </div>
