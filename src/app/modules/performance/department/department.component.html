@@ -4,12 +4,12 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title avisys-table-heading">
-                        Department 
+                        Department
                     </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" (changePageSortSearch)="changePageSortSearch($event)"
-                    [count]="dataDataTable?.count" (buttonEvent1)="buttonEvent1($event, template2)"
-                    [content]="dataDataTable?.results">
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
+                    (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                    (buttonEvent1)="buttonEvent1($event, template2)" [content]="dataDataTable?.results">
                 </app-data-table-ui>
             </div>
         </div>
@@ -32,43 +32,46 @@
             <div class="performance-evaluation-form-parent">
                 <form [formGroup]="departmentForm">
                     <div class="container-fluid performance-evaluation-form">
-                       
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="department_id">Department ID</label>
                                     <div class="">
-                                        <select formControlName="departmentId" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="dept_code" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" formControlName="dept_code" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="department_name">Department Name</label>
                                     <div class="">
-                                        <select formControlName="departmentName" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="departmentName" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" name="" id="" class="per-subheading"
+                                            formControlName="dept_name">
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <label for="" class="per-subheading">Department Description</label>
                                     <div class="">
-                                        <textarea formControlName="departmentDescription" name="" id="" cols="30" rows="3"
-                                            class="per-textarea"></textarea>
+                                        <textarea formControlName="dept_description" name="" id="" cols="30"
+                                            rows="3" class="per-textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-            
-                 
+
+
                 </form>
             </div>
         </form>
@@ -76,18 +79,10 @@
     <div class="modal-footer">
         <div class="per-buttons-section">
             <div class="d-flex justify-content-end w-100 per-buttons align-items-center per-inner-button-section">
-                <button class="per-buttons-one" (click)="submit()" type="button"><a
-                        class="per-buttons-a-one">Submit</a></button>
+                <button class="per-buttons-one" (click)="submit()" type="submit"><a
+                        class="per-buttons-a-one">{{ actionBtn }}</a></button>
                 <button class="per-buttons-two"><a href="" class="per-buttons-a-two">Cancel</a></button>
             </div>
         </div>
     </div>
 </ng-template>
-
-
-
-
-
-
-
-  
