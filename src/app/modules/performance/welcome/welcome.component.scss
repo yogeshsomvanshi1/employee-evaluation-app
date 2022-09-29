@@ -1,13 +1,18 @@
 .avisys-welcome-main-section{
     background-color: #fff;
-    margin: 15px;
+    margin: 15px 10px 15px 15px !important;
     border-radius: 15px !important;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(../../../../assets/images/performance4.jpg);
 }
 .avisys-welcome-image{
     height: 200px;
-    width: 200px;
+    width: 100%;
+}
+
+.avisys-image-section{
+    height: 100%;
 }

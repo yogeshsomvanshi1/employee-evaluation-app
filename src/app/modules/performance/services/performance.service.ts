@@ -15,6 +15,7 @@ export class PerformanceService {
       params: param
   };
     return this.httpClient.get("http://192.168.1.11:9999/core/department/",options);
+
   }
 
   getDivisionHeaderColumes(){

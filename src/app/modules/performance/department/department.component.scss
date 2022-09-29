@@ -158,7 +158,8 @@
   .per-heading {
     color: #000;
     font-size: 16px;
-    font-family: "Lato", sans-serif;
+    // font-family: "Lato", sans-serif;
+    font-family: 'Lato' !important;
     font-weight: 500;
     line-height: 1.1;
     padding: 20px 0;

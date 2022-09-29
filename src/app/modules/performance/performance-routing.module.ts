@@ -16,9 +16,10 @@ const routes: Routes = [
     {path: 'division-table' , component : DivisionComponent},
     {path: 'grades-table' , component : GradeComponent},
     {path: 'role-table' , component : RoleComponent},
-    {path: 'designation-table' , component : DesignationComponent}
+    {path: 'designation-table' , component : DesignationComponent},
+    {path:'' , redirectTo: 'welcome' , pathMatch:'full'}
   ]},
-  {path:'' , redirectTo: 'welcome' , pathMatch:'full'}
+  
 ];
 
 @NgModule({
