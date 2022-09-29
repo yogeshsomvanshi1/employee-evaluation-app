@@ -8,11 +8,12 @@
                         <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
                         Division 
                     </h3>
-                </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
-                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event, template2)"
-                    [content]="dataDataTable?.content">
-                </app-data-table-ui>
+                </div>        
+            <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
+                (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                (buttonEvent1)="buttonEvent1($event, template2)" [content]="dataDataTable?.results">
+            </app-data-table-ui>
+
             </div>
         </div>
     </div>
@@ -40,29 +41,31 @@
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_id">Divison ID</label>
                                     <div class="">
-                                        <select formControlName="divisionId" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="div_code" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" formControlName="div_code" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_name">Divison Name</label>
                                     <div class="">
-                                        <select formControlName="divisionName" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="div_name" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" formControlName="div_name" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <label for="" class="per-subheading">Divison Description</label>
                                     <div class="">
-                                        <textarea formControlName="divisionDescription" name="" id="" cols="30" rows="3"
+                                        <textarea formControlName="div_description" name="" id="" cols="30" rows="3"
                                             class="per-textarea"></textarea>
                                     </div>
                                 </div>
