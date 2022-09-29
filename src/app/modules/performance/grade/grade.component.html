@@ -1,4 +1,3 @@
-
 <div class="section-body  fixNavMargin">
     <div class="container-fluid">
         <div class="row pt-30">
@@ -6,12 +5,12 @@
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">
                         <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
-                       Grade 
+                        Grade
                     </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
-                    [totalPages]="dataDataTable?.totalPages" (buttonEvent1)="buttonEvent1($event , template2)"
-                    [content]="dataDataTable?.content">
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                    (changePageSortSearch)="changePageSortSearch($event)"
+                    (buttonEvent1)="buttonEvent1($event , template2)" [content]="dataDataTable?.results">
                 </app-data-table-ui>
             </div>
         </div>
@@ -41,38 +40,40 @@
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_id">Grade ID</label>
                                     <div class="">
-                                        <select formControlName="gradeId" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="gradeId" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" formControlName="grade_code" class="per-subheading">
                                     </div>
                                 </div>
                                 <div class="d-flex per-flex-section">
                                     <label for="" class="per-subheading" id="division_name">Grade Name</label>
                                     <div class="">
-                                        <select formControlName="gradeName" name="cars" id="cars" class="per-dropdown">
+                                        <!-- <select formControlName="gradeName" name="cars" id="cars" class="per-dropdown">
                                             <option value="volvo"></option>
                                             <option value="saab">Saab</option>
                                             <option value="opel">Opel</option>
                                             <option value="audi">Audi</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" formControlName="grade_name" class="per-subheading">
                                     </div>
                                 </div>
-                                <div class="d-flex">
+                                <!-- <div class="d-flex">
                                     <label for="" class="per-subheading">Grade Description</label>
                                     <div class="">
                                         <textarea formControlName="gradeDescription" name="" id="" cols="30" rows="3"
                                             class="per-textarea"></textarea>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-                
+
                 </form>
-            
+
             </div>
         </form>
     </div>
