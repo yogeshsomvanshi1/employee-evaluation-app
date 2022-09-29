@@ -6,17 +6,17 @@
 		"width": 10
 	}, {
 		"name": "Division ID",
-		"mappedBy": "name",
+		"mappedBy": "div_code",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Division Name",
-		"mappedBy": "type",
+		"mappedBy": "div_name",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Division Description",
-		"mappedBy": "description",
+		"mappedBy": "div_description",
 		"type": "text",
 		"width": 30
 	}]
