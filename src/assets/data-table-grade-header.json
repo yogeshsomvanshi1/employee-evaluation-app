@@ -6,18 +6,13 @@
 		"width": 10
 	}, {
 		"name": "Grade ID",
-		"mappedBy": "name",
+		"mappedBy": "grade_code",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Grade Name",
-		"mappedBy": "type",
+		"mappedBy": "grade_name",
 		"type": "text",
 		"width": 30
-	}, {
-		"name": "Grade Description",
-		"mappedBy": "description",
-		"type": "text",
-		"width": 30
-	}]
-}
+	}
+]}

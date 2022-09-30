@@ -11,6 +11,7 @@ import { RoleComponent } from './role/role.component';
 import { DesignationComponent } from './designation/designation.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     GradeComponent,
     RoleComponent,
     DesignationComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    EmployeeComponent
   ],
   imports: [
     CommonModule,

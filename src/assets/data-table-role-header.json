@@ -6,17 +6,12 @@
 		"width": 10
 	}, {
 		"name": "Role ID",
-		"mappedBy": "name",
+		"mappedBy": "role_code",
 		"type": "text",
 		"width": 30
 	}, {
 		"name": "Role Name",
-		"mappedBy": "type",
-		"type": "text",
-		"width": 30
-	}, {
-		"name": "Role Description",
-		"mappedBy": "description",
+		"mappedBy": "role_name",
 		"type": "text",
 		"width": 30
 	}]
