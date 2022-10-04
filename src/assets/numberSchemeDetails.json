@@ -1,0 +1,17 @@
+{
+    "numberSchemeId":1,
+    "schemeName":"MSISDN-1", 
+    "numberType":"15",
+    "format":"98NNNNNNN",
+    "released":true,
+    "reuseAfterDisconnect":true,
+    "quarantinePeriod":4,
+    "quarantineUom":"Days",
+    "reservationPeriod":60,
+    "area":"MP",
+    "createdBy":"a123jsd2716",
+    "createdDate":"2022-05-25",
+    "updatedBy":null,
+    "updatedDate":null,
+    "isDeleted":false
+}

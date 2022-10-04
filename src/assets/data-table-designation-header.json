@@ -1,0 +1,23 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "dept_code",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Designation ID",
+		"mappedBy": "des_code",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Designation Name",
+		"mappedBy": "des_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Designation Description",
+		"mappedBy": "des_description",
+		"type": "text",
+		"width": 30
+	}]
+}

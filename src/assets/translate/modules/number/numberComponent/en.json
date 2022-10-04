@@ -1,0 +1,180 @@
+{
+    "forms":{      
+        "numberType":{
+            "heading":"NUMBER TYPE",
+            "typeName":"Type Name",
+            "typeId":"Type ID",
+            "select":"Select",
+            "others":"Others",
+            "sim":"SIM",
+            "imsi":"IMSI",
+            "msisdn":"MSISDN",
+            "type":"Type",
+            "available":"Available",
+            "notAvailable":"Not – Available",
+            "description":"Description",
+            "statusGeneration":"Status After Generation",
+            "allocationAllowed":"Allocation Allowed",
+            "areaWiseScheme":"Area Wise Scheme Definition",
+            "validFormat":"Valid Format",
+            "released":"Released",
+            "submit":"Submit",
+            "reset":"Reset",
+            "technologyGeneration":"Technology Generation"
+        },
+        "numberFormat":{
+            "numberFormat":"Number Format",
+            "numberFormatDefination":"NUMBER FORMAT DEFINITION ",
+            "sequence":"Sequence ",
+            "levelName":"Level Name",
+            "description":"Description",
+            "length":"Length",
+            "valueType":"Value Type",
+            "delimeter": "Delimeter",
+            "levelType": "Level Type",
+            "value":"Value"
+        },
+        "numberScheme" : {
+            "heading":"Number Scheme",
+            "numberSchemeName":"Scheme Name",
+            "numberType":"Number Type",
+            "subType":"Sub Type",
+            "released":"Released",
+            "format":"Format",
+            "area":"Area",
+            "reuseAfterDisconnect":"Reuse After Disconnect",
+            "quarantinePeriod":"Quarantine Period",
+            "quarantineUom":"Quarantine Uom",
+            "reservationPeriod":"Reservation Period"
+        },
+        "numberSchemeLineDetails":{
+            "lineHeading":"Number Scheme Line Details",
+            "sequence":"Sequence",
+            "levelName":"Level Name",
+            "description":"Description",
+            "levelType":"Level Type",
+            "length":"Length",
+            "valueType":"Value Type",
+            "value":"Value",
+            "delimiter":"Delimiter"
+        },
+        "blockDefinition":{
+            "blockDefinitionHeading": "Number Block",
+            "schemeName":"Scheme Name",
+            "blockDefinitionTitle":"Block Definition",
+            "blockName":"Block Name",
+            "recievedDate":"Recieved Date",
+            "approvalDate":"Approval Date",
+            "startRunning":"Start Running Number",
+            "endRunning":"End Running Number",
+            "totalCount":"Total Count",
+            "status":"Status"
+        },
+        "generatedNumber":{
+            "generatedNumberHeading":"Generated Number",
+            "generatedNumberTitle":"Generated Number",
+            "number":"Number",
+            "specialCategory":"Special Category",
+            "status":"Status",
+            "price":"Price",
+            "quarantine":"Quarantine Period",
+            "reservation":"Reservation Period"
+        },
+        "vanityPatternRule":{
+            "vanityHeading":"Vanity Pattern Rule",
+            "categoryName":"Category Name",
+            "mask":"Mask",
+            "maskSequenced":"Mask Sequenced",
+            "priority":"Priority",
+            "startDate":"Start Date",
+            "ruleCode":"Rule Code", 
+            "ruleCombination":"Rule Combination",
+            "defaultCategory":"Default Category",
+            "reservationPeriod":"Reservation Period",
+            "quarantinePeriod":"Quarantine Period"
+        },
+        "vanity-pattern-rules":{
+            "rule-code":"Rule Code ",
+            "type":"Type",
+            "masks":"Mask",
+            "mask-sequenced":"Mask Sequenced",
+            "length":"Length",
+            "number-occurence":"No. Of Occurrence",
+            "reverse-check":"Reverse Check ",
+            "priority": "Priority"
+        },
+        "vanityNumberCategory":{ 
+            "vanityHeading":"Vanity Number Category",
+            "schemeName":"Scheme Name",
+            "categoryName":"Category Name",
+            "reservationPeriod":"Reservation Period (Days)",
+            "quarantinePeriod":"Quarantine Period (Days)",
+            "price":"Price",
+            "ruleCode":"Rule Code", 
+            "ruleCombination":"Rule Combination",
+            "defaultCategory":"Default Category",
+            "startDate":"Start Date",
+            "vanityNumPattern":"Vanity Number Pattern"
+        },  
+        "number-configuration-linedetails":{
+            "sequence":"Sequence ",
+            "level-name":"Level Name",
+            "description":"Description",
+            "level-type":"Level Type",
+            "length":"Length",
+            "value-type":"Value Type",
+            "value":"Value",
+            "delimeter":"Delimiter"
+         },
+         "numberGeneration":{
+            "numberGenerationHeading":"Number Generation",
+            "schemeName":"Scheme Name",
+            "type":"Type",
+            "subType":"Sub-Type",
+            "format":"Format",
+            "blockName":"Block name",
+            "blockRange":"Block Range",
+            "startRunningNumber":"Start Running Number",
+            "quantity":"Quantity",
+            "endRunningNumber":"End Running Number",
+            "numberStatus":" Number Status",
+            "numberGenerationStatus":"Number Generation status",
+            "allcatedTo":"Allocated To ",
+            "executionTime":"Execution Time",
+            "checksumRequires":"CheckSUM requires"
+        },
+        "numberAssociationRule":{
+            "numberAssociationRuleHeading":"Number Association Rules​",
+            "ruleName":"Rule Name",
+            "ruleType":"Rule Type",
+            "releasedDate":"Release Date",
+            "expiryDate":"Expiry Date",
+            "validRule":"Valid Rule",
+            "released":"Released",
+            "expired":"Expired"
+        },
+        "numberAssociationRuleSequence":{
+            "heading":"Number Association Rules Sequence",
+            "sourceNumberType":"Source Number Type",
+            "parentRule":"Parent Rule",
+            "destinationNumberType":"Destination Number Type",
+            "NumberOfDestinations":"Number of Destinations"
+        },
+        "numberAssociation":{
+            "numberAssociationHeading":"Number Association",
+            "associationId":"Association Id",
+            "ruleName":"Rule Name",
+            "associationDate":"Association Date",
+            "status":"Status",
+            "type":"Type",
+            "scheme":"Scheme",
+            "blockName":"Block Name",
+            "startNumber":"Start number",
+            "quantity":"Quantity",
+            "endNumber":"End Number"
+        },
+        "associatedNumbers" : {
+            "associatedNumberHeading":"Associated Numbers​"
+        }
+    }
+}

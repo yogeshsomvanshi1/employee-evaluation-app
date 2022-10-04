@@ -1,0 +1,199 @@
+/* Rutuja Black Header */
+
+.ml-10{
+    margin-left: 15px;
+}
+
+.flex-navbar{
+    display: flex;
+    align-items: center;
+}
+.avisys-logo{
+    height:50px;
+   
+}
+.navbar-content{
+        margin-right:50px;
+}
+.list-names{
+    color: white;
+    font-size: 17px;
+    font-family:  'Poppins', sans-serif;
+}
+.list-names:hover{
+    color:white;
+}
+.avisys-search-icon{
+    margin:12px;
+    font-size:20px !important;
+    color:white;
+    
+}
+.header-navbar{
+height: 130px;
+    
+}
+.header-parent{
+    border-bottom:1px solid grey;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1;
+}
+.black-navbar{
+    background-color:black;
+}
+.black-navbar{
+    height: 65px;
+}
+/* Prathmesh crm-layout section */
+.crm-first-section{
+    background-color: rgb(16, 219, 219);
+    height: 630px;
+}
+.crm-second-section{
+    background-color: rgb(241, 207, 213);
+    height: 300px;
+}
+.crm-third-section{
+    background-color: rgb(252, 203, 161);
+    /* height: 314px; */
+    margin: 15px 0 0 0;
+}
+.crm-fourth-section{
+    background-color: rgb(202, 200, 200);
+    height: 314px;
+
+}
+.crm-left-thumb{
+    margin: 60px 0 0 0;
+}
+.crm-image-one{
+    width: 100%;
+    /* position: absolute;
+    top: 300px; */
+    height: auto;
+    max-height: 60%;
+    background-size: cover;
+}
+.crm-image-two{
+    height: 250px;
+    width: 50%;
+    object-fit: contain;
+}
+.crm-first-box{
+    /* position: absolute;
+    top: 20px;
+    left: 40px; */
+    margin: 20px 0 0 0px;
+}
+.crm-second-box{
+    padding: 20px 0 0 0;
+    /* position: absolute;
+    top: 345px;
+    left: 45%; */
+}
+.crm-heading1{
+    color: #fff;
+    font: normal normal normal 28px/normal 'Poppins', sans-serif;
+    margin-bottom: 15px;
+}
+.crm-image-three{
+    height: 280px;
+    width: 75%;
+    margin: 0 0 20px 15px;
+}
+.crm-button{
+    color: rgb(8, 143, 143);
+    background-color: #fff;
+    padding: 10px 55px;
+    border: 1px solid #fff;
+    font-family: 'Poppins', sans-serif;
+}
+.crm-image-two{
+    height: 280px;
+    width: 100%;
+    margin: 10px 0 0 0;
+    object-fit: contain;
+}
+.crm-heading{
+    color: #fff;
+    font: normal normal normal 28px/normal 'Poppins', sans-serif;
+    margin: 10px 0 20px 0;
+    padding: 0 10px;
+}
+.crm-subheading{
+    color: #000;
+    font: normal normal normal 20px/normal 'Poppins', sans-serif;
+    padding: 0 10px;
+    margin: 0 0 30px 0;
+}
+.crm-subheading1{
+    color: #000;
+    font: normal normal normal 20px/normal 'Poppins', sans-serif;
+    padding: 0 10px;
+    /* width: 60%; */
+    max-width: 300px;
+    margin: 0 0 30px 0;
+}
+.crm-subheading2{
+    color: #000;
+    font: normal normal normal 20px/normal 'Poppins', sans-serif;
+    padding: 0 0px;
+    /* width: 50%; */
+    margin: 0 0 30px 0;
+}
+button:focus {
+    outline: none !important;
+}
+
+.crm-inner-section{
+    /* position: absolute; */
+    margin-top: 30px;
+    /* background-color: aqua;
+    height: 100%; */
+}
+.crm-layout{
+    margin: 30px 0 0 0;
+}
+
+/*  */
+.copyright-content{
+    line-height: 22px;
+    margin-top: 15px;
+    color: #666666;
+    font-size: 14px;
+    padding-left:90px;
+    font-family:  'Poppins', sans-serif;
+    
+}
+.crm-footer-section{
+    background-color: #c7bfbf;
+    height:50px;
+    justify-content: space-between;
+}
+.crm-icon-section{
+    margin-right:100px;
+    margin-top:7px;
+    
+}
+.crm-icon{
+    color:#666666;
+    margin-right:15px;
+}
+.crm-icon1{
+    color: #666666;
+    margin: 12px 15px 0 0;
+}
+
+.footer-last-section{
+    margin: 30px 0 0 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.cursor{
+    cursor: pointer;
+}

@@ -1,0 +1,21 @@
+.ui-autocomplete {
+    max-height: 600px;
+    overflow-y: auto;   /* prevent horizontal scrollbar */
+    overflow-x: hidden; /* add padding to account for vertical scrollbar */
+    z-index:1000 !important;
+}
+.autocomplete-wrapper {
+    position: relative;
+
+}
+.autocomplete {
+    top: 35px;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    border-color:green;
+    background-color:white;
+    backface-visibility: visible;
+    border-radius: 1%;
+    overflow-y: auto;
+}

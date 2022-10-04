@@ -1,0 +1,61 @@
+{
+	"content": [{
+		"id": 780,
+		"name": "MSISDN-7",
+		"type": "MSISDN",
+		"description": "MSISDN-7 NUMBER TYPE",
+		"statusAfterGeneration": null,
+		"allocationAllowed": true,
+		"areaWiseSchemeDefinition": true,
+		"released": false,
+		"technologyGeneration": "",
+		"createdBy": "316ef254-ef38-4b5d-97cd-aef515624074",
+		"createDate": "2022-07-19T11:10:14.887258Z",
+		"updatedBy": "316ef254-ef38-4b5d-97cd-aef515624074",
+		"lastUpdateDate": "2022-07-19T11:11:27.392866Z",
+		"deleted": false,
+		"owner": "074e653e-9482-4f19-a237-835a57430136"
+	},
+    {
+		"id": 780,
+		"name": "MSISDN-3",
+		"type": "MSISDN",
+		"description": "MSISDN-3 NUMBER ",
+		"statusAfterGeneration": null,
+		"allocationAllowed": true,
+		"areaWiseSchemeDefinition": true,
+		"released": false,
+		"technologyGeneration": "",
+		"createdBy": "316ef254-ef38-4b5d-97cd-aef515624074",
+		"createDate": "2022-07-19T11:10:14.887258Z",
+		"updatedBy": "316ef254-ef38-4b5d-97cd-aef515624074",
+		"lastUpdateDate": "2022-07-19T11:11:27.392866Z",
+		"deleted": false,
+		"owner": "074e653e-9482-4f19-a237-835a57430136"
+	}],
+	"pageable": {
+		"sort": {
+			"empty": true,
+			"sorted": false,
+			"unsorted": true
+		},
+		"offset": 0,
+		"pageNumber": 0,
+		"pageSize": 5,
+		"paged": true,
+		"unpaged": false
+	},
+	"last": false,
+	"totalPages": 3,
+	"totalElements": 12,
+	"size": 5,
+	"number": 0,
+	"sort": {
+		"empty": true,
+		"sorted": false,
+		"unsorted": true
+	},
+	"numberOfElements": 5,
+	"first": true,
+	"empty": false
+}

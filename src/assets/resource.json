@@ -1,0 +1,142 @@
+{
+    "content": [
+        {
+            "name": "Customer",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "_id": "1faa7f68-d593-430d-a11d-7253fae98842",
+            "uris": [
+                "/customer/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "name": "Default Resource",
+            "type": "urn:Reports-management:resources:default",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "_id": "0a3c7716-45ad-4a0b-a576-b114dec70d9f",
+            "uris": [
+                "/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "name": "HelloGetYogi Resource",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "displayName": "HelloGetYogi Resource",
+            "_id": "a534f368-aa27-4412-a2c0-ae3e18c289fa",
+            "uris": [
+                "/getHello/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "name": "HelloPost Resource",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "displayName": "HelloPost Resource",
+            "_id": "ff852475-4e71-42e6-a36a-dafd6bab15cd",
+            "uris": [
+                "/postHello/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "name": "Number Type Definition",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "displayName": "Number Type Definition API's",
+            "_id": "73e02f89-9c3e-4028-9430-c5c083872cac",
+            "uris": [
+                "/number-management/number-type-definition/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        },
+        {
+            "name": "Reports",
+            "owner": {
+                "id": "db90888d-9a1b-4b8c-8488-a12df90e3827",
+                "name": "Reports-management"
+            },
+            "ownerManagedAccess": false,
+            "displayName": "Reports",
+            "_id": "2427812e-ecf9-41bf-9b59-10aca8d5f9af",
+            "uris": [
+                "/reports/*"
+            ],
+            "action": [
+                {
+                    "label": "Create Permission",
+                    "color": "green"
+                }
+            ]
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true 
+        },
+        "offset": 0,
+        "pageSize": 5,
+        "pageNumber": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "last": false,
+    "totalPages": 5,
+    "totalElements": 22,
+    "size": 5,
+    "number": 0,
+    "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+    },
+    "numberOfElements": 5,
+    "first": true,
+    "empty": false
+}

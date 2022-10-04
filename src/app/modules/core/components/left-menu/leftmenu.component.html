@@ -1,0 +1,49 @@
+<div id="left-sidebar" class="sidebar ">
+    <div class="d-flex justify-content-center">
+        <img src="/assets/images/avisys.png" class="avisys-left-menu-logo" alt="">
+    </div>
+    <div class="brand-name performance-avisys-header">Performance Evaluation System </div>
+    <nav id="left-sidebar-nav" class="sidebar-nav">
+        <ul class="metismenu">
+<!-- 
+            <li *ngFor="let list of NumberMenuList" [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}">
+                <a *ngIf="!list.dynamicMenuOpen" href="javascript:void(0)"
+                    [routerLink]="list.routerLink ? list.routerLink : undefined"  (click)="list.isCollapsed = !list.isCollapsed"
+                    [attr.aria-expanded]="!list.isCollapsed" aria-controls="collapseBasic" class="has-arrow arrow-c"><i
+                        [class]="list.iconClass"></i><span>{{list.name}}</span></a>
+                <ul class="collapse" id="collapseBasic" [collapse]="true" [attr.isAnimated]="true">
+                    <li *ngFor="let sublist of  list.submenu" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact:true}"><a class="submenu" 
+                            href="javascript:void(0)"><span>{{ sublist.name}}</span>
+                        </a></li>
+
+
+                </ul>
+            </li> -->
+
+            <div *ngFor="let list of NumberMenuList">
+                <li  *ngIf="list.isHeading"  >
+                    <a *ngIf="!list.dynamicMenuOpen" href="javascript:void(0)" [routerLink]="list.routerLink ? list.routerLink : undefined" (click)="list.isCollapsed = !list.isCollapsed"
+                    [attr.aria-expanded]="!list.isCollapsed" [attr.aria-controls]="list.controlId"
+                    class="has-arrow arrow-c"><i [class]="list.iconClass"></i><span>  &nbsp; {{list.name}}</span></a>
+                </li>
+                <li  *ngIf="!list.isHeading"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                    <a href="javascript:void(0)" (click)="list.isCollapsed = !list.isCollapsed" [attr.aria-expanded]="!list.isCollapsed"
+                        [attr.aria-controls]="list.controlId" class="has-arrow arrow-c"><i
+                            [class]="list.iconClass"></i><span> &nbsp; {{ list.name}}</span></a>
+                    <ul class="collapse" [id]="list.controlId" [collapse]="list.isCollapsed" [isAnimated]="true">
+                        <li *ngFor="let sublist of list.submenu"   [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                            <a class="submenu" [routerLink]="sublist.routerLink ? sublist.routerLink : undefined"
+                                [routerLink]="sublist.routerLink" href="javascript:void(0)"><span>{{sublist.name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+
+
+        </ul>
+    </nav>
+
+</div>

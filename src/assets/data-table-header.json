@@ -1,0 +1,24 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Dept Code",
+		"mappedBy": "dept_code",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Department Name",
+		"mappedBy": "dept_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Department Description",
+		"mappedBy": "dept_description",
+		"type": "text",
+		"width": 30
+	}]
+}
+

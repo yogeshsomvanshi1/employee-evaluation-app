@@ -1,0 +1,22 @@
+{
+    "headerlist":[
+        {"header":"","value":"vanityNumberId","width":10,"type":"radio","search_key":"vanity_number_id"},
+        {"header":"Rule Code","value":"ruleCode","width":20,"type":"","search_key":"rule_code"},
+        {"header":"Type","value":"type","width":20,"type":"","search_key":"type"},
+        {"header":"Mask","value":"mask","width":20,"type":"","search_key":"mask"},
+        {"header":"Mask Sequence","value":"maskSequence","width":20,"type":"","search_key":"mask_sequence"},
+        {"header":"Length","value":"length","width":10,"type":"","search_key":"length"},
+        {"header":"Number of Occurance","value":"numberAccurance","width":10,"type":"","search_key":"number_accurance"}
+    ],
+    "page":{
+        "content":[
+            {"vanityNumberId":1,"ruleCode":"ruleCode-1", "type":"Code","mask":"XX","maskSequence":"true","length":"2","numberAccurance":"2","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"vanityNumberId":2,"ruleCode":"ruleCode-2", "type":"Combination","mask":"XY","maskSequence":"false","length":"2","numberAccurance":"2","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false},
+            {"vanityNumberId":3,"ruleCode":"ruleCode-3", "type":"Code","mask":"YY","maskSequence":"true","length":"2","numberAccurance":"2","createdBy":"a123jsd2716","createdDate":"2022-05-25","updatedBy":null,"updatedDate":null,"isDeleted":false}
+        ],
+        "pageable":{"offset":0,"pageSize":5},
+        "first":true,"last":false,"totalPages":2,"totalElements":6,"pageNumber":1,"numberOfElements":5,
+        "sort":{"empty":false,"sorted":true,"unsorted":false},
+        "sortObjects":{"key":"vanityNumberId","value":"ASC"}
+    }
+}

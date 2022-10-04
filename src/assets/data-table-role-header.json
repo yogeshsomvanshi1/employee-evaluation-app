@@ -1,0 +1,18 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Role ID",
+		"mappedBy": "role_code",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Role Name",
+		"mappedBy": "role_name",
+		"type": "text",
+		"width": 30
+	}]
+}

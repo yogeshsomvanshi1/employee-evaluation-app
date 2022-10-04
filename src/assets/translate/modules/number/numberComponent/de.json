@@ -1,0 +1,177 @@
+{
+    "forms":{
+        "numberType":{
+            "heading":" NUMMERTYP",
+            "typeName":"Escribe un nombre",
+            "typeId":"Typ-ID ",
+            "others":"Otros",
+            "sim":"SIM",
+            "imsi":"IMSI",
+            "msisdn":"MSISDN",
+            "available":"erhältlich",
+            "notAvailable":"Nicht verfügbar",
+            "type":"Typ",
+            "description":"Beschreibung",
+            "statusGeneration":"Status nach Generierung",
+            "allocationAllowed":"Zuordnung erlaubt",
+            "areaWiseScheme":"Gebietsbezogene Schemadefinition",
+            "validFormat":"Formato válido",
+            "released":"Veröffentlicht",
+            "submit":"Einreichen",
+            "reset":"Zurücksetzen",
+            "technologyGeneration":"Technologie-Generation"
+        },
+        "numberFormat":{
+            "numberFormat":"Formato numérico",
+            "numberFormatDefination":"DEFINICIÓN DE FORMATO DE NÚMERO ",
+            "sequence":"Secuencia ",
+            "levelName":"Nombre del nivel",
+            "description":"Descripción",
+            "length":"Larga",
+            "valueType":"Tipo de valor",
+            "delimeter": "delimitador",
+            "levelType": "Tipo de nivel",
+            "value":"Valor"
+        },
+        "numberScheme" : {
+            "heading":"esquema numérico",
+            "numberSchemeName":"Nombre del esquema",
+            "numberType":"Tipo de número",
+            "subType":"Subtipo",
+            "released":"Liberada",
+            "format":"Formato",
+            "area":"Área",
+            "reuseAfterDisconnect":"Reutilizar después de desconectar",
+            "quarantinePeriod":"Período de cuarentena",
+            "quarantineUom":"Unidad de medida en ",
+            "reservationPeriod":"Período de reserva"
+        }, 
+        "numberSchemeLineDetails":{
+            "lineHeading":"Detalles de la línea del esquema numérico",
+            "sequence":"Reihenfolge ",
+            "levelName":"Ebenenname",
+            "description":"Beschreibung",
+            "levelType":"Ebene Typ",
+            "length":"Länge",
+            "valueType":"Werttyp",
+            "value":"Wert",
+            "delimeter":"Trennzeichen"
+        },
+        "blockDefinition":{
+            "blockDefinitionHeading": "bloque de números",
+            "schemeName":"Nombre del esquema",
+            "blockDefinitionTitle":"Definición de bloque",
+            "blockName":"Nombre del bloque",
+            "recievedDate":"Fecha de recepción",
+            "approvalDate":"Fecha de aprobación",
+            "startRunning":"Iniciar número corriente",
+            "endRunning":"Fin del número corriente",
+            "totalCount":"Cuenta total",
+            "status":"Estado"
+        },
+        "generatedNumber":{
+            "generatedNumberHeading":"Número generado",
+            "generatedNumberTitle":"Número generado",
+            "number":"Número",
+            "specialCategory":"Categoría especial",
+            "status":"Estado",
+            "price":"Precio",
+            "quarantine":"Período de cuarentena",
+            "reservation":"Período de reserva"
+        },
+        "vanityNumber":{
+            "vanityHeading":"NÚMERO DE VANIDAD",
+            "categoryName":"nombre de la categoría",
+            "mask":"Máscara",
+            "maskSequenced":"Máscara Secuenciada",
+            "priority":"Prioridad",
+            "startDate":"Fecha de inicio",
+            "ruleCode":"Código de regla",
+            "ruleCombination":"Combinación de reglas",
+            "defaultCategory":"Categoría predeterminada",
+            "reservationPeriod":"Período de reserva",
+            "quarantinePeriod":"Período de cuarentena"
+        },     
+        "vanityNumberCategory":{ 
+            "vanityHeading":"Categoría de número personalizado",
+            "schemeName":"Nombre del esquema",
+            "categoryName":"nombre de la categoría",
+            "reservationPeriod":"Período de reserva (Días)",
+            "quarantinePeriod":"Período de cuarentena (Días)",
+            "price":"Price",
+            "ruleCode":"Código de regla", 
+            "ruleCombination":"Combinación de reglas",
+            "defaultCategory":"Categoría predeterminada",
+            "startDate":"Fecha de inicio",
+            "vanityNumPattern":"Patrón de número de vanidad"
+        },
+        "vanity-pattern-rules":{
+            "rule-code":"Regelcode",
+            "type":"Typ",
+            "masks":"Maske",
+            "mask-sequenced":"Maske Sequenziert",
+            "length":"Länge",
+            "number-occurence":"Nr.von Auftreten.",
+            "reverse-check":"Comprobación inversa",
+            "priority": "Prioridad"
+        },
+       
+        "number-configuration-linedetails":{
+            "sequence":"Reihenfolge ",
+            "level-name":"Ebenenname",
+            "description":"Beschreibung",
+            "level-type":"Ebene Typ",
+            "length":"Länge",
+            "value-type":"Werttyp",
+            "value":"Wert",
+            "delimeter":"Trennzeichen"
+         },
+         "numberGeneration":{
+            "numberGenerationHeading":"Number Generation",
+            "schemeName":"Scheme Name",
+            "type":"Type",
+            "subType":"Sub-Type",
+            "format":"Format",
+            "blockName":"Block name",
+            "blockRange":"Block Range",
+            "startRunningNumber":"Start Running Number",
+            "quantity":"Quantity",
+            "endRunningNumber":"End Running Number",
+            "numberStatus":" Number Status",
+            "numberGenerationStatus":"Number Generation status",
+            "allcatedTo":"Allocated To ",
+            "executionTime":"Execution Time",
+            "checksumRequires":"CheckSUM requires"
+        },
+        "numberAssociationRule":{
+            "numberAssociationRuleHeading":"Number Association Rules​",
+            "ruleName":"Rule Name",
+            "ruleType":"Rule Type",
+            "releasedDate":"Release Date",
+            "expiryDate":"Expiry Date",
+            "validRule":"Valid Rule",
+            "released":"Released",
+            "expired":"Expired"
+        },
+        "numberAssociationRuleSequence":{
+            "heading":"Number Association Rules Sequence",
+            "sourceNumberType":"Source Number Type",
+            "parentRule":"Parent Rule",
+            "destinationNumberType":"Destination Number Type",
+            "NumberOfDestinations":"Number of Destinations"
+        },
+        "numberAssociation":{
+            "numberAssociationHeading":"Number Association",
+            "associationId":"Association Id",
+            "ruleName":"Rule Name",
+            "associationDate":"Association Date",
+            "status":"Status",
+            "type":"Type",
+            "scheme":"Scheme",
+            "blockName":"Block Name",
+            "startNumber":"Start number",
+            "quantity":"Quantity",
+            "endNumber":"End Number"
+        }
+    }
+}
