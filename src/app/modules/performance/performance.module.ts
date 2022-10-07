@@ -12,6 +12,12 @@ import { DesignationComponent } from './designation/designation.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { DepartmentService } from './services/department.service';
+import { PerformanceService } from './services/performance.service';
+import { DivisionService } from './services/division.service';
+import { DesignationService } from './services/designation.service';
+import { GradeService } from './services/grade.service';
+import { RoleService } from './services/role.service';
 
 
 @NgModule({
@@ -31,6 +37,14 @@ import { EmployeeComponent } from './employee/employee.component';
     SharedModule,
     ReactiveFormsModule
   ],
-  providers:[BsModalService]
+  providers:[
+    BsModalService,
+    PerformanceService, 
+    DepartmentService,
+    DivisionService,
+    DesignationService,
+    GradeService,
+    RoleService
+  ]
 })
 export class PerformanceModule { }
