@@ -6,35 +6,33 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class DepartmentService {
-  constructor(private httpCilent : HttpClient) { }
 
-  create(departmentForm:Department): Observable<Department> {
-   return this.httpCilent.post<Department>(`${environment.performance}core/department/`, departmentForm);
-  }
+	constructor(private httpCilent: HttpClient) { }
 
-  getById(id: number): Observable<Department> {
-   return this.httpCilent.get<Department>(`${environment.performance}core/department/${id}/`);
- }
+	create(departmentForm: Department): Observable<Department> {
+		return this.httpCilent.post<Department>(`${environment.performance}core/department/`, departmentForm);
+	}
 
- getAll(
-   param: HttpParams
- ): Observable<{ content: Array<Department>; totalPages: number }> {
-   const options = {
-     params: param,
-   };
-   
-   return this.httpCilent.get<{
-     content: Array<Department>;
-     totalPages: number;
-   }>(`${environment.performance}core/department/`, options);
- }
+	getById(id: number): Observable<Department> {
+		return this.httpCilent.get<Department>(`${environment.performance}core/department/${id}/`);
+	}
 
- update(department: FormData, dept_code : number ) {
-  return this.httpCilent.put(`${environment.performance}core/department/`+ dept_code+`/` ,department );
-}
+	getAll(param: HttpParams): Observable<{ content: Array<Department>; totalPages: number }> {
+		const options = { params: param };
+		return this.httpCilent.get<{ content: Array<Department>; totalPages: number; }>(`${environment.performance}core/department/`, options);
+	}
 
-softDelete(dept_code : number) {
-  return this.httpCilent.delete(`${environment.performance}core/department/` + dept_code + `/`);
-}
+	update(department: FormData, dept_code: number) {
+		return this.httpCilent.put(`${environment.performance}core/department/` + dept_code + `/`, department);
+	}
+
+	softDelete(dept_code: number) {
+		return this.httpCilent.delete(`${environment.performance}core/department/` + dept_code + `/`);
+	}
+
+	getDepartmentContent(param: HttpParams){
+		const options = {params: param};
+		return this.httpCilent.get(`${environment.performance}core/department/`,options);
+	}
 
 }
