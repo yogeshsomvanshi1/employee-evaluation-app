@@ -2,15 +2,12 @@
     <div class="container-fluid">
         <div class="row pt-30">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">
-                        <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
-                       Role 
-                    </h3>
+                <div class="card-header">
+                    <h3 class="card-title">Role </h3>
                 </div>
                 <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
                 (changePageSortSearch)="changePageSortSearch($event)"
-                (buttonEvent1)="buttonEvent1($event , template2)" [content]="dataDataTable?.results">
+                (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>
             </div>
         </div>
@@ -18,9 +15,9 @@
 </div>
 
 
-<ng-template #template2 class="height-1">
+<ng-template #roleTemplate class="height-1">
     <div class="modal-header">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header">
             <h3 class="card-title prod-name avisys-table-heading">Role</h3>
         </div>
         <button type="button" class="close pull-right" aria-label="Close">
@@ -29,41 +26,37 @@
 
     </div>
     <div class="modal-body">
-        <form>
-            <div class="performance-evaluation-form-parent">
-                <form [formGroup]="roleForm">
-                    <div class="container-fluid performance-evaluation-form">
-                        <!-- <div class="per-heading">Grade</div> -->
+        <form [formGroup]="roleForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_id">Role ID</label>
-                                    <div class="">
-                                        <input type="text" formControlName="role_code" class="per-subheading">
-                                    </div>
+                            <label for="role_code" class="per-subheading col-md-4" >Role ID</label>
+                            <div class="col-md-8">
+                                <input type="text" id="role_code" formControlName="role_code" class="form-control">
+                                <div *ngIf="roleFormControl.role_code?.invalid && roleFormControl.role_code?.touched">
+                                    <span class="validate-text" *ngIf="roleFormControl.role_code?.errors?.required">Please enter Id</span>
+                                    <span class="validate-text" *ngIf="roleFormControl.role_code?.errors?.maxlength">Id exceeds max-length {{roleFormControl.role_code?.errors?.maxlength.requiredLength}} </span>
                                 </div>
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_name">Role Name</label>
-                                    <div class="">
-                                        <input type="text" formControlName="role_name" class="per-subheading">
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="role_name" class="per-subheading col-md-4">Role Name</label>
+                            <div class="col-md-8">
+                                <input type="text" id="role_name" formControlName="role_name" class="form-control">
+                                <div *ngIf="roleFormControl.role_name?.invalid && roleFormControl.role_name?.touched">
+                                    <span class="validate-text" *ngIf="roleFormControl.role_name?.errors?.required">Please enter name</span>
+                                    <span class="validate-text" *ngIf="roleFormControl.role_name?.errors?.maxlength">Name exceeds max-length {{roleFormControl.role_name?.errors?.maxlength.requiredLength}} </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-                </form>
-            
+                </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <div class="per-buttons-section">
-            <div class="d-flex justify-content-end w-100 per-buttons align-items-center per-inner-button-section">
-                <button class="per-buttons-one" (click)="submit() ; modalRef.hide()" type="button"><a
-                        class="per-buttons-a-one">{{ submitBtn }}</a></button>
-                <button class="per-buttons-two"><a href="" class="per-buttons-a-two">Cancel</a></button>
-            </div>
-        </div>
+    <div class="modal-footer px-2">
+        <button class="btn btn-primary" (click)="submit()">{{ actionBtn }}</button>
+        <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
     </div>
 </ng-template>
