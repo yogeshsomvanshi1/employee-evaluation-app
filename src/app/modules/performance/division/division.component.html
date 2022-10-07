@@ -3,15 +3,12 @@
     <div class="container-fluid">
         <div class="row pt-30">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">
-                        <!-- <span>{{'forms.productFamily.title' | translate}}</span> -->
-                        Division 
-                    </h3>
+                <div class="card-header">
+                    <h3 class="card-title">Division </h3>
                 </div>        
             <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
                 (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
-                (buttonEvent1)="buttonEvent1($event, template2)" [content]="dataDataTable?.results">
+                (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>
 
             </div>
@@ -20,9 +17,9 @@
 </div>
 
 
-<ng-template #template2 class="height-1">
+<ng-template #divisionTemplate class="height-1">
     <div class="modal-header">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header">
             <h3 class="card-title prod-name avisys-table-heading">Division</h3>
         </div>
         <button type="button" class="close pull-right" aria-label="Close">
@@ -31,60 +28,54 @@
 
     </div>
     <div class="modal-body">
-        <form>
-            <div class="performance-evaluation-form-parent">
-                <form [formGroup]="divisionForm">
-                    <div class="container-fluid performance-evaluation-form">
-                        <!-- <div class="per-heading">Divison</div> -->
+        <form [formGroup]="divisionForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_id">Divison ID</label>
-                                    <div class="">
-                                        <!-- <select formControlName="div_code" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select> -->
-                                        <input type="text" formControlName="div_code" class="per-subheading">
-                                    </div>
-                                </div>
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_name">Divison Name</label>
-                                    <div class="">
-                                        <!-- <select formControlName="div_name" name="cars" id="cars" class="per-dropdown">
-                                            <option value="volvo"></option>
-                                            <option value="saab">Saab</option>
-                                            <option value="opel">Opel</option>
-                                            <option value="audi">Audi</option>
-                                        </select> -->
-                                        <input type="text" formControlName="div_name" class="per-subheading">
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <label for="" class="per-subheading">Divison Description</label>
-                                    <div class="">
-                                        <textarea formControlName="div_description" name="" id="" cols="30" rows="3"
-                                            class="per-textarea"></textarea>
-                                    </div>
+                            <label for="div_code" class="per-subheading col-md-4" >Divison ID</label>
+                            <div class="col-md-8">
+                                <input type="text" id="div_code" formControlName="div_code" class="form-control ">
+                                <div *ngIf="divisionFormControl.div_code?.invalid && divisionFormControl.div_code?.touched">
+                                    <span class="validate-text" *ngIf="divisionFormControl.div_code?.errors?.required">Please enter id</span>
+                                    <span class="validate-text" *ngIf="divisionFormControl.div_code?.errors?.maxlength">Id exceeds max-length {{divisionFormControl.div_code?.errors?.maxlength.requiredLength}} </span>
+                                    <span class="validate-text color" *ngIf="divisionFormControl.div_code?.errors?.pattern">Please enter valid characters</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-2">
+                            <label for="div_name" class="per-subheading col-md-4" >Divison Name</label>
+                            <div class="col-md-8">
+                                <input type="text" id="div_name" formControlName="div_name" class="form-control">
+                                <div *ngIf="divisionFormControl.div_name ?.invalid && divisionFormControl.div_name ?.touched">
+                                    <span class="validate-text" *ngIf="divisionFormControl.div_name ?.errors?.required">Please enter name</span>
+                                    <span class="validate-text" *ngIf="divisionFormControl.div_name ?.errors?.maxlength">Name exceeds max-length {{divisionFormControl.div_name ?.errors?.maxlength.requiredLength}} </span>
+                                    <span class="validate-text color" *ngIf="divisionFormControl.div_name ?.errors?.pattern">Please enter valid characters</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="div_description" class="per-subheading col-md-4">Divison Description</label>
+                            <div class="col-md-8">
+                                <textarea formControlName="div_description" id="div_description" cols="30" rows="3"
+                                    class="form-control"></textarea>
+                                    <div *ngIf="divisionFormControl.div_description?.invalid && divisionFormControl.div_description?.touched">
+                                        <span class="validate-text" *ngIf="divisionFormControl.div_description?.errors?.required">Please enter description</span>
+                                        <span class="validate-text" *ngIf="divisionFormControl.div_description?.errors?.maxlength">Description exceeds max-length {{divisionFormControl.div_description?.errors?.maxlength.requiredLength}} </span>
+                                        <span class="validate-text color" *ngIf="divisionFormControl.div_description?.errors?.pattern">Please enter valid characters</span>
+                                    </div>    
+                            </div>
+                        </div>
                     </div>
-                
-                </form>
-            
+                </div>
             </div>
+        
         </form>
     </div>
     <div class="modal-footer">
-        <div class="per-buttons-section">
-            <div class="d-flex justify-content-end w-100 per-buttons align-items-center per-inner-button-section">
-                <button class="per-buttons-one" (click)="submit() ; modalRef.hide() " type="button"><a
-                        class="per-buttons-a-one">{{ submitBtn }}</a></button>
-                <button class="per-buttons-two"><a href="" class="per-buttons-a-two">Cancel</a></button>
+            <div class="d-flex px-2">
+                <button class="btn btn-primary" (click)="submit()">{{ actionBtn }}</button>
+                <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
             </div>
-        </div>
     </div>
 </ng-template>
