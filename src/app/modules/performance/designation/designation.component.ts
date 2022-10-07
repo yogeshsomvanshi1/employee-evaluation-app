@@ -1,120 +1,136 @@
 import { DesignationService } from './../services/designation.service';
 import { PerformanceService } from "./../services/performance.service";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { forkJoin } from "rxjs";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, AbstractControl } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { HttpParams } from "@angular/common/http";
+import { Designation } from '../model/designation.model';
+import { AlertService } from '../../shared/services/alert.service';
+import { AlertOptions } from '../../shared/model/alert.model';
+import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
+import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
 
 @Component({
-  selector: "app-designation",
-  templateUrl: "./designation.component.html",
-  styleUrls: ["./designation.component.scss"],
-  providers: [PerformanceService , DesignationService],
+	selector: "app-designation",
+	templateUrl: "./designation.component.html",
+	styleUrls: ["./designation.component.scss"],
 })
 export class DesignationComponent implements OnInit {
-  columnsMetadata: any;
-  permission: Array<boolean> = [true, true, true];
-  dataDataTable: any;
-  modalRef: BsModalRef;
-  designationForm: FormGroup;
-  params:  HttpParams = new HttpParams();
-  submitBtn: string = "submit";
-  res: any;
-  response: any;
+	@ViewChild('designationTemplate') designationTemplate: TemplateRef<BsModalRef>;
+	
+	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
+	actionBtn: string = "Submit";
+	columnsMetadata: TableHeaderMetaData;
+	dataDataTable: { results: Array<Designation>, count: number } = { results: [], count: 0 };
+	designationForm: FormGroup;
+	defaultIntialValue: Designation;
+	intialValue: Designation;
+	modalRef: BsModalRef;
+	params: HttpParams = new HttpParams();
+	permission: Array<boolean> = [true, true, true];
 
-  constructor(
-    private performanceService: PerformanceService,
-    private formBuilder: FormBuilder,
-    private modalService: BsModalService,
-    private designationService : DesignationService
-  ) {this.designationForm = this.initForm();}
+	constructor(
+		private alertService: AlertService,
+		private designationService: DesignationService,
+		private formBuilder: FormBuilder,
+		private modalService: BsModalService,
+		private pattern: ValidatorServiceService,
+		private performanceService: PerformanceService,
+	) { this.designationForm = this.initForm(); }
 
-  ngOnInit(): void {
-    this.params = this.params.append('offset', 0);
-    this.params = this.params.append('limit', 5);
-    forkJoin({
-      tableHeader: this.performanceService.getDesignationHeaderColumes(),
-
-      tableData: this.designationService.getDesignationContentColumes4(this.params),
-    }).subscribe(
-      (response) => {
-        console.log(response);
-
-        this.columnsMetadata = response.tableHeader;
-
-        this.dataDataTable = response.tableData;
-      },
-
-      (error) => {}
-    );
-  }
-
-  
-  changePageSortSearch(data: HttpParams) {
-    this.designationService.getDesignationContentColumes4(data).subscribe((sucess: any) => {
-        this.dataDataTable = sucess;
-      });
-  }
+	ngOnInit(): void {
+		this.defaultIntialValue = this.designationForm.value;
+		this.params = this.params.append('offset', 0);
+		this.params = this.params.append('limit', 5);
+		forkJoin({
+			tableHeader: this.performanceService.getDesignationHeaderColumn(),
+			tableData: this.designationService.getDesignationContent(this.params),
+		}).subscribe(
+			(response:any) => {
+				this.columnsMetadata = response.tableHeader;
+				this.dataDataTable = response.tableData;
+			},
+			(error) => { }
+		);
+	}
 
 
-  editConsumerAttribute(template2) {
-    this.modalRef = this.modalService.show(template2, Object.assign({}, { class: "gray modal-lg " })
-    );
-  }
+	changePageSortSearch(data: HttpParams) {
+		this.designationService.getDesignationContent(data).subscribe((sucess: { results: Array<Designation>, count: number }) => {
+			this.dataDataTable = sucess;
+		});
+	}
 
-  initForm(): FormGroup {
-    return this.formBuilder.group({
-      des_code: ['', Validators.required],
-      des_name: ['', Validators.required],
-      des_description: ['', Validators.required],
-      // org_code:['AVISYS', Validators.required],
-      // is_deleted:[false ],
-      // created_by:['1'],
-      // updated_by:['1']
-    });
-  }
+	openTemplate() {
+		this.modalRef = this.modalService.show(this.designationTemplate, Object.assign({}, { class: "gray modal-lg " }));
+	}
 
+	initForm(): FormGroup {
+		return this.formBuilder.group({
+			des_code: ['', [Validators.required, Validators.maxLength(10)]],
+			des_name: ['', [Validators.required, Validators.maxLength(50)]],
+			des_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation())]],
+			org_code:['AVISYS', Validators.required],
+			is_deleted:[false ],
+			created_by:['1'],
+			updated_by:['1']
+		});
+	}
 
-  buttonEvent1(data: any, template2) {
-    if (data.event == "add") {
-      this.submitBtn = "Submit";
-      this.designationForm.reset();
-      this.editConsumerAttribute(template2);
-    } else if (data.event == "edit") {
-      this.designationService.getById(data.data.des_code).subscribe((res) => {
-        this.editConsumerAttribute(template2);
-        this.submitBtn = "Update";
-        this.designationForm.patchValue(res);
-        this.res = res;
-      });
-    
-    } else if (data.event == "delete") {
-      this.designationService.softDelete(data.data.des_code).subscribe((sucess1)=>{
-        console.log(sucess1,"deleted")
-        this.changePageSortSearch(this.params);
-       })
-    }
+	buttonEvent1(data: any) {
+		if (data.event == "add") {
+			this.designationFormControl.des_code.enable();
+			this.actionBtn = "Submit";
+			this.openTemplate();
+			this.resetForm();
+		} 
+		else if (data.event == "edit") {
+			this.designationFormControl.des_code.disable();
+			this.designationService.getById(data.data.des_code).subscribe((res:Designation) => {
+				this.openTemplate();
+				this.actionBtn = "Update";
+				this.designationForm.patchValue(res);
+				this.intialValue = res;
+			});
 
-  }
+		} 
+		else if (data.event == "delete") {
+			this.designationService.softDelete(data.data.des_code).subscribe((sucess:Designation) => {
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+				this.changePageSortSearch(this.params);
+			})
+		}
 
-  submit() {
-    this.designationService.create(this.designationForm.value).subscribe((res) => {
-      this.res;
-    });
+	}
 
-  if (this.submitBtn != "submit") {
-    this.update(this.designationForm.controls["des_code"].value);
-    this.changePageSortSearch(this.params);
-  } else {
-    this.designationService.create(this.designationForm.value).subscribe((sucess) => {
-      });
-  }
-}
+	submit() {
+		if (this.actionBtn !== "Submit") {
+			this.designationService.update(this.designationForm.getRawValue(), this.designationFormControl.des_code.value).subscribe((response:Designation) => {
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
+			});
+		} 
+		else {
+			this.designationService.create(this.designationForm.value).subscribe((sucess:Designation) => {
+				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.changePageSortSearch(this.params);
+			    this.modalRef.hide();
+			},
+			(error)=>{
+				if(error.error.des_code){
+					this.alertService.info("Record already exists", this.alertOptions.autoClose = false );
+				  }
+			});
+		}
+	}
 
-update(id: number) {
-  this.designationService.update(this.designationForm.value, id).subscribe((response) => {
-    this.response;
-  });
-  }
+	get designationFormControl(): { [key: string]: AbstractControl }{
+		return this.designationForm.controls;
+	}
+
+	resetForm(){
+		this.designationForm.reset( this.actionBtn === 'Submit' ? this.defaultIntialValue : this.intialValue );
+	}
 }
