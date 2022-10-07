@@ -1,125 +1,137 @@
-import { DepartmentService } from "./../services/department.service";
-import { Router } from "@angular/router";
-import { Component, OnInit } from "@angular/core";
-import { PerformanceService } from "../services/performance.service";
-import { forkJoin } from "rxjs";
-import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { HttpParams } from "@angular/common/http";
+import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
+import { forkJoin } from "rxjs";
+import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
+import { AlertOptions } from '../../shared/model/alert.model';
+import { TableHeaderMetaData } from "../../shared/model/table-header-list.model";
 import { Department } from "../model/department.model";
+import { PerformanceService } from "../services/performance.service";
+import { AlertService } from './../../shared/services/alert.service';
+import { DepartmentService } from "./../services/department.service";
 
 @Component({
-  selector: "app-department",
-  templateUrl: "./department.component.html",
-  styleUrls: ["./department.component.scss"],
-  providers: [PerformanceService, DepartmentService],
+	selector: "app-department",
+	templateUrl: "./department.component.html",
+	styleUrls: ["./department.component.scss"]
 })
 export class DepartmentComponent implements OnInit {
-  actionbtn1: string;
-  columnsMetadata: any;
-  dataDataTable: any;
-  modalRef: BsModalRef;
-  permission: Array<boolean> = [true, true, true];
-  params: HttpParams = new HttpParams();
-  departmentForm: FormGroup;
-  submitBtn: string = "submit";
-  res: any;
-  response: any;
 
-  constructor(
-    private router: Router,
-    private performanceService: PerformanceService,
-    private modalService: BsModalService,
-    private formbuilder: FormBuilder,
-    private departmentService: DepartmentService
-  ) {
-    this.departmentForm = this.initForm();
-  }
+	@ViewChild('departmentTemplate') departmentTemplate: TemplateRef<BsModalRef>;
+	
+	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
+	actionBtn: string = "Submit";
+	columnsMetadata: TableHeaderMetaData;
+	dataDataTable: { results: Array<Department>, count: number } = { results: [], count: 0 };
+	defaultIntialValue: Department;
+	intialValue: Department;
+	modalRef: BsModalRef;
+	permission: Array<boolean> = [true, true, true];
+	params: HttpParams = new HttpParams();
+	departmentForm: FormGroup;
+	
+  
+	constructor(
+		private alertService: AlertService,
+		private departmentService: DepartmentService,
+		private formbuilder: FormBuilder,
+		private modalService: BsModalService,
+		private performanceService: PerformanceService,
+		private pattern: ValidatorServiceService
+	) {
+		this.departmentForm = this.initForm();
+	}
 
-  ngOnInit(): void {
-    this.params = this.params.append("offset", 0);
-    this.params = this.params.append("limit", 5);
-    forkJoin({
-      tableHeader: this.performanceService.getHeaderColumes(),
-      tableData: this.performanceService.getContentColumes(this.params),
-    }).subscribe(
-      (response) => {
-        console.log(response);
+	ngOnInit(): void {
+		this.defaultIntialValue = this.departmentForm.value;
+		this.params = this.params.append("offset", 0);
+		this.params = this.params.append("limit", 5);
+		forkJoin({
+			tableHeader: this.performanceService.getHeaderColumn(),
+			tableData: this.departmentService.getDepartmentContent(this.params),
+		}).subscribe(
+			(response:any) => {
+				this.columnsMetadata = response.tableHeader;
+				this.dataDataTable = response.tableData;
+			},
+			(error) => { }
+		);
+	}
 
-        this.columnsMetadata = response.tableHeader;
-        this.dataDataTable = response.tableData;
-      },
+	changePageSortSearch(data: HttpParams) {
+		this.departmentService.getDepartmentContent(data).subscribe((sucess: any) => {
+			this.dataDataTable = sucess;
+		});
+	}
 
-      (error) => {}
-    );
+	initForm(): FormGroup {
+		return this.formbuilder.group({
+			dept_code: ['', [Validators.required, Validators.maxLength(10)]],
+			dept_name: ['', [Validators.required, Validators.maxLength(50)]],
+			dept_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation())]],
+			org_code : ["AVISYS"],
+			is_deleted : [false],
+			created_by : ["1"],
+			updated_by : ["1"]
+		});
+	}
 
-    // if(data.event == "edit"){
+	openTemplate() {
+		this.modalRef = this.modalService.show(this.departmentTemplate, Object.assign({}, { class: "gray modal-lg " }));
+	}
 
-    // }
-  }
+	submit() {
 
-  changePageSortSearch(data: HttpParams) {
-    this.performanceService.getContentColumes(data).subscribe((sucess: any) => {
-      this.dataDataTable = sucess;
-    });
-  }
+		if (this.actionBtn !== "Submit") {
+			this.departmentService.update(this.departmentForm.getRawValue(), this.departmentFormControl.dept_code.value).subscribe((response) => {
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
+			});
+		} else {
+			this.departmentService.create(this.departmentForm.value).subscribe((sucess) => {
+				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.changePageSortSearch(this.params);
+				this.modalRef.hide();
+			},(error)=>{
+				if(error.error.dept_code){
+					this.alertService.info("Record already exists", this.alertOptions.autoClose = false );
+				}
+			}
+			);
+		}
+	}
 
-  initForm(): FormGroup {
-    return this.formbuilder.group({
-      dept_code: ["", Validators.required],
-      dept_name: ["", Validators.required],
-      dept_description: ["", Validators.required],
-      // org_code: ["AVISYS"],
-      // is_deleted: [true],
-      // created_by: ["1"],
-      // updated_by: ['4']
-    });
-  }
+	buttonEvent1(data: any) {
+		if (data.event == "add") {
+			this.departmentFormControl.dept_code.enable();
+			this.actionBtn = "Submit";
+			this.resetForm();
+			this.openTemplate();
+		} 
+		else if (data.event == "edit") {
+			this.departmentFormControl.dept_code.disable();
+			this.departmentService.getById(data.data.dept_code).subscribe((res) => {
+				this.openTemplate();
+				this.actionBtn = "Update";
+				this.departmentForm.patchValue(res);
+				this.intialValue = res;
+			});
+		} 
+		else if (data.event == "delete") {
+			this.departmentService.softDelete(data.data.dept_code).subscribe((sucess) => {
+				this.alertService.success("Record Deleted Successfully", this.alertOptions);
+				this.changePageSortSearch(this.params);
+			})
+		}
+	}
 
-  editConsumerAttribute(template2) {
-    this.modalRef = this.modalService.show(
-      template2,
-      Object.assign({}, { class: "gray modal-lg " })
-    );
-  }
+	get departmentFormControl(): { [key: string]: AbstractControl }{
+		return this.departmentForm.controls;
+	}
 
-  submit() {
-    this.departmentService.create(this.departmentForm.value).subscribe((res) => {
-        this.res;
-      });
-
-    if (this.submitBtn != "submit") {
-      this.update(this.departmentForm.controls["dept_code"].value);
-      this.changePageSortSearch(this.params);
-    } else {
-      this.departmentService.create(this.departmentForm.value).subscribe((sucess) => {
-        });
-    }
-  }
-
-  update(id: number) {
-    this.departmentService.update(this.departmentForm.value, id).subscribe((response) => {
-      this.response;
-    });
-  }
-
-  buttonEvent1(data: any, template2) {
-    if (data.event == "add") {
-      this.submitBtn = "Submit";
-      this.departmentForm.reset();
-      this.editConsumerAttribute(template2);
-    } else if (data.event == "edit") {
-      this.departmentService.getById(data.data.dept_code).subscribe((res) => {
-        this.editConsumerAttribute(template2);
-        this.submitBtn = "Update";
-        this.departmentForm.patchValue(res);
-        this.res = res;
-      });
-    } else if (data.event == "delete") {
-      this.departmentService.softDelete(data.data.dept_code).subscribe((sucess1)=>{
-       console.log(sucess1,"deleted")
-       this.changePageSortSearch(this.params);
-      })
-    }
-  }
+	resetForm(){
+		this.departmentForm.reset( this.actionBtn === 'Submit' ? this.defaultIntialValue : this.intialValue );
+	}
 }
