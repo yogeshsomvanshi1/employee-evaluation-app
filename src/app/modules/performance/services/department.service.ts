@@ -17,12 +17,7 @@ export class DepartmentService {
 		return this.httpCilent.get<Department>(`${environment.performance}core/department/${id}/`);
 	}
 
-	getAll(param: HttpParams): Observable<{ content: Array<Department>; totalPages: number }> {
-		const options = { params: param };
-		return this.httpCilent.get<{ content: Array<Department>; totalPages: number; }>(`${environment.performance}core/department/`, options);
-	}
-
-	update(department: FormData, dept_code: number) {
+	update(department: Department, dept_code: number) {
 		return this.httpCilent.put(`${environment.performance}core/department/` + dept_code + `/`, department);
 	}
 
@@ -30,9 +25,9 @@ export class DepartmentService {
 		return this.httpCilent.delete(`${environment.performance}core/department/` + dept_code + `/`);
 	}
 
-	getDepartmentContent(param: HttpParams){
+	getDepartmentContent(param: HttpParams): Observable<{ results: Array<Department>, count: number }>{
 		const options = {params: param};
-		return this.httpCilent.get(`${environment.performance}core/department/`,options);
+		return this.httpCilent.get<{ results: Array<Department>, count: number }>(`${environment.performance}core/department/`,options);
 	}
 
 }

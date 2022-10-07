@@ -60,7 +60,7 @@ export class DepartmentComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
-		this.departmentService.getDepartmentContent(data).subscribe((sucess: any) => {
+		this.departmentService.getDepartmentContent(data).subscribe((sucess: { results: Array<Department>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
 	}
@@ -84,13 +84,13 @@ export class DepartmentComponent implements OnInit {
 	submit() {
 
 		if (this.actionBtn !== "Submit") {
-			this.departmentService.update(this.departmentForm.getRawValue(), this.departmentFormControl.dept_code.value).subscribe((response) => {
+			this.departmentService.update(this.departmentForm.getRawValue(), this.departmentFormControl.dept_code.value).subscribe((response: Department) => {
 			this.alertService.success("Record Updated Successfully", this.alertOptions);
 			this.changePageSortSearch(this.params);
 			this.modalRef.hide();
 			});
 		} else {
-			this.departmentService.create(this.departmentForm.value).subscribe((sucess) => {
+			this.departmentService.create(this.departmentForm.value).subscribe((sucess: Department) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
