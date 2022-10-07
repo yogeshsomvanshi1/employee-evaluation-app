@@ -4,49 +4,41 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PerformanceService {
 
-  constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) { }
 
-  getHeaderColumes(){
-    return this.httpClient.get("./assets/data-table-header.json");
-  }
+	getHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-header.json");
+	}
 
-  getContentColumes(param: HttpParams){
-    const options = {
-      params: param
-  };
-    return this.httpClient.get("http://192.168.1.11:9999/core/department/",options);
+	getDivisionHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-division-header.json");
+	}
 
-  }
+	getDivisionContentColumn() {
+		return this.httpClient.get("./assets/data-table-division-content.json");
+	}
 
-  getDivisionHeaderColumes(){
-    return this.httpClient.get("./assets/data-table-division-header.json");
-  }
+	getGradeHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-grade-header.json");
+	}
 
-  getDivisionContentColumes(){
-    return this.httpClient.get("./assets/data-table-division-content.json");
-  }
+	getGradeContentColumn() {
+		return this.httpClient.get("./assets/data-table-grade-content.json");
+	}
 
-  getGradeHeaderColumes(){
-    return this.httpClient.get("./assets/data-table-grade-header.json");
-  }
+	getRoleHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-role-header.json");
+	}
 
-  getGradeContentColumes(){
-    return this.httpClient.get("./assets/data-table-grade-content.json");
-  }
+	getRoleContentColumn() {
+		return this.httpClient.get("./assets/data-table-role-content.json");
+	}
 
-  getRoleHeaderColumes(){
-    return this.httpClient.get("./assets/data-table-role-header.json");
-  }
+	getDesignationHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-designation-header.json");
+	}
 
-  getRoleContentColumes(){
-    return this.httpClient.get("./assets/data-table-role-content.json");
-  }
-
-  getDesignationHeaderColumes(){
-    return this.httpClient.get("./assets/data-table-designation-header.json");
-  }
-
-  getDesignationContentColumes(){
-    return this.httpClient.get("./assets/data-table-designation-content.json");
-  }
+	getDesignationContentColumn() {
+		return this.httpClient.get("./assets/data-table-designation-content.json");
+	}
 }
