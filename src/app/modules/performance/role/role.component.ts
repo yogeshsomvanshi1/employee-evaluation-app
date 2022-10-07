@@ -47,7 +47,7 @@ export class RoleComponent implements OnInit {
 		this.params = this.params.append("limit", 5);
 		forkJoin({
 			tableHeader: this.performanceService.getRoleHeaderColumn(),
-			tableData: this.roleService.getRoleContentColumes3(this.params),
+			tableData: this.roleService.getRoleContent(this.params),
 		}).subscribe(
 			(response:any) => {
 				this.columnsMetadata = response.tableHeader;
@@ -58,7 +58,7 @@ export class RoleComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
-		this.roleService.getRoleContentColumes3(data).subscribe((sucess: { results: Array<Role>, count: number }) => {
+		this.roleService.getRoleContent(data).subscribe((sucess: { results: Array<Role>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
 	}

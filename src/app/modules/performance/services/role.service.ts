@@ -9,7 +9,7 @@ export class RoleService {
 	
 	constructor(private httpClient: HttpClient) { }
 
-	getRoleContentColumes3(param: HttpParams): Observable<{ results: Array<Role>, count: number }> {
+	getRoleContent(param: HttpParams): Observable<{ results: Array<Role>, count: number }> {
 		const options = { params: param };
 		return this.httpClient.get<{ results: Array<Role>, count: number }>(`${environment.performance}core/role/`, options);
 	}
