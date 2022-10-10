@@ -9,12 +9,12 @@ export class DivisionService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getDivisionContent(param: HttpParams) {
+	getDivisionContent(param: HttpParams): Observable<{ results: Array<Division>, count: number }> {
 		const options = { params: param };
-		return this.httpClient.get(`${environment.performance}core/division/`, options);
+		return this.httpClient.get<{ results: Array<Division>, count: number }>(`${environment.performance}core/division/`, options);
 	}
 
-	create(divisionForm: FormData): Observable<Division> {
+	create(divisionForm: Division): Observable<Division> {
 		return this.httpClient.post<Division>(`${environment.performance}core/division/`, divisionForm)
 	}
 
@@ -22,12 +22,8 @@ export class DivisionService {
 		return this.httpClient.get<Division>(`${environment.performance}core/division/${id}/`);
 	}
 
-	getAll(param: HttpParams): Observable<{ content: Array<Division>; totalPages: number }> {
-		const options = { params: param, };
-		return this.httpClient.get<{ content: Array<Division>; totalPages: number; }>(`${environment.performance}core/division/`, options);
-	}
 
-	update(division: FormData, dept_code: number) {
+	update(division: Division, dept_code: number) {
 		return this.httpClient.put(`${environment.performance}core/division/` + dept_code + `/`, division);
 	}
 
