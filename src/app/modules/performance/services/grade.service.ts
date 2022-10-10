@@ -9,12 +9,12 @@ export class GradeService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getGradeContent(param: HttpParams) {
+	getGradeContent(param: HttpParams): Observable<{ results: Array<Grade>, count: number }> {
 		const options = { params: param };
-		return this.httpClient.get(`${environment.performance}core/grade/`, options);
+		return this.httpClient.get<{ results: Array<Grade>, count: number }>(`${environment.performance}core/grade/`, options);
 	}
 
-	create(gradeForm: FormData): Observable<Grade> {
+	create(gradeForm: Grade): Observable<Grade> {
 		return this.httpClient.post<Grade>(`${environment.performance}core/grade/`, gradeForm)
 	}
 
@@ -22,12 +22,7 @@ export class GradeService {
 		return this.httpClient.get<Grade>(`${environment.performance}core/grade/${id}/`);
 	}
 
-	getAll(param: HttpParams): Observable<{ content: Array<Grade>; totalPages: number }> {
-		const options = { params: param };
-		return this.httpClient.get<{ content: Array<Grade>; totalPages: number; }>(`${environment.performance}core/grade/`, options);
-	}
-
-	update(grade: FormData, grade_code: number) {
+	update(grade: Grade, grade_code: number) {
 		return this.httpClient.put(`${environment.performance}core/grade/` + grade_code + `/`, grade);
 	}
 
