@@ -10,12 +10,12 @@ export class DesignationService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getDesignationContent(param: HttpParams) {
+	getDesignationContent(param: HttpParams): Observable<{ results: Array<Designation>, count: number }> {
 		const options = { params: param };
-		return this.httpClient.get(`${environment.performance}core/designation/`, options)
+		return this.httpClient.get<{ results: Array<Designation>, count: number }>(`${environment.performance}core/designation/`, options)
 	}
 
-	create(designationForm: FormData): Observable<Designation> {
+	create(designationForm: Designation): Observable<Designation> {
 		return this.httpClient.post<Designation>(`${environment.performance}core/designation/`, designationForm)
 	}
 
@@ -28,7 +28,7 @@ export class DesignationService {
 		return this.httpClient.get<{ content: Array<Designation>; totalPages: number; }>(`${environment.performance}core/designation/`, options);
 	}
 
-	update(designation: FormData, des_code: number) {
+	update(designation: Designation, des_code: number) {
 		return this.httpClient.put(`${environment.performance}core/designation/` + des_code + `/`, designation);
 	}
 

@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row pt-30">
             <div class="card">
-                <div class="card-header d-flex justify-content-between">
+                <div class="card-header ">
                     <h3 class="card-title">Designation </h3>
                 </div>
                 <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
                 (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
-                (buttonEvent1)="buttonEvent1($event, template2)" [content]="dataDataTable?.results">
+                (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>
             </div>
         </div>
@@ -17,9 +17,9 @@
 
 
 
-<ng-template #template2 class="height-1">
+<ng-template #designationTemplate class="height-1">
     <div class="modal-header">
-        <div class="card-header d-flex justify-content-between">
+        <div class="card-header">
             <h3 class="card-title prod-name avisys-table-heading">Designation</h3>
         </div>
         <button type="button" class="close pull-right" aria-label="Close">
@@ -28,46 +28,53 @@
 
     </div>
     <div class="modal-body">
-        <form>
-            <div class="performance-evaluation-form-parent">
-                <form [formGroup]="designationForm">
-                    <div class="container-fluid performance-evaluation-form">
+        <form [formGroup]="designationForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_id">Designation ID</label>
-                                    <div class="">
-                                        <input type="text" formControlName="des_code" class="per-subheading">
-                                    </div>
-                                </div>
-                                <div class="d-flex per-flex-section">
-                                    <label for="" class="per-subheading" id="division_name">Designation Name</label>
-                                    <div class="">
-                                        <input type="text" formControlName="des_name" class="per-subheading">
-                                    </div>
-                                </div>
-                                <div class="d-flex">
-                                    <label for="" class="per-subheading">Designation Description</label>
-                                    <div class="">
-                                        <textarea formControlName="des_description" name="" id="" cols="30" rows="3"
-                                            class="per-textarea"></textarea>
-                                    </div>
+                            <label for="division_id" class="per-subheading col-md-4" >Designation ID</label>
+                            <div class="col-md-8">
+                                <input type="text" id="division_id" formControlName="des_code" class="form-control">
+                                <div *ngIf="designationFormControl.des_code?.invalid && designationFormControl.des_code?.touched">
+                                    <span class="validate-text" *ngIf="designationFormControl.des_code?.errors?.required">Please enter Id</span>
+                                    <span class="validate-text" *ngIf="designationFormControl.des_code?.errors?.maxlength ">Id exceeds max-length {{designationFormControl.des_code?.errors?.maxlength.requiredLength}} </span>
                                 </div>
                             </div>
                         </div>
+                        <div class="row mt-2">
+                            <label for="division_name" class="per-subheading col-md-4" >Designation Name</label>
+                            <div class="col-md-8">
+                                <input type="text" id="division_name" formControlName="des_name" class="form-control">
+                                <div *ngIf="designationFormControl.des_name?.invalid && designationFormControl.des_name?.touched">
+                                    <span class="validate-text" *ngIf="designationFormControl.des_name?.errors?.required">Please enter name</span>
+                                    <span class="validate-text" *ngIf="designationFormControl.des_name?.errors?.maxlength ">Name exceeds max-length {{designationFormControl.des_name?.errors?.maxlength.requiredLength}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="des_description" class="per-subheading col-md-4">Designation Description</label>
+                            <div class="col-md-8">
+                                <textarea formControlName="des_description" id="des_description"  cols="30" rows="3"
+                                    class="form-control"></textarea>
+                                    <div *ngIf="designationFormControl.des_description?.invalid && designationFormControl.des_description?.touched">
+                                        <span class="validate-text" *ngIf="designationFormControl.des_description?.errors?.required">Please enter description</span>
+                                    <span class="validate-text color" *ngIf="designationFormControl.des_description?.errors?.pattern">Please enter valid characters</span>
+                                    <span class="validate-text" *ngIf="designationFormControl.des_description?.errors?.maxlength ">Description exceeds max-length {{designationFormControl.des_description?.errors?.maxlength.requiredLength}} </span>
+                                    </div>    
+                            </div>
+                        </div>
                     </div>
-                
-                </form>
-            
+                </div>
             </div>
+        
         </form>
     </div>
     <div class="modal-footer">
-        <div class="per-buttons-section">
-            <div class="d-flex justify-content-end w-100 per-buttons align-items-center per-inner-button-section">
-                <button class="per-buttons-one" (click)="submit() ; modalRef.hide()" type="submit"><a
-                        class="per-buttons-a-one">{{ submitBtn }}</a></button>
-                <button class="per-buttons-two"><a href="" class="per-buttons-a-two">Cancel</a></button>
+        <div class="">
+            <div class="d-flex justify-content-end mx-2">
+                <button class="btn btn-primary" (click)="submit();" type="submit" [disabled]="designationForm.invalid">{{ actionBtn }}</button>
+                <button class="btn btn-danger ml-2" (click)="resetForm() ">Reset</button>
             </div>
         </div>
     </div>
