@@ -14,7 +14,7 @@ export const environment = {
   baseUrlPM: "http://192.168.1.11:8050/product-management",
   baseUrlUM: "http://192.168.1.11:8040",
   emailFileUpload:"http://192.168.1.11:8020",
-  performance: "http://192.168.1.11:9999/"
+  performance: "http://192.168.1.13:9999/"
 
 
 

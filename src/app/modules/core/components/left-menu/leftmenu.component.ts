@@ -116,12 +116,23 @@ export class LeftmenuComponent implements OnInit {
       ],
     },
     {
-      name: "Employees",
-      isHeading: true,
+      name: "Employee Master",
+      isHeading: false,
       iconClass: "icon-rocket",
+      isCollapsed: true,
+      controlId: "collaspedEmployee",
       isGheading: false,
-      routerLink: ["performance/performance/employee-table"],
       dynamicMenuOpen: false,
+      submenu: [
+        {
+          name: "Employee",
+          routerLink: ["/performance/performance/employee-table"]
+        },
+        {
+          name: "Employee Type",
+          routerLink: ["/performance/performance/employee-type"]
+        },
+      ]
     },
   ];
 }
