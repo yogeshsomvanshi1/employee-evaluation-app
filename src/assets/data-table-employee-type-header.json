@@ -1,0 +1,18 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "emp_type_code",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Name",
+		"mappedBy": "emp_type_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Organisation",
+		"mappedBy": "org_code",
+		"type": "text",
+		"width": 30
+	}
+]}
