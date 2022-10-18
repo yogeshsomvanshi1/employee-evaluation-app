@@ -14,6 +14,10 @@ export class GradeService {
 		return this.httpClient.get<{ results: Array<Grade>, count: number }>(`${environment.performance}core/grade/`, options);
 	}
 
+	getAllGrade(): Observable<{ results: Array<Grade>, count: number }> {
+		return this.httpClient.get<{ results: Array<Grade>, count: number }>(`${environment.performance}core/grade/`);
+	}
+
 	create(gradeForm: Grade): Observable<Grade> {
 		return this.httpClient.post<Grade>(`${environment.performance}core/grade/`, gradeForm)
 	}
@@ -23,11 +27,11 @@ export class GradeService {
 	}
 
 	update(grade: Grade, grade_code: number) {
-		return this.httpClient.put(`${environment.performance}core/grade/` + grade_code + `/`, grade);
+		return this.httpClient.put(`${environment.performance}core/grade/${grade_code}/`, grade);
 	}
 
 	softDelete(grade_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/grade/` + grade_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/grade/${grade_code}/`);
 	}
 
 }

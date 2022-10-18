@@ -14,6 +14,10 @@ export class RoleService {
 		return this.httpClient.get<{ results: Array<Role>, count: number }>(`${environment.performance}core/role/`, options);
 	}
 
+	getAllRole(): Observable<{ results: Array<Role>, count: number }> {
+		return this.httpClient.get<{ results: Array<Role>, count: number }>(`${environment.performance}core/role/`);
+	}
+
 	create(roleForm: Role): Observable<Role> {
 		return this.httpClient.post<Role>(`${environment.performance}core/role/`, roleForm)
 	}
@@ -22,17 +26,12 @@ export class RoleService {
 		return this.httpClient.get<Role>(`${environment.performance}core/role/${id}/`);
 	}
 
-	getAll(param: HttpParams): Observable<{ content: Array<Role>; totalPages: number }> {
-		const options = { params: param };
-		return this.httpClient.get<{ content: Array<Role>; totalPages: number; }>(`${environment.performance}core/role/`, options);
-	}
-
 	update(role: Role, role_code: number) {
-		return this.httpClient.put(`${environment.performance}core/role/` + role_code + `/`, role);
+		return this.httpClient.put(`${environment.performance}core/role/${role_code}/`, role);
 	}
 
 	softDelete(role_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/role/` + role_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/role/${role_code}/`);
 	}
 
 }

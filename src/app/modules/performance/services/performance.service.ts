@@ -41,4 +41,14 @@ export class PerformanceService {
 	getDesignationContentColumn() {
 		return this.httpClient.get("./assets/data-table-designation-content.json");
 	}
+
+	getEmployeHeader(){
+		return this.httpClient.get("./assets/data-table-employee-header.json");
+	}
+
+	getEmployeeTypeHeader(){
+		return this.httpClient.get("./assets/data-table-employee-type-header.json");
+	}
+
+	
 }
