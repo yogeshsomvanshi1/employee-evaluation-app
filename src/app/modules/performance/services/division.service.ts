@@ -14,6 +14,10 @@ export class DivisionService {
 		return this.httpClient.get<{ results: Array<Division>, count: number }>(`${environment.performance}core/division/`, options);
 	}
 
+	getAllDivision():Observable<{ results: Array<Division>, count: number }>{
+		return this.httpClient.get<{ results: Array<Division>, count: number }>(`${environment.performance}core/division/`);
+	}
+
 	create(divisionForm: Division): Observable<Division> {
 		return this.httpClient.post<Division>(`${environment.performance}core/division/`, divisionForm)
 	}
@@ -21,7 +25,6 @@ export class DivisionService {
 	getById(id: number): Observable<Division> {
 		return this.httpClient.get<Division>(`${environment.performance}core/division/${id}/`);
 	}
-
 
 	update(division: Division, dept_code: number) {
 		return this.httpClient.put(`${environment.performance}core/division/` + dept_code + `/`, division);

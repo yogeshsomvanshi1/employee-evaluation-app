@@ -14,6 +14,10 @@ export class GradeService {
 		return this.httpClient.get<{ results: Array<Grade>, count: number }>(`${environment.performance}core/grade/`, options);
 	}
 
+	getAllGrade(): Observable<{ results: Array<Grade>, count: number }> {
+		return this.httpClient.get<{ results: Array<Grade>, count: number }>(`${environment.performance}core/grade/`);
+	}
+
 	create(gradeForm: Grade): Observable<Grade> {
 		return this.httpClient.post<Grade>(`${environment.performance}core/grade/`, gradeForm)
 	}

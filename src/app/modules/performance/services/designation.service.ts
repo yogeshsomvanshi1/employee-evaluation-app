@@ -23,9 +23,8 @@ export class DesignationService {
 		return this.httpClient.get<Designation>(`${environment.performance}core/designation/${id}/`);
 	}
 
-	getAll(param: HttpParams): Observable<{ content: Array<Designation>; totalPages: number }> {
-		const options = { params: param };
-		return this.httpClient.get<{ content: Array<Designation>; totalPages: number; }>(`${environment.performance}core/designation/`, options);
+	getAll(): Observable<{ content: Array<Designation>; totalPages: number }> {
+		return this.httpClient.get<{ content: Array<Designation>; totalPages: number; }>(`${environment.performance}core/designation/`);
 	}
 
 	update(designation: Designation, des_code: number) {
