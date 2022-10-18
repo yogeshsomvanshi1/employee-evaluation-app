@@ -1,5 +1,5 @@
 import { EmployeeComponent } from './employee/employee.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DesignationComponent } from './designation/designation.component';
 
 import { GradeComponent } from './grade/grade.component';
