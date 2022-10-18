@@ -28,11 +28,11 @@ export class DesignationService {
 	}
 
 	update(designation: Designation, des_code: number) {
-		return this.httpClient.put(`${environment.performance}core/designation/` + des_code + `/`, designation);
+		return this.httpClient.put(`${environment.performance}core/designation/${des_code}/`, designation);
 	}
 
 	softDelete(des_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/designation/` + des_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/designation/${des_code}/`);
 	}
 
 }

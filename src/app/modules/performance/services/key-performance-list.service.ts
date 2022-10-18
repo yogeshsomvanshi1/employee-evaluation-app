@@ -28,10 +28,10 @@ export class KeyPerformanceListService {
 	}
 
 	update(keyPerformance: KeyPerformanceList, kp_id: number) {
-		return this.httpClient.put(`${environment.performance}core/key-performance-list/` + kp_id + `/`, keyPerformance);
+		return this.httpClient.put(`${environment.performance}core/key-performance-list/${kp_id}/`, keyPerformance);
 	}
 
 	softDelete(kp_id: number) {
-		return this.httpClient.delete(`${environment.performance}core/key-performance-list/` + kp_id + `/`);
+		return this.httpClient.delete(`${environment.performance}core/key-performance-list/${kp_id}/`);
 	}
 }

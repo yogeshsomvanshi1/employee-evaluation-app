@@ -27,11 +27,11 @@ export class DivisionService {
 	}
 
 	update(division: Division, dept_code: number) {
-		return this.httpClient.put(`${environment.performance}core/division/` + dept_code + `/`, division);
+		return this.httpClient.put(`${environment.performance}core/division/${dept_code}/`, division);
 	}
 
-	softDelete(div_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/division/` + div_code + `/`);
+	softDelete(dept_code: number) {
+		return this.httpClient.delete(`${environment.performance}core/division/${dept_code}/`);
 	}
 
 }

@@ -18,11 +18,11 @@ export class DepartmentService {
 	}
 
 	update(department: Department, dept_code: number) {
-		return this.httpCilent.put(`${environment.performance}core/department/` + dept_code + `/`, department);
+		return this.httpCilent.put(`${environment.performance}core/department/${dept_code}/`, department);
 	}
 
 	softDelete(dept_code: number) {
-		return this.httpCilent.delete(`${environment.performance}core/department/` + dept_code + `/`);
+		return this.httpCilent.delete(`${environment.performance}core/department/${dept_code}/`);
 	}
 
 	getDepartmentContent(param: HttpParams): Observable<{ results: Array<Department>, count: number }>{

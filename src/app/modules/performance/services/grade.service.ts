@@ -27,11 +27,11 @@ export class GradeService {
 	}
 
 	update(grade: Grade, grade_code: number) {
-		return this.httpClient.put(`${environment.performance}core/grade/` + grade_code + `/`, grade);
+		return this.httpClient.put(`${environment.performance}core/grade/${grade_code}/`, grade);
 	}
 
 	softDelete(grade_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/grade/` + grade_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/grade/${grade_code}/`);
 	}
 
 }

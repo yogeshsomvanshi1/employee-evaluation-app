@@ -28,10 +28,10 @@ export class EmployeeTypeService {
 	}
 
 	update(empTypeForm: EmployeeType, emp_code: number) {
-		return this.httpClient.put(`${environment.performance}core/employeetype/` + emp_code + `/`, empTypeForm);
+		return this.httpClient.put(`${environment.performance}core/employeetype/${emp_code}/`, empTypeForm);
 	}
 
 	softDelete(emp_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/employeetype/` + emp_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/employeetype/${emp_code}/`);
 	}
 }

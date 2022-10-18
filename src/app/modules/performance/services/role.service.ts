@@ -27,11 +27,11 @@ export class RoleService {
 	}
 
 	update(role: Role, role_code: number) {
-		return this.httpClient.put(`${environment.performance}core/role/` + role_code + `/`, role);
+		return this.httpClient.put(`${environment.performance}core/role/${role_code}/`, role);
 	}
 
 	softDelete(role_code: number) {
-		return this.httpClient.delete(`${environment.performance}core/role/` + role_code + `/`);
+		return this.httpClient.delete(`${environment.performance}core/role/${role_code}/`);
 	}
 
 }
