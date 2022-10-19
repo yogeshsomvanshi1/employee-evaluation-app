@@ -8,6 +8,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DivisionComponent } from './components/division/division.component';
 import { RoleComponent } from './components/role/role.component';
+import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 
 const routes: Routes = [
   {path: 'performance' , component: LayoutCrmComponent , children: [
@@ -16,7 +18,10 @@ const routes: Routes = [
     {path: 'division-table' , component : DivisionComponent},
     {path: 'grades-table' , component : GradeComponent},
     {path: 'role-table' , component : RoleComponent},
-    {path: 'designation-table' , component : DesignationComponent},
+    {path: 'designation-table' , component : DesignationComponent},  
+    {path: 'employee-table' , component : EmployeeComponent},
+    {path: 'employee-type' , component : EmployeeTypeComponent},
+    {path: 'employee-form' , component : EmployeeFormComponent},
     {path:'' , redirectTo: 'welcome' , pathMatch:'full'}
   ]},
   

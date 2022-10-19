@@ -20,6 +20,9 @@ import { GradeService } from './services/grade.service';
 import { RoleService } from './services/role.service';
 import { EmployeeTypeService } from './services/employee-type.service';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { EmployeeService } from './services/employee.service';
+import { CommonService } from './services/common.service';
+import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
     DesignationComponent,
     WelcomeComponent,
     EmployeeComponent,
-    EmployeeFormComponent
+    EmployeeFormComponent,
+    EmployeeTypeComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +52,9 @@ import { EmployeeFormComponent } from './components/employee-form/employee-form.
     DesignationService,
     GradeService,
     RoleService,
-    EmployeeTypeService
+    EmployeeService,
+    EmployeeTypeService,
+    CommonService
   ]
 })
 export class PerformanceModule { }
