@@ -1,14 +1,13 @@
-import { EmployeeComponent } from './employee/employee.component';
+import { EmployeeComponent } from './components/employee/employee.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { DesignationComponent } from './designation/designation.component';
-
-import { GradeComponent } from './grade/grade.component';
-import { DepartmentComponent } from './department/department.component';
+import { DesignationComponent } from './components/designation/designation.component';
+import { GradeComponent } from './components/grade/grade.component';
+import { DepartmentComponent } from './components/department/department.component';
 import { LayoutCrmComponent } from './../core/components/layout-main/layout-crm.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DivisionComponent } from './division/division.component';
-import { RoleComponent } from './role/role.component';
+import { DivisionComponent } from './components/division/division.component';
+import { RoleComponent } from './components/role/role.component';
 
 const routes: Routes = [
   {path: 'performance' , component: LayoutCrmComponent , children: [
