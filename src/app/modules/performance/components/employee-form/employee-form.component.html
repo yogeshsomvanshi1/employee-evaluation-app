@@ -79,7 +79,11 @@
                                 <div class="row">
                                     <div class="col-md-5"><label for="">Status</label></div>
                                     <div class="col-md-7">   
-                                        <input type="text" class="form-control" formControlName="status">
+                                        <select class="form-control" formControlName="status">
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="ACTIVE">Active</option>
+                                            <option value="INACTIVE">Inactive</option>
+                                        </select>
                                         <div *ngIf="employeeFormControl.status?.invalid && employeeFormControl.status?.touched">
                                             <span class="validate-text" *ngIf="employeeFormControl.status?.errors?.required">Please enter status</span>
                                             <span class="validate-text" *ngIf="employeeFormControl.status?.errors?.maxlength">Status exceeds max-length {{employeeFormControl.status?.errors?.maxlength.requiredLength}} </span>
@@ -203,12 +207,11 @@
                                 <div class="row">
                                     <div class="col-md-5"><label for="">Work Place</label></div>
                                     <div class="col-md-7">
-                                        <input type="email" class="form-control" formControlName="work_place">
-                                        <!-- <select class="form-control" formControlName="work_place">
-                                            <option selected disabled>Select</option>
+                                        <select class="form-control" formControlName="work_place">
+                                            <option value="" selected disabled>Select</option>
                                             <option value="WFH">WFH</option>
                                             <option value="OFFICE">OFFICE</option>
-                                        </select> -->
+                                        </select>
                                     </div>
                                 </div>
                             </div>
