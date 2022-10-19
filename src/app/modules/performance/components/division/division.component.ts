@@ -1,15 +1,15 @@
-import { Division } from './../model/division.model';
-import { DivisionService } from './../services/division.service';
-import { PerformanceService } from "./../services/performance.service";
+import { Division } from '../../model/division.model';
+import { DivisionService } from '../../services/division.service';
+import { PerformanceService } from "../../services/performance.service";
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { forkJoin } from "rxjs";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { HttpParams } from "@angular/common/http";
-import { AlertOptions } from '../../shared/model/alert.model';
-import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
-import { AlertService } from '../../shared/services/alert.service';
-import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
+import { AlertOptions } from '../../../shared/model/alert.model';
+import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
+import { AlertService } from '../../../shared/services/alert.service';
+import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
 
 @Component({
 	selector: "app-division",

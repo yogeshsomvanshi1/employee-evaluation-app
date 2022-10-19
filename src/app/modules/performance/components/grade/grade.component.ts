@@ -1,15 +1,15 @@
-import { Grade } from './../model/grade.model';
-import { GradeService } from './../services/grade.service';
-import { PerformanceService } from "./../services/performance.service";
+import { Grade } from '../../model/grade.model';
+import { GradeService } from '../../services/grade.service';
+import { PerformanceService } from "../../services/performance.service";
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { forkJoin } from "rxjs";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { FormGroup, FormBuilder, Validators, AbstractControl } from "@angular/forms";
 import { HttpParams } from "@angular/common/http";
-import { AlertOptions } from '../../shared/model/alert.model';
-import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
-import { AlertService } from '../../shared/services/alert.service';
-import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
+import { AlertOptions } from '../../../shared/model/alert.model';
+import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
+import { AlertService } from '../../../shared/services/alert.service';
+import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
 
 @Component({
 	selector: "app-grade",
@@ -115,6 +115,7 @@ export class GradeComponent implements OnInit {
 		else {
 			this.gradeService.create(this.gradeForm.value).subscribe((sucess:Grade) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.grade_code) {

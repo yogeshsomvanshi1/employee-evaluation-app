@@ -3,13 +3,13 @@ import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { forkJoin } from "rxjs";
-import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
-import { AlertOptions } from '../../shared/model/alert.model';
-import { TableHeaderMetaData } from "../../shared/model/table-header-list.model";
-import { Department } from "../model/department.model";
-import { PerformanceService } from "../services/performance.service";
-import { AlertService } from './../../shared/services/alert.service';
-import { DepartmentService } from "./../services/department.service";
+import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
+import { AlertOptions } from '../../../shared/model/alert.model';
+import { TableHeaderMetaData } from "../../../shared/model/table-header-list.model";
+import { Department } from "../../model/department.model";
+import { PerformanceService } from "../../services/performance.service";
+import { AlertService } from '../../../shared/services/alert.service';
+import { DepartmentService } from "../../services/department.service";
 
 @Component({
 	selector: "app-department",

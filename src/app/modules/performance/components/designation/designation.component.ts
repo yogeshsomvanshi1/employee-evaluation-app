@@ -1,15 +1,15 @@
-import { DesignationService } from './../services/designation.service';
-import { PerformanceService } from "./../services/performance.service";
+import { DesignationService } from '../../services/designation.service';
+import { PerformanceService } from "../../services/performance.service";
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { forkJoin } from "rxjs";
 import { FormGroup, FormBuilder, Validators, AbstractControl } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { HttpParams } from "@angular/common/http";
-import { Designation } from '../model/designation.model';
-import { AlertService } from '../../shared/services/alert.service';
-import { AlertOptions } from '../../shared/model/alert.model';
-import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
-import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
+import { Designation } from '../../model/designation.model';
+import { AlertService } from '../../../shared/services/alert.service';
+import { AlertOptions } from '../../../shared/model/alert.model';
+import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
+import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
 
 @Component({
 	selector: "app-designation",

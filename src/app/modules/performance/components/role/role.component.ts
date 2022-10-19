@@ -1,15 +1,15 @@
-import { Role } from './../model/role.model';
-import { RoleService } from "./../services/role.service";
-import { PerformanceService } from "./../services/performance.service";
+import { Role } from '../../model/role.model';
+import { RoleService } from "../../services/role.service";
+import { PerformanceService } from "../../services/performance.service";
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { forkJoin } from "rxjs";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { HttpParams } from "@angular/common/http";
-import { AlertOptions } from '../../shared/model/alert.model';
-import { AlertService } from '../../shared/services/alert.service';
-import { ValidatorServiceService } from '../../shared/component/validator-service/validator-service.service';
-import { TableHeaderMetaData } from '../../shared/model/table-header-list.model';
+import { AlertOptions } from '../../../shared/model/alert.model';
+import { AlertService } from '../../../shared/services/alert.service';
+import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
+import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
 
 @Component({
 	selector: "app-role",
@@ -18,7 +18,8 @@ import { TableHeaderMetaData } from '../../shared/model/table-header-list.model'
 })
 export class RoleComponent implements OnInit {
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef<BsModalRef>;
-
+	
+	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	defaultIntialValue: Role;
 	intialValue: Role;
@@ -28,7 +29,6 @@ export class RoleComponent implements OnInit {
 	roleForm: FormGroup;
 	modalRef: BsModalRef;
 	params: HttpParams = new HttpParams();
-	actionBtn: string = "Submit";
 
 	constructor(
 		private alertService: AlertService,

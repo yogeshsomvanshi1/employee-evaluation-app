@@ -1,0 +1,15 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="row pt-30">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title avisys-table-heading">Employee</h3>
+                </div>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" (changePageSortSearch)="changePageSortSearch($event)"
+                    [count]="dataDataTable?.count" (buttonEvent1)="buttonEvent1($event)"
+                    [content]="dataDataTable?.results">
+                </app-data-table-ui>
+            </div>
+        </div>
+    </div>
+</div>

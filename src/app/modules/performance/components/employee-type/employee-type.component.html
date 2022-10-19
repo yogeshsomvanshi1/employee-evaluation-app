@@ -1,0 +1,62 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="row pt-30">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Role </h3>
+                </div>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                (changePageSortSearch)="changePageSortSearch($event)"
+                (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
+            </app-data-table-ui>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #employeeTypeTemplate class="height-1">
+    <div class="modal-header">
+        <div class="card-header">
+            <h3 class="card-title prod-name avisys-table-heading">Role</h3>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true" (click)="modalRef.hide()">×</span>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="empTypeForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="role_code" class="per-subheading col-md-4" >Employee Type ID</label>
+                            <div class="col-md-8">
+                                <input type="text" id="role_code" formControlName="emp_type_code" class="form-control">
+                                <div *ngIf="employeeTypeFormControl.emp_type_code?.invalid && employeeTypeFormControl.emp_type_code?.touched">
+                                    <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_code?.errors?.required">Please enter Id</span>
+                                    <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_code?.errors?.maxlength">Id exceeds max-length {{employeeTypeFormControl.emp_type_code?.errors?.maxlength.requiredLength}} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="role_name" class="per-subheading col-md-4">Employee Type</label>
+                            <div class="col-md-8">
+                                <input type="text" id="role_name" formControlName="emp_type_name" class="form-control">
+                                <div *ngIf="employeeTypeFormControl.emp_type_name?.invalid && employeeTypeFormControl.emp_type_name?.touched">
+                                    <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_name?.errors?.required">Please enter name</span>
+                                    <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_name?.errors?.maxlength">Name exceeds max-length {{employeeTypeFormControl.emp_type_name?.errors?.maxlength.requiredLength}} </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer px-2">
+        <button class="btn btn-primary" (click)="submit()">{{ actionBtn }}</button>
+        <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
+    </div>
+</ng-template>
