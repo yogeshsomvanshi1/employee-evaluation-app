@@ -1,0 +1,30 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, 
+    {
+		"name": "Performance Review Cycle Id",
+		"mappedBy": "preformance_review_cycle_id",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Phase Id",
+		"mappedBy": "phase_id",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Start Date",
+		"mappedBy": "start_date",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "End Date",
+		"mappedBy": "end_date",
+		"type": "text",
+		"width": 30
+	}
+]}

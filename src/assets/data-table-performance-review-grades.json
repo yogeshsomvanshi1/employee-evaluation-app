@@ -1,0 +1,32 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, 
+    {
+		"name": "Performance Review Grade Id",
+		"mappedBy": "preformance_review_grade_id",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Performance Review",
+		"mappedBy": "preformance_review",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Rating From",
+		"mappedBy": "rating_from",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Rating To",
+		"mappedBy": "rating_to",
+		"type": "text",
+		"width": 30
+	}
+]}
