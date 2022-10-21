@@ -1,0 +1,94 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="row pt-30">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">Goals Key Performance Areas Role</h3>
+                </div>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                    (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                    (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
+                </app-data-table-ui>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #goalsKeyPerformanceRole class="height-1">
+    <div class="modal-header">
+        <div class="card-header">
+            <h3 class="card-title prod-name avisys-table-heading">Goals Key Performance Areas Role</h3>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true" (click)="modalRef.hide()">×</span>
+        </button>
+
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="goalsKeyPerformanceRoleForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mt-2">
+                            <label for="goal_id" class="per-subheading col-md-4">Goal ID</label>
+                            <div class="col-md-8">
+                                <input type="text" id="goal_id" formControlName="goal_id" class="form-control">
+                                <div *ngIf="goalsKeyPerformanceRoleFormControl.goal_id?.invalid && goalsKeyPerformanceRoleFormControl.goal_id?.touched">
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_id?.errors?.required">Please Enter Goal Id</span>
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_id?.errors?.maxlength ">Goal Id exceeds max-length
+                                        {{goalsKeyPerformanceRoleFormControl.goal_id?.errors?.maxlength.requiredLength}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="goal_description" class="per-subheading col-md-4">Goal Description</label>
+                            <div class="col-md-8">
+                                <input type="text" id="goal_description" formControlName="goal_description" class="form-control">
+                                <div *ngIf="goalsKeyPerformanceRoleFormControl.goal_description?.invalid && goalsKeyPerformanceRoleFormControl.goal_description?.touched">
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_description?.errors?.required">Please Enter Goal Description</span>
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_description?.errors?.maxlength ">Goal Description exceeds max-length
+                                        {{goalsKeyPerformanceRoleFormControl.goal_description?.errors?.maxlength.requiredLength}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="kpa_id" class="per-subheading col-md-4">KPA ID</label>
+                            <div class="col-md-8">
+                                <select formControlName="kpa_id" class="form-control  select2  user-select" aria-label="Default select example">
+                                    <option selected disabled value="">Select </option>
+                                    <option *ngFor="let KpaId of tableDataKpaIds" [value]="KpaId.kpa_id">{{KpaId.kpa_id}}</option>
+                                </select>
+                                <div *ngIf="goalsKeyPerformanceRoleFormControl.kpa_id?.invalid && goalsKeyPerformanceRoleFormControl.kpa_id?.touched">
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.kpa_id?.errors?.required">Please Select KPA Id</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="role_id" class="per-subheading col-md-4">Role ID</label>
+                            <div class="col-md-8">
+                                <select formControlName="role_id" class="form-control  select2  user-select" aria-label="Default select example">
+                                    <option selected disabled value="">Select </option>
+                                    <option *ngFor="let RoleId of tableDataRoleIds" [value]="RoleId.role_code"> {{RoleId.role_code}}</option>
+                                </select>
+                                <div *ngIf="goalsKeyPerformanceRoleFormControl.role_id?.invalid && goalsKeyPerformanceRoleFormControl.role_id?.touched">
+                                    <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.role_id?.errors?.required">Please Select Role Id</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="d-flex px-2">
+            <button class="btn btn-primary" (click)="submit()"
+                [disabled]="goalsKeyPerformanceRoleForm.invalid">{{actionBtn}}</button>
+            <button class="btn btn-danger ml-2" (click)=resetForm()>Reset</button>
+        </div>
+    </div>
+</ng-template>
