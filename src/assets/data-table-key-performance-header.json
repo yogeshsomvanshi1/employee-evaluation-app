@@ -1,0 +1,18 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Key Performance ID",
+		"mappedBy": "kpa_id",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Key Performance Area Description",
+		"mappedBy": "kpa_description",
+		"type": "text",
+		"width": 30
+	}
+]}
