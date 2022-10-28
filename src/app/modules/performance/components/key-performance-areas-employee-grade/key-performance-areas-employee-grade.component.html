@@ -46,7 +46,7 @@
                             <div class="col-md-8">
                                 <select formControlName="kpa_id" class="form-control  select2  user-select" aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let KpaId of tableDataKpaIds" [value]="KpaId.kpa_id">{{KpaId.kpa_id}}</option>
+                                    <option *ngFor="let kpaId of tableDataKpaIds" [value]="kpaId.kpa_id">{{kpaId.kpa_id}}</option>
                                 </select>
                                 <div *ngIf="keyPerformanceAreasGradeFormControl.kpa_id?.invalid && keyPerformanceAreasGradeFormControl.kpa_id?.touched">
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.kpa_id?.errors?.required">Please Select KPA Id</span>

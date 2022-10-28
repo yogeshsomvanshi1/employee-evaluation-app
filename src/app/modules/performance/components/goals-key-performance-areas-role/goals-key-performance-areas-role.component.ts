@@ -36,14 +36,14 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 
 
 	constructor(
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private goalsKeyPerformanceRolesService: GoalsKeyperformanceAreasRolesService,
+		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private pattern: ValidatorServiceService,
-		private modalService: BsModalService,
-		private keyPerformanceService: KeyPerformanceAreaService,
-		private roleService: RoleService,
-		private alertService: AlertService
+		private roleService: RoleService
 	) {
 
 		this.goalsKeyPerformanceRoleForm = this.initForm();

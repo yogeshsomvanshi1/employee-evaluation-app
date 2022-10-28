@@ -26,8 +26,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	defaultIntialValue: KeyPerformanceAreasEmployeeGrade;
 	dataDataTable: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceAreasEmployeeGrade;
-	modalRef: BsModalRef;
 	keyPerformanceAreasEmployeeGradeForm: FormGroup;
+	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
 	tableDataGradeIds: KeyPerformanceAreasEmployeeGrade;
@@ -35,13 +35,13 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 
 
 	constructor(
-		private modalService: BsModalService,
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
-		private keyPerformanceService: KeyPerformanceAreaService,
 		private gradeService: GradeService,
+		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
 		private performanceAreaGradeService: KeyPerformanceAreasEmployeeGradeService,
 		private performanceService: PerformanceService,
-		private alertService: AlertService
 
 	) {
 		this.keyPerformanceAreasEmployeeGradeForm = this.initForm();

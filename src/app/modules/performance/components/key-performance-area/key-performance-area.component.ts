@@ -31,12 +31,12 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	params: HttpParams = new HttpParams();
 
 	constructor(
-		private modalService: BsModalService,
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
-		private pattern: ValidatorServiceService,
 		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
+		private pattern: ValidatorServiceService,
 		private performanceService: PerformanceService,
-		private alertService: AlertService
 	) {
 		this.keyPerformanceForm = this.initForm();
 	}
