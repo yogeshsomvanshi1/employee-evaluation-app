@@ -50,5 +50,38 @@ export class PerformanceService {
 		return this.httpClient.get("./assets/data-table-employee-type-header.json");
 	}
 
+// 
+	getKeyPerformanceAreaHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-key-performance-header.json");
+	}
+
+	getKeyPerformanceAreaEmployeeGradeHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-key-performance-areas-employee-grade.json");
+	}
+	
+	getGolasKeyPerformanceAreasRoleHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-goals-key-performance-areas-role.json");
+	}
+
+	getPerformanceReviewTypeHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-performance-review-type.json");
+	}
+
+	getPerformanceReviewPhasesHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-performance-review-phases.json");
+	}
+
+	getPerformanceReviewGradesHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-performance-review-grades.json");
+	}
+
+	getPerformanceReviewCycleHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-performance-review-cycle.json");
+	}
+
+	getPerformanceReviewCycleScheduleHeaderColumn() {
+		return this.httpClient.get("./assets/data-table-performance-review-cycle-schedule.json");
+	}
+
 	
 }

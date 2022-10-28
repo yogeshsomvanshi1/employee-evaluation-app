@@ -87,34 +87,37 @@ export class LeftmenuComponent implements OnInit {
       submenu: [
         {
           name: "Key Performance Areas",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/key-performance-area"]
         },
         {
           name: "Key Performance Areas EmployeeGrades",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/key-performance-areas-employeeGrade"]
         },
         {
           name: "Goals Key Performance Areas Roles",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/goals-key-performance-areas-role"]
         },
         {
           name: "Performance Review Type",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/performance-review-type"]
         },
         {
           name: "Performance Review Phases",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/performance-review-phases"]
         },
         {
           name: "Performance Review Grades",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/performance-review-grades"]
+        },
+        {
+          name: "Performance Review Cycles",
+          routerLink: ["//performance/performance/performance-review-cycles"]
         },
         {
           name: "Performance Review Cycle Schedule",
-          routerLink: ["/crm/crm/product-templates"]
+          routerLink: ["//performance/performance/performance-review-cycle-schedule"]
         },
-      ],
-    },
+      ],    },
     {
       name: "Employee Master",
       iconClass: "icon-rocket",
