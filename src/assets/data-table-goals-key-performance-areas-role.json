@@ -1,0 +1,28 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Goal Id",
+		"mappedBy": "goal_id",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Goal Description",
+		"mappedBy": "goal_description",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "KPA Id",
+		"mappedBy": "kpa_id",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Role Id",
+		"mappedBy": "role_id",
+		"type": "text",
+		"width": 30
+	}
+]}
