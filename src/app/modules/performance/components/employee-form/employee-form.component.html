@@ -281,7 +281,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Grade Id</label></div>
+                                    <div class="col-md-5"><label for="">Grade</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="grade_id">
                                             <option value="" selected disabled>Select</option>
@@ -297,7 +297,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Role id</label></div>
+                                    <div class="col-md-5"><label for="">Role</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="role_id">
                                             <option value="" selected disabled>Select</option>
@@ -314,7 +314,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Des id</label></div>
+                                    <div class="col-md-5"><label for="">Designation</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="des_id">
                                             <option value="" selected disabled>Select</option>
@@ -330,7 +330,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Emp type id</label></div>
+                                    <div class="col-md-5"><label for="">Employee Type</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="emp_type_id">
                                             <option value="" selected disabled>Select</option>
@@ -346,7 +346,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for=""></label>Div Id</div>
+                                    <div class="col-md-5"><label for=""></label>Division</div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="div_id">
                                             <option value="" selected disabled>Select</option>
@@ -361,7 +361,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-5"><label for="">Org Code</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="org_code">
@@ -372,7 +372,7 @@
                                             <span class="validate-text" *ngIf="employeeFormControl.org_code?.errors?.required">Please select Org Id</span>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="col-md-6 mt-3">
                                 <button class="btn btn-primary" (click)="submit()" [disabled]="employeeForm.invalid">{{actionBtn}}</button>

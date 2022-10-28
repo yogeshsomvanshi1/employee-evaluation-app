@@ -6,6 +6,8 @@ import { TableHeaderMetaData } from '../../../shared/model/table-header-list.mod
 import { EmployeeService } from '../../services/employee.service';
 import { PerformanceService } from '../../services/performance.service';
 import { Employee } from '../../model/employee.model';
+import { AlertService } from 'src/app/modules/shared/services/alert.service';
+import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 
 @Component({
   selector: 'app-employee',
@@ -14,6 +16,7 @@ import { Employee } from '../../model/employee.model';
 })
 export class EmployeeComponent implements OnInit {
 
+  alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Employee>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
@@ -21,7 +24,8 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-	private performanceService: PerformanceService,
+    private performanceService: PerformanceService,
+    private alertServices: AlertService,
     private router: Router
   ) { }
 
@@ -50,9 +54,13 @@ export class EmployeeComponent implements OnInit {
     } 
 		else if (data.event == "edit") {
       this.router.navigate(['/performance/performance/employee-form'], { queryParams: { data: data.data.emp_code } });
+      console.log(data.data.emp_code)
     }
     else if (data.event == "delete") {
-      this.employeeService
+      this.employeeService.softDelete( data.data.emp_code).subscribe((res) => {
+        this.alertServices.success('Record deleted successfully', this.alertOptions);
+        this.changePageSortSearch(this.params);
+      })
     }
   }
 

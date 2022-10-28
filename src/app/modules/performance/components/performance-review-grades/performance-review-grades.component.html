@@ -1,0 +1,91 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="row pt-30">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title">Performance Review Grade</h3>
+                </div>
+                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                    (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                    (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
+                </app-data-table-ui>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #performanceReviewGrades class="height-1">
+    <div class="modal-header">
+        <div class="card-header">
+            <h3 class="card-title prod-name avisys-table-heading">Performance Review Grade</h3>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close">
+            <span aria-hidden="true" (click)="modalRef.hide()">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="performanceReviewGradesForm">
+            <div class="container-fluid performance-evaluation-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <label for="preformance_review_grade_id" class="per-subheading col-md-4">Performance Review Grade Id</label>
+                            <div class="col-md-8">
+                                <input type="text" id="preformance_review_grade_id"  formControlName="preformance_review_grade_id" class="form-control">
+                                <div *ngIf="performanceReviewGradesFormControl.preformance_review_grade_id?.invalid && performanceReviewGradesFormControl.preformance_review_grade_id?.touched">
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review_grade_id?.errors?.required">Please enter Review Grade Id</span>
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review_grade_id?.errors?.maxlength ">Review Grade Id exceeds max-length
+                                        {{performanceReviewGradesFormControl.preformance_review_grade_id?.errors?.maxlength.requiredLength}} 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="preformance_review" class="per-subheading col-md-4">Performance Review Grade</label>
+                            <div class="col-md-8">
+                                <input type="text" id="preformance_review" formControlName="preformance_review" class="form-control">
+                                <div *ngIf="performanceReviewGradesFormControl.preformance_review?.invalid && performanceReviewGradesFormControl.preformance_review?.touched">
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review?.errors?.required">Please enter Performance Review</span>
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review?.errors?.maxlength ">Performance Review exceeds max-length
+                                        {{performanceReviewGradesFormControl.preformance_review?.errors?.maxlength.requiredLength}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="rating_from" class="per-subheading col-md-4">Rating From</label>
+                            <div class="col-md-8">
+                                <input type="text" id="rating_from" numbersOnly formControlName="rating_from" class="form-control">
+                                <div *ngIf="performanceReviewGradesFormControl.rating_from?.invalid && performanceReviewGradesFormControl.rating_from?.touched">
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_from?.errors?.required">Please enter Rating From</span>
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_from?.errors?.maxlength ">Rating exceeds max-length
+                                        {{performanceReviewGradesFormControl.rating_from?.errors?.maxlength.requiredLength}} 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="rating_to" class="per-subheading col-md-4">Rating To</label>
+                            <div class="col-md-8">
+                                <input type="text" id="rating_to" numbersOnly formControlName="rating_to" class="form-control">
+                                <div *ngIf="performanceReviewGradesFormControl.rating_to?.invalid && performanceReviewGradesFormControl.rating_to?.touched">
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_to?.errors?.required">Please enter Rating To</span>
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_to?.errors?.maxlength ">Rating exceeds max-length
+                                        {{performanceReviewGradesFormControl.rating_to?.errors?.maxlength.requiredLength}} 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="d-flex px-2">
+            <button class="btn btn-primary" (click)="submit()"
+                [disabled]="performanceReviewGradesForm.invalid">{{actionBtn}}</button>
+            <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
+        </div>
+    </div>
+</ng-template>

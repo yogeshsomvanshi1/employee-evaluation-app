@@ -1,0 +1,18 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, {
+		"name": "Performance Review Type",
+		"mappedBy": "performance_review_type",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Description",
+		"mappedBy": "description",
+		"type": "text",
+		"width": 30
+	}
+]}

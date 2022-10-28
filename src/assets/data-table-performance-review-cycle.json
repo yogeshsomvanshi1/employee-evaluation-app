@@ -1,0 +1,38 @@
+{
+	"columnsMetadata": [{
+		"name": "",
+		"mappedBy": "id",
+		"type": "radio",
+		"width": 10
+	}, 
+    {
+		"name": "Performance Review Cycle Id",
+		"mappedBy": "preformance_review_cycle_id",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Performance Review Type",
+		"mappedBy": "preformance_review_type",
+		"type": "text",
+		"width": 30
+	},
+	{
+		"name": "Year",
+		"mappedBy": "year",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Quarter",
+		"mappedBy": "quarter",
+		"type": "text",
+		"width": 30
+	},
+    {
+		"name": "Status",
+		"mappedBy": "status",
+		"type": "text",
+		"width": 30
+	}
+]}

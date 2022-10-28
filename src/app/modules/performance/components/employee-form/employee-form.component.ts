@@ -224,6 +224,7 @@ export class EmployeeFormComponent implements OnInit {
 					subscribe(() => {
 						this.alertServices.success("Record Added Successfully", this.alertOptions);
 						this.router.navigate(['/performance/performance/employee-table']);
+						console.log(this.employeeForm.value)
 					})
 			}
 			else {
