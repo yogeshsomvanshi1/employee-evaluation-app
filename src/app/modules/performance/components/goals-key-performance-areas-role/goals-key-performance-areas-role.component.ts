@@ -31,8 +31,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	tableDataRoleIds: GoalsKeyPerformanceAreasRole;
-	tableDataKpaIds: GoalsKeyPerformanceAreasRole;
+	roleIds: GoalsKeyPerformanceAreasRole;
+	kpaIds: GoalsKeyPerformanceAreasRole;
 
 
 	constructor(
@@ -86,8 +86,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
 		}).subscribe(
 			(response: any) => {
-				this.tableDataRoleIds = response.tableDataRoleId.results
-				this.tableDataKpaIds = response.tableDataKpaId.results
+				this.roleIds = response.tableDataRoleId.results
+				this.kpaIds = response.tableDataKpaId.results
 			},
 			(error) => { }
 		);

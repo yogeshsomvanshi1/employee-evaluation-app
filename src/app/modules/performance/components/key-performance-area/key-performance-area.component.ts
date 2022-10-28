@@ -18,7 +18,7 @@ import { KeyPerformanceAreaService } from '../../services/key-performance-area.s
 })
 export class KeyPerformanceAreaComponent implements OnInit {
 
-	@ViewChild('keyPerformanceList') keyPerformanceList: TemplateRef<BsModalRef>;
+	@ViewChild('keyPerformanceAreas') keyPerformanceList: TemplateRef<BsModalRef>;
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;

@@ -30,8 +30,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	tableDataGradeIds: KeyPerformanceAreasEmployeeGrade;
-	tableDataKpaIds: KeyPerformanceAreasEmployeeGrade;
+	gradeIds: KeyPerformanceAreasEmployeeGrade;
+	kpaIds: KeyPerformanceAreasEmployeeGrade;
 
 
 	constructor(
@@ -70,8 +70,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
 		}).subscribe(
 			(response: any) => {
-				this.tableDataGradeIds = response.tableDataGradeId.results
-				this.tableDataKpaIds = response.tableDataKpaId.results
+				this.gradeIds = response.tableDataGradeId.results
+				this.kpaIds = response.tableDataKpaId.results
 			},
 			(error) => { }
 		);
