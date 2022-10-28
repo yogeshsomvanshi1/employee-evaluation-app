@@ -48,7 +48,7 @@
                             <div class="col-md-8">
                                  <select formControlName="preformance_review_type" class="form-control "aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let review of reviewType" [value]="review.performance_review_type"> {{review.performance_review_type}}</option>
+                                    <option *ngFor="let reviewType of performanceReviewType" [value]="reviewType.performance_review_type"> {{reviewType.performance_review_type}}</option>
                                </select>
                                <div *ngIf="performanceReviewCyclesFormControl.preformance_review_type?.invalid && performanceReviewCyclesFormControl.preformance_review_type?.touched">
                                    <span class="validate-text" *ngIf="performanceReviewCyclesFormControl.preformance_review_type?.errors?.required">Please Select review Type</span>

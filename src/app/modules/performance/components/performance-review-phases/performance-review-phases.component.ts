@@ -27,15 +27,14 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 	modalRef: BsModalRef
 	params: HttpParams = new HttpParams();
 	permission: Array<boolean> = [true, true, true];
-
-
 	performanceReviewPhasesForm: FormGroup
+	
 	constructor(
+		private alertService: AlertService,
+		private formBuilder: FormBuilder,
+		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private performanceReviwPhasesService: PerformanceReviewPhasesService,
-		private modalService: BsModalService,
-		private formBuilder: FormBuilder,
-		private alertService: AlertService
 
 	) {
 		this.performanceReviewPhasesForm = this.initForm();
