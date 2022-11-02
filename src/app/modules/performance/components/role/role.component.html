@@ -56,7 +56,7 @@
         </form>
     </div>
     <div class="modal-footer px-2">
-        <button class="btn btn-primary" (click)="submit()">{{ actionBtn }}</button>
+        <button class="btn btn-primary" [disabled]="roleForm.invalid" (click)="submit()">{{ actionBtn }}</button>
         <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
     </div>
 </ng-template>
