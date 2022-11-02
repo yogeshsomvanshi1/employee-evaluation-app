@@ -28,20 +28,20 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	defaultIntialValue: PerformanceReviewCycleSchedule
 	dataDataTable: { results: Array<PerformanceReviewCycleSchedule>, count: number } = { results: [], count: 0 };
 	intialValue: PerformanceReviewCycleSchedule;
-	performanceReviewCyclescheduleForm: FormGroup;
 	modalRef: BsModalRef;
+	performanceReviewCyclescheduleForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
 	phaseId: PerformanceReviewCycleSchedule;
 
 	constructor(
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
 		private performancePhaseServices: PerformanceReviewPhasesService,
 		private performanceService: PerformanceService,
 		private performanceReviewCycleSheduleService: PerformanceReviewCycleScheduleService,
-		private performanceReviewCycleService: PerformanceReviewCyclesService,
-		private alertService: AlertService
+		private performanceReviewCycleService: PerformanceReviewCyclesService
 	) {
 		this.performanceReviewCyclescheduleForm = this.initForm();
 	}

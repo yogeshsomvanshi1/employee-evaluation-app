@@ -36,7 +36,7 @@
                             <div class="col-md-8">
                                 <select formControlName="phase_id" class="form-control "aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let PhaseId of phaseId" [value]="PhaseId.phase_id"> {{PhaseId.phase_id}}</option>
+                                    <option *ngFor="let phaseIds of phaseId" [value]="phaseIds.phase_id"> {{phaseIds.phase_id}}</option>
                                </select>
                                <div *ngIf="performanceReviewCyclescheduleFormControl.phase_id?.invalid && performanceReviewCyclescheduleFormControl.phase_id?.touched">
                                    <span class="validate-text" *ngIf="performanceReviewCyclescheduleFormControl.phase_id?.errors?.required">Please Select Phase Id</span>
@@ -70,7 +70,7 @@
                             <div class="col-md-8">
                                 <select formControlName="preformance_review_cycle_id" class="form-control " aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let CycleId of cycleId" [value]="CycleId.preformance_review_cycle_id"> {{CycleId.preformance_review_cycle_id}}</option>
+                                    <option *ngFor="let cycleIds of cycleId" [value]="cycleIds.preformance_review_cycle_id"> {{cycleIds.preformance_review_cycle_id}}</option>
                                 </select>
                                 <div *ngIf="performanceReviewCyclescheduleFormControl.preformance_review_cycle_id?.invalid && performanceReviewCyclescheduleFormControl.preformance_review_cycle_id?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewCyclescheduleFormControl.preformance_review_cycle_id?.errors?.required">Please Select Cycle Id</span>

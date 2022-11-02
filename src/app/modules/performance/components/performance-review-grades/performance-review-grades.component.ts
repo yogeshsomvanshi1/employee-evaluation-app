@@ -26,17 +26,17 @@ export class PerformanceReviewGradesComponent implements OnInit {
 	dataDataTable: { results: Array<PerformanceReviewGrades>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewGrades;
 	intialValue: PerformanceReviewGrades;
+	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	performanceReviewGradesForm: FormGroup
-	modalRef: BsModalRef;
 	params: HttpParams = new HttpParams();
 
 	constructor(
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
+		private modalService: BsModalService,
 		private performanceReviewGradeService: PerformanceReviewGradesService,
 		private performanceService: PerformanceService,
-		private modalService: BsModalService,
-		private alertService: AlertService,
 		private pattern: ValidatorServiceService
 	) {
 

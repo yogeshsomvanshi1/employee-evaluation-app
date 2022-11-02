@@ -1,3 +1,4 @@
+import { PerformanceReviewTypes } from './../../model/performance-review-type.model';
 import { PerformanceReviewCycles } from './../../model/performance-review-cycles.model';
 import { PerformanceReviewCyclesService } from './../../services/performance-review-cycles.service';
 import { PerformanceService } from './../../services/performance.service';
@@ -25,17 +26,18 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	dataDataTable: { results: Array<PerformanceReviewCycles>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewCycles;
 	intialValue: PerformanceReviewCycles;
-	reviewType
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
+	performanceReviewType :PerformanceReviewTypes[]
 	performanceReviewCyclesForm: FormGroup;
+
 	constructor(
-		private modalService: BsModalService,
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
+		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private performanceReviewCycleService: PerformanceReviewCyclesService,
-		private alertService: AlertService,
 		private performanceReviewTypeService: PerformanceReviewTypeService
 	) {
 		this.performanceReviewCyclesForm = this.initForm();
@@ -59,7 +61,7 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	ngOnInit(): void {
 
 		this.performanceReviewTypeService.getPerformanceReviewTypeListContent(this.params).subscribe((res) => {
-			this.reviewType = res.results
+			this.performanceReviewType = res.results
 		})
 
 		this.defaultIntialValue = this.performanceReviewCyclesForm.value;
