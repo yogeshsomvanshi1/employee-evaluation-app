@@ -32,7 +32,7 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	phaseId: PerformanceReviewCycleSchedule;
+	phaseId: Array<PerformanceReviewCycleSchedule>=[];
 
 	constructor(
 		private formBuilder: FormBuilder,

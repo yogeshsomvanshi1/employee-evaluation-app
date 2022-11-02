@@ -30,8 +30,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	gradeIds: KeyPerformanceAreasEmployeeGrade;
-	kpaIds: KeyPerformanceAreasEmployeeGrade;
+	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
+	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 
 
 	constructor(

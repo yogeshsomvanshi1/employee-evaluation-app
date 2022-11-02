@@ -31,8 +31,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	roleIds: GoalsKeyPerformanceAreasRole;
-	kpaIds: GoalsKeyPerformanceAreasRole;
+	roleIds: Array<GoalsKeyPerformanceAreasRole>=[];
+	kpaIds: Array<GoalsKeyPerformanceAreasRole>=[];
 
 
 	constructor(
