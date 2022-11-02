@@ -18,7 +18,7 @@ import { KeyPerformanceAreaService } from '../../services/key-performance-area.s
 })
 export class KeyPerformanceAreaComponent implements OnInit {
 
-	@ViewChild('keyPerformanceList') keyPerformanceList: TemplateRef<BsModalRef>;
+	@ViewChild('keyPerformanceAreas') keyPerformanceList: TemplateRef<BsModalRef>;
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
@@ -31,12 +31,12 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	params: HttpParams = new HttpParams();
 
 	constructor(
-		private modalService: BsModalService,
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
-		private pattern: ValidatorServiceService,
 		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
+		private pattern: ValidatorServiceService,
 		private performanceService: PerformanceService,
-		private alertService: AlertService
 	) {
 		this.keyPerformanceForm = this.initForm();
 	}

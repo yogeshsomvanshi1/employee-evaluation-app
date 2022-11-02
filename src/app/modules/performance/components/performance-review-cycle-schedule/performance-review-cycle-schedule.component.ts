@@ -32,7 +32,7 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	performanceReviewCyclescheduleForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	phaseId: PerformanceReviewCycleSchedule;
+	phaseId: Array<PerformanceReviewCycleSchedule>=[];
 
 	constructor(
 		private alertService: AlertService,

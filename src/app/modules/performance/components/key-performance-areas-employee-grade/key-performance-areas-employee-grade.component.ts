@@ -26,22 +26,22 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	defaultIntialValue: KeyPerformanceAreasEmployeeGrade;
 	dataDataTable: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceAreasEmployeeGrade;
-	modalRef: BsModalRef;
 	keyPerformanceAreasEmployeeGradeForm: FormGroup;
+	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	tableDataGradeIds: KeyPerformanceAreasEmployeeGrade;
-	tableDataKpaIds: KeyPerformanceAreasEmployeeGrade;
+	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
+	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 
 
 	constructor(
-		private modalService: BsModalService,
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
-		private keyPerformanceService: KeyPerformanceAreaService,
 		private gradeService: GradeService,
+		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
 		private performanceAreaGradeService: KeyPerformanceAreasEmployeeGradeService,
 		private performanceService: PerformanceService,
-		private alertService: AlertService
 
 	) {
 		this.keyPerformanceAreasEmployeeGradeForm = this.initForm();
@@ -70,8 +70,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
 		}).subscribe(
 			(response: any) => {
-				this.tableDataGradeIds = response.tableDataGradeId.results
-				this.tableDataKpaIds = response.tableDataKpaId.results
+				this.gradeIds = response.tableDataGradeId.results
+				this.kpaIds = response.tableDataKpaId.results
 			},
 			(error) => { }
 		);
