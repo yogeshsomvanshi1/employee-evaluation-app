@@ -21,6 +21,7 @@ export class DesignationComponent implements OnInit {
 	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
+	currentPage=0
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Designation>, count: number } = { results: [], count: 0 };
 	designationForm: FormGroup;
@@ -57,8 +58,11 @@ export class DesignationComponent implements OnInit {
 
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.designationService.getDesignationContent(data).subscribe((sucess: { results: Array<Designation>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -108,6 +112,8 @@ export class DesignationComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.designationService.update(this.designationForm.getRawValue(), this.designationFormControl.des_code.value).subscribe((response:Designation) => {
 			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
 			this.changePageSortSearch(this.params);
 			this.modalRef.hide();
 			});
@@ -115,12 +121,14 @@ export class DesignationComponent implements OnInit {
 		else {
 			this.designationService.create(this.designationForm.value).subscribe((sucess:Designation) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+				this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 			    this.modalRef.hide();
 			},
 			(error)=>{
 				if(error.error.des_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false );
+					this.alertService.info("Record already exists", this.alertOptions.autoClose );
 				  }
 			});
 		}

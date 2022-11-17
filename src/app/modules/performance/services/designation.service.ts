@@ -1,5 +1,4 @@
 import { Designation } from './../model/designation.model';
-import { Division } from './../model/division.model';
 import { environment } from './../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -23,6 +22,7 @@ export class DesignationService {
 		return this.httpClient.get<Designation>(`${environment.performance}core/designation/${id}/`);
 	}
 
+	
 	getAll(): Observable<{ content: Array<Designation>; totalPages: number }> {
 		return this.httpClient.get<{ content: Array<Designation>; totalPages: number; }>(`${environment.performance}core/designation/`);
 	}
