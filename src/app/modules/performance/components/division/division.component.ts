@@ -21,6 +21,7 @@ export class DivisionComponent implements OnInit {
 	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
+	currentPage=0
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Division>, count: number } = { results: [], count: 0 };
 	divisionForm: FormGroup;
@@ -63,8 +64,11 @@ export class DivisionComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.divisionService.getDivisionContent(data).subscribe((sucess: { results: Array<Division>, count: number }) => {
-			this.dataDataTable = sucess;
+			this.dataDataTable = sucess;	
 		});
 	}
 
@@ -84,19 +88,23 @@ export class DivisionComponent implements OnInit {
 
 		if (this.actionBtn !== "Submit") {
 			this.divisionService.update(this.divisionForm.getRawValue(), this.divisionFormControl.div_code.value).subscribe((response:Division) => {
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
-				this.alertService.success("Record Updated Successfully", this.alertOptions.autoClose);
+				this.alertService.success("Record Updated Successfully", this.alertOptions);
 				this.modalRef.hide();
 			});
 		} 
 		else {
 			this.divisionService.create(this.divisionForm.value).subscribe((sucess:Division) => {
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
-				this.alertService.success("Record Added Successfully", this.alertOptions.autoClose);
+				this.alertService.success("Record Added Successfully", this.alertOptions);
 				this.modalRef.hide();
 			}, (error)=>{
 				if(error.error.div_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false );
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
@@ -120,7 +128,7 @@ export class DivisionComponent implements OnInit {
 		}
 		else if (data.event == "delete") {
 			this.divisionService.softDelete(data.data.div_code).subscribe((sucess:Division) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions.autoClose);
+				this.alertService.success("Record Deleted Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 			})
 		}

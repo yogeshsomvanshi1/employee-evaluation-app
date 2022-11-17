@@ -1,6 +1,6 @@
 <div id="left-sidebar" class="sidebar ">
     <div class="d-flex justify-content-center">
-        <img src="/assets/images/avisys.png" class="avisys-left-menu-logo" alt="">
+        <img src="assets/images/avisys.png" class="avisys-left-menu-logo" alt="">
     </div>
     <div class="brand-name performance-avisys-header">Performance Evaluation System </div>
     <nav id="left-sidebar-nav" class="sidebar-nav">
@@ -22,7 +22,7 @@
                 </ul>
             </li> -->
 
-            <div *ngFor="let list of NumberMenuList">
+            <div *ngFor="let list of NumberMenuList" class="scroll">
                 <li  *ngIf="list.isHeading"  >
                     <a *ngIf="!list.dynamicMenuOpen" href="javascript:void(0)" [routerLink]="list.routerLink ? list.routerLink : undefined" (click)="list.isCollapsed = !list.isCollapsed"
                     [attr.aria-expanded]="!list.isCollapsed" [attr.aria-controls]="list.controlId"

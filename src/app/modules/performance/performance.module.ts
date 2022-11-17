@@ -1,3 +1,4 @@
+import { DropdownService } from './services/dropdown.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared-models/shared/shared.module';
 import { CoreModule } from './../core/core.module';
@@ -39,6 +40,8 @@ import { GoalsKeyperformanceAreasRolesService } from './services/goals-key-perfo
 import { KeyPerformanceAreaComponent } from './components/key-performance-area/key-performance-area.component';
 import { KeyPerformanceAreaService } from './services/key-performance-area.service';
 import { EmployeeTypeService } from './services/employee-type.service';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
+import { ApparaisalDetailsComponent } from './components/apparaisal-details/apparaisal-details.component';
 
 
 @NgModule({
@@ -59,7 +62,10 @@ import { EmployeeTypeService } from './services/employee-type.service';
     PerformanceReviewPhasesComponent,
     PerformanceReviewGradesComponent,
     PerformanceReviewCycleScheduleComponent,
-    PerformanceReviewCyclesComponent
+    PerformanceReviewCyclesComponent,
+    EmployeeDetailsComponent,
+    ApparaisalDetailsComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -87,7 +93,8 @@ import { EmployeeTypeService } from './services/employee-type.service';
     PerformanceReviewPhasesService,
     PerformanceReviewGradesService,
     PerformanceReviewCyclesService,
-    PerformanceReviewCycleScheduleService
+    PerformanceReviewCycleScheduleService,
+    DropdownService
   ]
 })
 export class PerformanceModule { }

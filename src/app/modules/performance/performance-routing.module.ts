@@ -1,3 +1,5 @@
+import { ApparaisalDetailsComponent } from './components/apparaisal-details/apparaisal-details.component';
+import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DesignationComponent } from './components/designation/designation.component';
@@ -39,6 +41,9 @@ const routes: Routes = [
     {path:"performance-review-grades",component:PerformanceReviewGradesComponent},
     {path:"performance-review-cycles",component:PerformanceReviewCyclesComponent},
     {path:"performance-review-cycle-schedule",component:PerformanceReviewCycleScheduleComponent},
+    {path:"employee-details",component:EmployeeDetailsComponent},
+    {path:"apparaisal-details",component:ApparaisalDetailsComponent},
+
     {path:'' , redirectTo: 'welcome' , pathMatch:'full'},
   ]},
   

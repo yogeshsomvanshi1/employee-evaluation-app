@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { AuthenticationService } from '../service/authentication.service';
@@ -14,24 +14,21 @@ import { AuthenticationService } from '../service/authentication.service';
 export class LoginComponent implements OnInit {
   invalidUser: boolean = false;
   passwordType: string = 'password';
-  passwordShown:boolean = false;
+  passwordShown: boolean = false;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   createUser = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
+    username: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    password: new FormControl('', [Validators.required, Validators.maxLength(30)])
   })
 
-  // submit() {
-  //   this.router.navigate(["performance"])
-       
-  //   }
-  
+  get loginFormControl(): { [key: string]: AbstractControl } {
+    return this.createUser.controls;
+  }
 
-
-  togglePassword(){
-    if(this.passwordShown){
+  togglePassword() {
+    if (this.passwordShown) {
       this.passwordShown = false;
       this.passwordType = 'password';
 
@@ -46,8 +43,27 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){
-    this.router.navigate(["performance/performance"])
+  submit() {
+    this.authenticationService.login(this.createUser.value).subscribe((data: any) => {
+      console.log(data)
+      sessionStorage.setItem('username', this.createUser.get('username').value);
+      sessionStorage.setItem('access_token', data.access_token);
+      sessionStorage.setItem('session_id', data.session_state);
+      sessionStorage.setItem('userDetails', JSON.stringify(data));
+      sessionStorage.setItem('userId', data.userId);
+      this.router.navigate(["performance/performance"]);
+    }, error => {
+      if (error.status == 428) {
+        sessionStorage.setItem('username', this.createUser.get('username').value);
+        this.router.navigate([""], { queryParams: { content: '' } })
+      }
+      else {
+        this.invalidUser = true;
+      }
+
+
+    }
+    );
   }
 
 

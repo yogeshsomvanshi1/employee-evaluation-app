@@ -22,6 +22,7 @@ export class DepartmentComponent implements OnInit {
 	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
+	currentPage=0
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Department>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Department;
@@ -60,6 +61,10 @@ export class DepartmentComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.departmentService.getDepartmentContent(data).subscribe((sucess: { results: Array<Department>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -86,17 +91,21 @@ export class DepartmentComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.departmentService.update(this.departmentForm.getRawValue(), this.departmentFormControl.dept_code.value).subscribe((response: Department) => {
 			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
 			this.changePageSortSearch(this.params);
 			this.modalRef.hide();
 			});
 		} else {
 			this.departmentService.create(this.departmentForm.value).subscribe((sucess: Department) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+				this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			},(error)=>{
 				if(error.error.dept_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false );
+					this.alertService.info("Record already exists", this.alertOptions.autoClose );
 				}
 			}
 			);
