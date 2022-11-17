@@ -22,6 +22,7 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	defaultIntialValue: KeyPerformanceList;
 	dataDataTable: { results: Array<KeyPerformanceList>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceList;
@@ -74,6 +75,8 @@ export class KeyPerformanceAreaComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.keyPerformanceService.update(this.keyPerformanceForm.getRawValue(), this.keyPerformanceFormControl.kpa_id.value).subscribe((response: KeyPerformanceList) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -81,11 +84,13 @@ export class KeyPerformanceAreaComponent implements OnInit {
 		else {
 			this.keyPerformanceService.create(this.keyPerformanceForm.value).subscribe((sucess: KeyPerformanceList) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.kpa_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
@@ -102,6 +107,9 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 
 		this.keyPerformanceService.getKeyPerformanceListContent(data).subscribe((sucess: { results: Array<KeyPerformanceList>, count: number }) => {
 			this.dataDataTable = sucess;

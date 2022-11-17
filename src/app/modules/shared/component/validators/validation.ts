@@ -29,6 +29,18 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
      return null;
  }
 
+ export function onlyNumDot(control: AbstractControl){
+    if(control.value !== null){
+       const digitCode = new RegExp('^[0-9]{4}$');
+       if(!digitCode.test(control.value)){
+           return{
+               isDigit: true
+           }
+       }
+    }
+    return null;
+}
+
 
 //  Character Validation
 export function onlyChar(control: AbstractControl){
@@ -120,5 +132,6 @@ export function emailTemplatevariableValidatio(DataArray:any) :ValidatorFn {
         return isInValid;
     }   
 }
+
 
 
