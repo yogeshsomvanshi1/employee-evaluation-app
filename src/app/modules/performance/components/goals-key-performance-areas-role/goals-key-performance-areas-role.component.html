@@ -60,7 +60,7 @@
                             <div class="col-md-8">
                                 <select formControlName="kpa_id" class="form-control  select2  user-select" aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let KpaId of tableDataKpaIds" [value]="KpaId.kpa_id">{{KpaId.kpa_id}}</option>
+                                    <option *ngFor="let kpaId of kpaIds" [value]="kpaId.kpa_id">{{kpaId.kpa_id}}</option>
                                 </select>
                                 <div *ngIf="goalsKeyPerformanceRoleFormControl.kpa_id?.invalid && goalsKeyPerformanceRoleFormControl.kpa_id?.touched">
                                     <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.kpa_id?.errors?.required">Please Select KPA Id</span>
@@ -72,7 +72,7 @@
                             <div class="col-md-8">
                                 <select formControlName="role_id" class="form-control  select2  user-select" aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let RoleId of tableDataRoleIds" [value]="RoleId.role_code"> {{RoleId.role_code}}</option>
+                                    <option *ngFor="let roleId of roleIds" [value]="roleId.role_code"> {{roleId.role_code}}</option>
                                 </select>
                                 <div *ngIf="goalsKeyPerformanceRoleFormControl.role_id?.invalid && goalsKeyPerformanceRoleFormControl.role_id?.touched">
                                     <span class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.role_id?.errors?.required">Please Select Role Id</span>

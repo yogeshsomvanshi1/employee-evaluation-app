@@ -1,3 +1,42 @@
 .col-md-6{
     margin-bottom: 10px;
 }
+// .img{
+//     height: 28vh !important;
+// }
+.mb{
+    margin-bottom: 10px;
+}
+.fa-user{
+    font-size: 111px;
+}
+.img{
+    width: 161px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.camera-image{
+    position: absolute;
+    bottom: -2px;
+    left: 44%;
+    font-size: 31px;
+    cursor: pointer;
+    color: #1e2120;
+}
+.profile-row-inp{
+    position: relative;
+     right: 16px;
+}
+.card-img{
+    border: 1px solid;
+    right: 10px;
+    display: flex;
+    color: #00000038;
+    height: auto;
+}
+.main-img1{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}

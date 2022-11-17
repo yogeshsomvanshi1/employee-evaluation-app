@@ -31,19 +31,19 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	tableDataRoleIds: GoalsKeyPerformanceAreasRole;
-	tableDataKpaIds: GoalsKeyPerformanceAreasRole;
+	roleIds: Array<GoalsKeyPerformanceAreasRole>=[];
+	kpaIds: Array<GoalsKeyPerformanceAreasRole>=[];
 
 
 	constructor(
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private goalsKeyPerformanceRolesService: GoalsKeyperformanceAreasRolesService,
+		private keyPerformanceService: KeyPerformanceAreaService,
+		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private pattern: ValidatorServiceService,
-		private modalService: BsModalService,
-		private keyPerformanceService: KeyPerformanceAreaService,
-		private roleService: RoleService,
-		private alertService: AlertService
+		private roleService: RoleService
 	) {
 
 		this.goalsKeyPerformanceRoleForm = this.initForm();
@@ -86,8 +86,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
 		}).subscribe(
 			(response: any) => {
-				this.tableDataRoleIds = response.tableDataRoleId.results
-				this.tableDataKpaIds = response.tableDataKpaId.results
+				this.roleIds = response.tableDataRoleId.results
+				this.kpaIds = response.tableDataKpaId.results
 			},
 			(error) => { }
 		);

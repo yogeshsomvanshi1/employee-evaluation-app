@@ -32,7 +32,7 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	performanceReviewCyclescheduleForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	phaseId: PerformanceReviewCycleSchedule;
+	phaseId: Array<PerformanceReviewCycleSchedule>=[];
 
 	constructor(
 		private alertService: AlertService,
@@ -59,6 +59,16 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 			created_by: ["1"],
 			updated_by: ["1"]
 		});
+<<<<<<< Updated upstream
+=======
+	}	
+
+	changeLastDay() {
+		this.performanceReviewCyclescheduleFormControl.end_date.reset();
+		let res = this.performanceReviewCyclescheduleFormControl.start_date.value
+		this.minLastDay = moment(new Date(res)).add(1, 'day').format('YYYY-MM-DD');
+
+>>>>>>> Stashed changes
 	}
 	ngOnInit(): void {
 

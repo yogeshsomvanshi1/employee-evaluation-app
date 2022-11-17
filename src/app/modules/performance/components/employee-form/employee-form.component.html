@@ -3,54 +3,56 @@
         <form [formGroup]="employeeForm" class="pt-30">
             <div class="card  card-height">
                 <div class="card-header pf-head d-flex justify-content-between">
-                    <h3 class="card-title">Employee</h3>
+                    <h3 class="card-title">Employee Details</h3>
                     <button type="button" (click)="back()" class="btn btn-dark ">Back</button>
                 </div>
                 <div class="card-body">
                     <div class="container-fluid performance-evaluation-form">                 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Employee Code</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="emp_code">
+                            <div class="col-md-8">
+                                <div class="row mb">
+                                    <div class="col-md-4"><label for="">Employee Code</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control profile-row-inp" formControlName="emp_code">
                                         <div *ngIf="employeeFormControl.emp_code?.invalid && employeeFormControl.emp_code?.touched">
                                             <span class="validate-text" *ngIf="employeeFormControl.emp_code?.errors?.required">Please enter Employee code</span>
                                             <span class="validate-text" *ngIf="employeeFormControl.emp_code?.errors?.maxlength">Employee code exceeds max-length {{employeeFormControl.emp_code?.errors?.maxlength.requiredLength}} </span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">First Name</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="first_name">
-                                        <div *ngIf="employeeFormControl.first_name?.invalid && employeeFormControl.first_name?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.first_name?.errors?.required">Please enter First name</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.first_name?.errors?.maxlength">Name exceeds max-length {{employeeFormControl.first_name?.errors?.maxlength.requiredLength}} </span>
+                                <div class="row mb">
+                                    <div class="col-md-4"><label for="">First Name</label></div>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <select class="form-control salutatation profile-row-inp" formControlName="salutation" aria-label="Default select example">
+                                                    <option value="" disabled selected>Select </option>
+                                                    <option value="MR">Mr</option>
+                                                    <option value="DR">Dr</option>
+                                                    <option value="MRS">Mrs</option>
+                                                    <option value="MISS">Miss</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control profile-row-inp" formControlName="first_name">
+                                                <div *ngIf="employeeFormControl.first_name?.invalid && employeeFormControl.first_name?.touched">
+                                                    <span class="validate-text" *ngIf="employeeFormControl.first_name?.errors?.required">Please enter First name</span>
+                                                    <span class="validate-text" *ngIf="employeeFormControl.first_name?.errors?.maxlength">Name exceeds max-length {{employeeFormControl.first_name?.errors?.maxlength.requiredLength}} </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Middle Name</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="middle_name">
-                                        <div *ngIf="employeeFormControl.middle_name?.invalid && employeeFormControl.middle_name?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.middle_name?.errors?.required">Please enter Middle name</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.middle_name?.errors?.maxlength">Middle name exceeds max-length {{employeeFormControl.middle_name?.errors?.maxlength.requiredLength}} </span>
-                                            <span class="validate-text color" *ngIf="employeeFormControl.middle_name?.errors?.pattern">Please enter valid characters</span>
-                                        </div>
+                                <div class="row mb">
+                                    <div class="col-md-4"><label for="">Middle Name</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control profile-row-inp" formControlName="middle_name">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Last Name</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="last_name">
+                                <div class="row mb">
+                                    <div class="col-md-4"><label for="">Last Name</label></div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control profile-row-inp" formControlName="last_name">
                                         <div *ngIf="employeeFormControl.last_name?.invalid && employeeFormControl.last_name?.touched">
                                             <span class="validate-text" *ngIf="employeeFormControl.last_name?.errors?.required">Please enter Last name</span>
                                             <span class="validate-text" *ngIf="employeeFormControl.last_name?.errors?.maxlength">Last name exceeds max-length {{employeeFormControl.last_name?.errors?.maxlength.requiredLength}} </span>
@@ -58,19 +60,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4 ">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Salutation</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="salutation">
-                                            <option value="" selected disabled>Select</option>
-                                            <option value="DR">Dr.</option>
-                                            <option value="MR">Mr.</option>
-                                            <option value="MRS">Mrs.</option>
-                                            <option value="MISS">Miss</option>
-                                        </select>
-                                        <div *ngIf="employeeFormControl.salutation?.invalid && employeeFormControl.salutation?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.salutation?.errors?.required">Please select Salutation</span>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-10 card card-img">
+                                        <div class="main-img1">
+                                            <img *ngIf="employeeForm.controls.profile_details.value != '' && employeeForm.controls.profile_details.value != null && employeeForm.controls.profile_details.value !=undefined"
+                                                [src]="employeeForm.controls.profile_details.value" class="img" />
+                                            <input type="file" #file1 hidden (change)="onFileSelect($event)" [(ngModel)]="changedImgPath"   [ngModelOptions]="{standalone: true}">
+                                            <span (click)="file1.click()"><i class="fa fa-camera camera-image"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -93,188 +91,70 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Gender</label></div>
+                                    <div class="col-md-5"><label for="">Work Experience </label></div>
                                     <div class="col-md-7">
-                                        <select class="form-control" formControlName="gender">
+                                       <div class="row">
+                                            <div class="col-md-6">
+                                                <select class="form-control" placeholder="Select Year" formControlName="work_experince_during_joining_years">
+                                                    <option value="" selected disabled>Year</option>
+                                                    <option *ngFor="let years of Year"  [value]="years">{{years}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select class="form-control" placeholder="Select Month" formControlName="work_experince_during_joining_month">
+                                                    <option value="" selected disabled>Month</option>
+                                                    <option *ngFor="let months of Month"  [value]="months">{{months}}</option>
+                                                </select>
+                                            </div>
+                                       </div>
+                                       <div *ngIf="employeeFormControl.work_experince_during_joining_month?.invalid && employeeFormControl.work_experince_during_joining_month?.touched">
+                                        <span class="validate-text" *ngIf="employeeFormControl.work_experince_during_joining_month?.errors?.required">Please select work experince</span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Employee Type</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="emp_type_id">
                                             <option value="" selected disabled>Select</option>
-                                            <option value="MALE">Male</option>
-                                            <option value="FEMALE">Female</option>
+                                            <option value="{{employeeType.emp_type_code}}" *ngFor="let employeeType of employeeTypes">
+                                                {{employeeType.emp_type_name}} 
+                                            </option>
                                         </select>
-                                        <div *ngIf="employeeFormControl.gender?.invalid && employeeFormControl.gender?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.gender?.errors?.required">Please select Gender</span>
-                                        </div>
+                                        <div *ngIf="employeeFormControl.emp_type_id?.invalid && employeeFormControl.emp_type_id?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.emp_type_id?.errors?.required">Please select Employee Type</span>
+                                        </div>                                
                                     </div>
                                 </div>
-                            </div>
+                            </div>  
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Email</label></div>
+                                    <div class="col-md-5"><label for="">Department</label></div>
                                     <div class="col-md-7">
-                                        <input type="email" class="form-control" formControlName="email">
-                                        <div *ngIf="employeeFormControl.email?.invalid && employeeFormControl.email?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.email?.errors?.required">Please enter email</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.email?.errors?.maxlength">Email exceeds max-length {{employeeFormControl.email?.errors?.maxlength.requiredLength}} </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Mobile</label></div>
-                                    <div class="col-md-7">
-                                        <input type="tel" class="form-control" formControlName="mobile" numbersOnly>
-                                        <div *ngIf="employeeFormControl.mobile?.invalid && employeeFormControl.mobile?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.mobile?.errors?.required">Please enter Mobile number</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.mobile?.errors?.pattern">Please enter 10 digit mobile number</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Date of birth</label></div>
-                                    <div class="col-md-7">
-                                        <input type="date" class="form-control" formControlName="dob">
-                                        <div *ngIf="employeeFormControl.dob?.invalid && employeeFormControl.dob?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.dob?.errors?.required">Please enter Date of birth</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.dob?.errors?.younger">Please enter valid Date of Birth</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Date of Joining</label></div>
-                                    <div class="col-md-7">
-                                        <input type="date" class="form-control" formControlName="doj">
-                                        <div *ngIf="employeeFormControl.doj?.invalid && employeeFormControl.doj?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.doj?.errors?.required">Please enter Date of joining</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Last Working Day</label></div>
-                                    <div class="col-md-7">
-                                        <input type="date" class="form-control" formControlName="lwd">
-                                        <div *ngIf="employeeFormControl.lwd?.invalid && employeeFormControl.lwd?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.lwd?.errors?.required">Please enter Last working day</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Profile detaIls</label></div>
-                                    <div class="col-md-7">
-                                        <button type="button" class="btn btn-primary" mat-button (click)="file1.click()">Choose File</button>
-                                        <input hidden type="file" #file1 name="requestfile" (change)="onFileSelect($event)" accept="image/*" />
-                                        <img *ngIf="employeeForm.controls.profile_details.value != '' && employeeForm.controls.profile_details.value != null
-                                         && employeeForm.controls.profile_details.value !=undefined" [src]="employeeForm.controls.profile_details.value" class="selected-image" />
-                                        
-                                        <div *ngIf="employeeFormControl.profile_details?.invalid && employeeFormControl.profile_details?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.profile_details?.errors?.required">Please enter Profile details</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Work experience during joining years</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="work_experince_during_joining_years" numbersOnly>
-                                        <div *ngIf="employeeFormControl.work_experince_during_joining_years?.invalid && employeeFormControl.work_experince_during_joining_years?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.work_experince_during_joining_years?.errors?.required">Please enter work experince during joining years</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.work_experince_during_joining_years?.errors?.maxlength">Value exceeds max-length {{employeeFormControl.work_experince_during_joining_years?.errors?.maxlength.requiredLength}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Work experience during joining month</label></div>
-                                    <div class="col-md-7">
-                                        <input type="text" class="form-control" formControlName="work_experince_during_joining_month" numbersOnly>
-                                        <div *ngIf="employeeFormControl.work_experince_during_joining_month?.invalid && employeeFormControl.work_experince_during_joining_month?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.work_experince_during_joining_month?.errors?.required">Please enter work experince during joining months</span>
-                                            <span class="validate-text" *ngIf="employeeFormControl.work_experince_during_joining_month?.errors?.maxlength">Value exceeds max-length {{employeeFormControl.work_experince_during_joining_month?.errors?.maxlength.requiredLength}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Work Place</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="work_place">
+                                        <select class="form-control" formControlName="dept_id">
                                             <option value="" selected disabled>Select</option>
-                                            <option value="WFH">WFH</option>
-                                            <option value="OFFICE">OFFICE</option>
+                                            <option value="{{dept.dept_code}}" *ngFor="let dept of department" >
+                                                {{dept.dept_name}} 
+                                            </option>
                                         </select>
+                                        <div *ngIf="employeeFormControl.dept_id?.invalid && employeeFormControl.dept_id?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.dept_id?.errors?.required">Please select Department</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Reporting Manager Id</label></div>
+                                    <div class="col-md-5"><label for="">Reporting Manager</label></div>
                                     <div class="col-md-7">
                                         <select class="form-control" formControlName="reporting_manager_id">
                                             <option value="" selected  disabled>Select</option>
-                                            <option value="1">Yogesh Somanvashi</option>
-                                            <option value="2">Sudeep M</option>
+                                            <option *ngFor="let employee of employees" [value]="employee.emp_code">{{employee.first_name}}&nbsp;&nbsp;{{employee.last_name}}</option>
                                         </select>
                                         <div *ngIf="employeeFormControl.reporting_manager_id?.invalid && employeeFormControl.reporting_manager_id?.touched">
                                             <span class="validate-text" *ngIf="employeeFormControl.reporting_manager_id?.errors?.required">Please select Reporting Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">Country</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="location_country" (change)="handleCountryName()">
-                                            <option value="" selected disabled>Select</option>
-                                            <option value="{{country.country_code}}" *ngFor="let country of countries" >
-                                                {{country.country_name}} 
-                                            </option>
-                                        </select>
-                                        <div *ngIf="employeeFormControl.location_country?.invalid && employeeFormControl.location_country?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.location_country?.errors?.required">Please select Country</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">State</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="location_state" (change)="handleStateName()">
-
-                                            <option value="" selected disabled>Select</option>
-                                            <option value="{{state.state_code}}" *ngFor="let state of states">
-                                                {{state.state_name}} 
-                                            </option>
-                                        </select>
-                                        <div *ngIf="employeeFormControl.location_state?.invalid && employeeFormControl.location_state?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.location_state?.errors?.required">Please select State</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-5"><label for="">City</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="location_city">
-                                            <option value="" selected disabled>Select</option>
-                                            <option value="{{city.city_code}}" *ngFor="let city of cities">
-                                                {{city.city_name}} 
-                                            </option>
-                                        </select>
-                                        <div *ngIf="employeeFormControl.location_city?.invalid && employeeFormControl.location_city?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.location_city?.errors?.required">Please select City</span>
                                         </div>
                                     </div>
                                 </div>
@@ -330,17 +210,133 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row">
-                                    <div class="col-md-5"><label for="">Employee Type</label></div>
+                                    <div class="col-md-5"><label for="">Date of birth</label></div>
                                     <div class="col-md-7">
-                                        <select class="form-control" formControlName="emp_type_id">
+                                        <input type="date" (change)="changeLwd(); changeDoj()" class="form-control" formControlName="dob">
+                                        <div *ngIf="employeeFormControl.dob?.invalid && employeeFormControl.dob?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.dob?.errors?.required">Please enter Date of birth</span>
+                                            <span class="validate-text" *ngIf="employeeFormControl.dob?.errors?.younger">Please enter valid Date of Birth</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Date of Joining</label></div>
+                                    <div class="col-md-7">
+                                        <input type="date" [min]="minJoiningDate" [max]="maxDate" (change)="changeLastDay()"  class="form-control" formControlName="doj" >
+                                        <div *ngIf="employeeFormControl.doj?.invalid && employeeFormControl.doj?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.doj?.errors?.required">Please select Date of joining</span>
+                                        </div>
+                                        <small *ngIf="minJoiningDate > employeeForm.value.doj  && !employeeFormControl.doj?.invalid " class="validate-text">Please Enter Valid Date</small>
+                                    </div>  
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Last Working Day</label></div>
+                                    <div class="col-md-7">
+                                        <input type="date" readonly [min]="minretiredDate"  class="form-control" formControlName="lwd">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Gender</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="gender">
                                             <option value="" selected disabled>Select</option>
-                                            <option value="{{employeeType.emp_type_code}}" *ngFor="let employeeType of employeeTypes">
-                                                {{employeeType.emp_type_name}} 
+                                            <option value="MALE">Male</option>
+                                            <option value="FEMALE">Female</option>
+                                        </select>
+                                        <div *ngIf="employeeFormControl.gender?.invalid && employeeFormControl.gender?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.gender?.errors?.required">Please select Gender</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Email</label></div>
+                                    <div class="col-md-7">
+                                        <input type="email" class="form-control" formControlName="email">
+                                        <div *ngIf="employeeFormControl.email?.invalid && employeeFormControl.email?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.email?.errors?.required">Please enter email</span>
+                                            <span class="validate-text" *ngIf="employeeFormControl.email?.errors?.maxlength">Email exceeds max-length {{employeeFormControl.email?.errors?.maxlength.requiredLength}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Mobile</label></div>
+                                    <div class="col-md-7">
+                                        <input type="tel" class="form-control" formControlName="mobile" numbersOnly>
+                                        <div *ngIf="employeeFormControl.mobile?.invalid && employeeFormControl.mobile?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.mobile?.errors?.required">Please enter Mobile number</span>
+                                            <span class="validate-text" *ngIf="employeeFormControl.mobile?.errors?.pattern">Please enter 10 digit mobile number</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Work Place</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="work_place">
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="WFH">WFH</option>
+                                            <option value="OFFICE">OFFICE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Country</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="location_country" (change)="handleCountryName()">
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="{{country.country_code}}" *ngFor="let country of countries" >
+                                                {{country.country_name}} 
                                             </option>
                                         </select>
-                                        <div *ngIf="employeeFormControl.emp_type_id?.invalid && employeeFormControl.emp_type_id?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.emp_type_id?.errors?.required">Please select Employee Type Id</span>
-                                        </div>                                        
+                                        <div *ngIf="employeeFormControl.location_country?.invalid && employeeFormControl.location_country?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.location_country?.errors?.required">Please select Country</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">State</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="location_state" (change)="handleStateName()">
+
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="{{state.state_code}}" *ngFor="let state of states">
+                                                {{state.state_name}} 
+                                            </option>
+                                        </select>
+                                        <div *ngIf="employeeFormControl.location_state?.invalid && employeeFormControl.location_state?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.location_state?.errors?.required">Please select State</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">City</label></div>
+                                    <div class="col-md-7">
+                                        <select class="form-control" formControlName="location_city">
+                                            <option value="" selected disabled>Select</option>
+                                            <option value="{{city.city_code}}" *ngFor="let city of cities">
+                                                {{city.city_name}} 
+                                            </option>
+                                        </select>
+                                        <div *ngIf="employeeFormControl.location_city?.invalid && employeeFormControl.location_city?.touched">
+                                            <span class="validate-text" *ngIf="employeeFormControl.location_city?.errors?.required">Please select City</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -360,22 +356,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <!-- <div class="row">
-                                    <div class="col-md-5"><label for="">Org Code</label></div>
-                                    <div class="col-md-7">
-                                        <select class="form-control" formControlName="org_code">
-                                            <option  selected disabled>Select</option>
-                                            <option value="AVISYS">AVISYS</option>
-                                        </select>
-                                        <div *ngIf="employeeFormControl.org_code?.invalid && employeeFormControl.org_code?.touched">
-                                            <span class="validate-text" *ngIf="employeeFormControl.org_code?.errors?.required">Please select Org Id</span>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
+                            <div class="col-md-6"></div>
                             <div class="col-md-6 mt-3">
-                                <button class="btn btn-primary" (click)="submit()" [disabled]="employeeForm.invalid">{{actionBtn}}</button>
+                                <button class="btn btn-primary" [disabled]="employeeForm.invalid" (click)="submit()" >{{actionBtn}}</button>
                                 <button class="btn btn-danger mx-2" (click)="resetForm()">Reset</button>
                             </div>
                         </div>

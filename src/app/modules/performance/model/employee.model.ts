@@ -24,6 +24,7 @@ export interface Employee{
     "location_city": string,
     "grade_id": string,
     "role_id": string,
+    "role_code":string
     "des_id": string,
     "emp_type_id": string,
     "div_id": string,

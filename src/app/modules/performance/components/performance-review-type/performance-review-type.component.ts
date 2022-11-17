@@ -32,11 +32,11 @@ export class PerformanceReviewTypeComponent implements OnInit {
 
 
 	constructor(
+		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private performanceReviewTypeService: PerformanceReviewTypeService,
-		private alertService: AlertService,
 		private pattern: ValidatorServiceService,
 	) {
 		this.performanceReviewTypeForm = this.initForm();

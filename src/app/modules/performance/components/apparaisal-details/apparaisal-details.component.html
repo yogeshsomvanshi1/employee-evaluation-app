@@ -1,0 +1,143 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <form [formGroup]="appraisalForm" class="pt-30">
+            <div class="card  card-height"> 
+                <div class="card-header pf-head d-flex justify-content-between">
+                    <h3 class="card-title">Appraisal Details</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid performance-evaluation-form">                 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Employee Name</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" formControlName="emp_fullname" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Department</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" formControlName="dept_name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Designation</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" formControlName="des_name" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Reporting To</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" formControlName="reporting_manager_name" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Joining Date</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" formControlName="doj" class="form-control" >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-5"><label for="">Reviewer</label></div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header pf-head d-flex justify-content-between">
+                    <h3 class="card-title">Performance Grading for Mandatory KRA</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid performance-evaluation-form">                 
+                        <div class="container-fluid">
+                            <div class="row pt-30">
+                                <div class="card">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Grade</th>
+                                            <th scope="col">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr *ngFor="let grade of gradeDescription">
+                                        <td>{{grade.preformance_review}} <br> ({{grade.rating_from}}%-{{grade.rating_to}}%)</td>
+                                        <td>{{grade.performance_description}}</td>
+                                       </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header pf-head d-flex justify-content-between">
+                    <h3 class="card-title">Mandatory KRA</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container-fluid performance-evaluation-form">                 
+                        <div class="container-fluid">
+                            <div class="row pt-30">
+                                <div class="card">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">KRA</th>
+                                            <th scope="col">Rating</th>
+                                            <th scope="col">Comments</th>
+                                           </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let roleDescription of appraisalRoleData" >
+                                            <td>{{roleDescription.goal_description}}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div>Appraisee Rating</div>
+                                                    <select  class="form-control " aria-label="Default select example">
+                                                        <option selected disabled value=""> select</option>
+                                                        <option value="" *ngFor="let gradeId of gradeDescription">{{gradeId.preformance_review}}</option>
+                                                    </select>
+                                                </div><br> <br>
+                                                <div class="d-flex">
+                                                    <div>Appraiser Rating</div>
+                                                    <select class="form-control " aria-label="Default select example">
+                                                        <option selected disabled value="">Select </option>
+                                                        <option value="" *ngFor="let gradeId of gradeDescription">{{gradeId.preformance_review}}</option>
+                                                     </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <textarea type="text" class="form-control"></textarea> <br> 
+                                                <textarea type="text" class="form-control"></textarea>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <button class="btn btn-primary">{{actionBtn}}</button>
+                    <button class="btn btn-danger mx-2">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+ </div>

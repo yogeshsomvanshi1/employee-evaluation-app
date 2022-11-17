@@ -4,14 +4,20 @@
 		"mappedBy": "emp_code",
 		"type": "radio",
 		"width": 10
-	}, {
+	},
+	 {
 		"name": "Name",
-		"mappedBy": "first_name",
+		"mappedBy": "emp_fullname",
 		"type": "text",
 		"width": 30
 	}, {
-		"name": "Salutation",
-		"mappedBy": "salutation",
+		"name": "Designation",
+		"mappedBy": "des_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Department",
+		"mappedBy": "dept_name",
 		"type": "text",
 		"width": 30
 	}

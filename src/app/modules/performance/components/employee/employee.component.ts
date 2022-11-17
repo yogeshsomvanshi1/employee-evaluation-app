@@ -18,6 +18,7 @@ export class EmployeeComponent implements OnInit {
 
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+  currentPage=0;
 	dataDataTable: { results: Array<Employee>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -43,6 +44,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   changePageSortSearch(data: HttpParams){
+    let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 	this.employeeService.getEmployeeContent(data).subscribe((response: { results: Array<Employee>, count: number })=>{
 		this.dataDataTable = response;
 	})

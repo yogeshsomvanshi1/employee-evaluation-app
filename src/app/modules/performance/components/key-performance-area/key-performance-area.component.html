@@ -3,7 +3,7 @@
         <div class="row pt-30">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title">Key Performance</h3>
+                    <h3 class="card-title">Key Performance Area</h3>
                 </div>
                 <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
                     (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
@@ -16,10 +16,10 @@
 
 
 
-<ng-template #keyPerformanceList class="height-1">
+<ng-template #keyPerformanceAreas class="height-1">
     <div class="modal-header">
         <div class="card-header">
-            <h3 class="card-title prod-name avisys-table-heading">Key Performance</h3>
+            <h3 class="card-title prod-name avisys-table-heading">Key Performance Area</h3>
         </div>
         <button type="button" class="close pull-right" aria-label="Close">
             <span aria-hidden="true" (click)="modalRef.hide()">×</span>

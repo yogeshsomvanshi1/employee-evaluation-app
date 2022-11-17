@@ -87,35 +87,35 @@ export class LeftmenuComponent implements OnInit {
       submenu: [
         {
           name: "Key Performance Areas",
-          routerLink: ["//performance/performance/key-performance-area"]
+          routerLink: ["/performance/performance/key-performance-area"]
         },
         {
           name: "Key Performance Areas EmployeeGrades",
-          routerLink: ["//performance/performance/key-performance-areas-employeeGrade"]
+          routerLink: ["/performance/performance/key-performance-areas-employeeGrade"]
         },
         {
           name: "Goals Key Performance Areas Roles",
-          routerLink: ["//performance/performance/goals-key-performance-areas-role"]
+          routerLink: ["/performance/performance/goals-key-performance-areas-role"]
         },
         {
           name: "Performance Review Type",
-          routerLink: ["//performance/performance/performance-review-type"]
+          routerLink: ["/performance/performance/performance-review-type"]
         },
         {
           name: "Performance Review Phases",
-          routerLink: ["//performance/performance/performance-review-phases"]
+          routerLink: ["/performance/performance/performance-review-phases"]
         },
         {
           name: "Performance Review Grades",
-          routerLink: ["//performance/performance/performance-review-grades"]
+          routerLink: ["/performance/performance/performance-review-grades"]
         },
         {
           name: "Performance Review Cycles",
-          routerLink: ["//performance/performance/performance-review-cycles"]
+          routerLink: ["/performance/performance/performance-review-cycles"]
         },
         {
           name: "Performance Review Cycle Schedule",
-          routerLink: ["//performance/performance/performance-review-cycle-schedule"]
+          routerLink: ["/performance/performance/performance-review-cycle-schedule"]
         },
       ],    },
     {
