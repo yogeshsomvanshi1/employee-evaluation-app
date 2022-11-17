@@ -6,14 +6,14 @@
 		"width": 10
 	}, 
     {
-		"name": "Performance Review Cycle Id",
+		"name": "P. Review Cycle",
 		"mappedBy": "preformance_review_cycle_id",
 		"type": "text",
 		"width": 30
 	},
     {
-		"name": "Phase Id",
-		"mappedBy": "phase_id",
+		"name": "Phase",
+		"mappedBy": "phase_short_name",
 		"type": "text",
 		"width": 30
 	}, {
@@ -24,6 +24,11 @@
 	}, {
 		"name": "End Date",
 		"mappedBy": "end_date",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Status",
+		"mappedBy": "status",
 		"type": "text",
 		"width": 30
 	}

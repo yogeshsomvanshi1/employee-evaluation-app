@@ -1,3 +1,4 @@
+import { DropdownService } from './../../services/dropdown.service';
 import { PerformanceReviewTypes } from './../../model/performance-review-type.model';
 import { PerformanceReviewCycles } from './../../model/performance-review-cycles.model';
 import { PerformanceReviewCyclesService } from './../../services/performance-review-cycles.service';
@@ -10,7 +11,6 @@ import { HttpParams } from '@angular/common/http';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { AlertService } from 'src/app/modules/shared/services/alert.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
-import { PerformanceReviewTypeService } from '../../services/performance-review-type.service';
 
 @Component({
 	selector: 'app-performance-review-cycles',
@@ -23,22 +23,23 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	dataDataTable: { results: Array<PerformanceReviewCycles>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewCycles;
 	intialValue: PerformanceReviewCycles;
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	performanceReviewType :PerformanceReviewTypes[]
+	performanceReviewType : Array<PerformanceReviewTypes>;
 	performanceReviewCyclesForm: FormGroup;
 
 	constructor(
 		private alertService: AlertService,
+		private dropdownService:DropdownService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private performanceReviewCycleService: PerformanceReviewCyclesService,
-		private performanceReviewTypeService: PerformanceReviewTypeService
 	) {
 		this.performanceReviewCyclesForm = this.initForm();
 	}
@@ -60,8 +61,10 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		this.performanceReviewTypeService.getPerformanceReviewTypeListContent(this.params).subscribe((res) => {
+		this.dropdownService.getDropdownPerformanceReviewTypeListContent().subscribe((res:any) => {
 			this.performanceReviewType = res.results
+
+			console.log(this.performanceReviewType)
 		})
 
 		this.defaultIntialValue = this.performanceReviewCyclesForm.value;
@@ -90,7 +93,9 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
-
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.performanceReviewCycleService.getPerformanceReviewCycleListContent(data).subscribe((sucess: { results: Array<PerformanceReviewCycles>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -125,6 +130,8 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewCycleService.update(this.performanceReviewCyclesForm.getRawValue(), this.performanceReviewCyclesFormControl.preformance_review_cycle_id.value).subscribe((response: PerformanceReviewCycles) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -132,11 +139,13 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 		else {
 			this.performanceReviewCycleService.create(this.performanceReviewCyclesForm.value).subscribe((sucess: PerformanceReviewCycles) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
-				if (error.error.kpa_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+				if (error.error.preformance_review_cycle_id) {
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
