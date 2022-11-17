@@ -9,9 +9,15 @@
 		"mappedBy": "garde_id",
 		"type": "text",
 		"width": 30
+	},
+    {
+		"name": "Grade",
+		"mappedBy": "grade_name",
+		"type": "text",
+		"width": 30
 	}, {
-		"name": "KPA  Id",
-		"mappedBy": "kpa_id",
+		"name": "Key Performance Area",
+		"mappedBy": "kpa_description",
 		"type": "text",
 		"width": 30
 	}, {

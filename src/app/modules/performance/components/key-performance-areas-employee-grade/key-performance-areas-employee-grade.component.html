@@ -5,7 +5,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">Key Performance Area Employee Grade</h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
                     (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
                     (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
                 </app-data-table-ui>
@@ -46,7 +46,7 @@
                             <div class="col-md-8">
                                 <select formControlName="kpa_id" class="form-control  select2  user-select" aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let kpaId of kpaIds" [value]="kpaId.kpa_id">{{kpaId.kpa_id}}</option>
+                                    <option *ngFor="let kpaId of kpaIds" [value]="kpaId.kpa_id">{{kpaId.kpa_description}}</option>
                                 </select>
                                 <div *ngIf="keyPerformanceAreasGradeFormControl.kpa_id?.invalid && keyPerformanceAreasGradeFormControl.kpa_id?.touched">
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.kpa_id?.errors?.required">Please Select KPA Id</span>
@@ -58,7 +58,7 @@
                             <div class="col-md-8">
                                 <select formControlName="garde_id" class="form-control  select2  user-select" aria-label="Default select example">
                                     <option selected disabled value="">Select </option>
-                                    <option *ngFor="let gradeId of gradeIds" [value]="gradeId.grade_code"> {{gradeId.grade_code}}</option>
+                                    <option *ngFor="let gradeId of gradeIds" [value]="gradeId.grade_code"> {{gradeId.grade_name}}</option>
                                 </select>
                                 <div *ngIf="keyPerformanceAreasGradeFormControl.garde_id?.invalid && keyPerformanceAreasGradeFormControl.garde_id?.touched">
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.garde_id?.errors?.required">Please Select Grade Id</span>

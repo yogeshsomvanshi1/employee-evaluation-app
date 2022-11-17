@@ -21,6 +21,7 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	defaultIntialValue: PerformanceReviewPhases;
 	dataDataTable: { results: Array<PerformanceReviewPhases>, count: number } = { results: [], count: 0 };
 	intialValue: PerformanceReviewPhases;
@@ -46,7 +47,7 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 			// id :[""],
 			phase_id: ["", [Validators.required, Validators.maxLength(10)]],
 			phase_short_name: ["", [Validators.required, Validators.maxLength(200)]],
-			description: ["", [Validators.required, Validators.maxLength(250)]],
+			phase_description: ["", [Validators.required, Validators.maxLength(250)]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -98,7 +99,9 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 
 
 	changePageSortSearch(data: HttpParams) {
-
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.performanceReviwPhasesService.getPerformanceReviewPhasesListContent(data).subscribe((sucess: { results: Array<PerformanceReviewPhases>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -118,6 +121,8 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviwPhasesService.update(this.performanceReviewPhasesForm.getRawValue(), this.performanceReviewPhasesControl.phase_id.value).subscribe((response: PerformanceReviewPhases) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -125,11 +130,13 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 		else {
 			this.performanceReviwPhasesService.create(this.performanceReviewPhasesForm.value).subscribe((sucess: PerformanceReviewPhases) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
-				if (error.error.kpa_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+				if (error.error.phase_id) {
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
