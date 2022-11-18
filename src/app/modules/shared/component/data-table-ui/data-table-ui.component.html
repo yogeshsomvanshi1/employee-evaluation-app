@@ -5,12 +5,12 @@
                 [(ngModel)]="pagination.serchingParmeter" />
         </div>
         <div class="form-group form-inline datatable-w30 text-end">
-            <!-- <select class="btn ml-1 active touched pagination-box mb" (change)="pageChange()" [(ngModel)]="pagination.pageSize">
+            <select class="btn ml-1 active touched pagination-box mb" (change)="pageChange()" [(ngModel)]="pagination.pageSize">
           <option>5</option>
           <option>10</option>
           <option>15</option> 
           <option>20</option>
-        </select> -->
+        </select>
             <div class="btn-group mb" role="group" aria-label="Basic example">
                 <button type="button" *ngIf="permission[0]==true" (click)="buttonEvent('add')"
                     class="btn btn-success btn-margin-x"><i class="fa fa-plus" aria-hidden="true"></i></button>

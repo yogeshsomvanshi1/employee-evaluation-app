@@ -14,6 +14,7 @@ import { SelectRecord } from '../sweetalert/sweetalert';
 })
 export class DataTableUiComponent implements OnInit {
 
+  @Input() currentPage:number
   @Input() content: Array<object> = [];
   @Input() permission: Array<boolean>;
   @Input() count: Number;
@@ -43,6 +44,10 @@ export class DataTableUiComponent implements OnInit {
     }
     this.pageList = pageListTemp;
     this.selectedData = null;
+
+    if(this.currentPage != undefined && this.currentPage != null){
+      this.pagination.pageNumber = this.currentPage
+    }
   }
 
   ngOnInit() {
@@ -60,6 +65,8 @@ export class DataTableUiComponent implements OnInit {
     }
     return value;
   }
+
+
 
   getDate(rowObj: object, mappedBy: String) {
     const myArray = mappedBy.split('.');
