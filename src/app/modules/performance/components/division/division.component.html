@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Division </h3>
                 </div>        
-            <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
+            <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission"
                 (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
                 (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>
@@ -49,8 +49,6 @@
                                 <input type="text" id="div_name" formControlName="div_name" class="form-control">
                                 <div *ngIf="divisionFormControl.div_name ?.invalid && divisionFormControl.div_name ?.touched">
                                     <span class="validate-text" *ngIf="divisionFormControl.div_name ?.errors?.required">Please enter name</span>
-                                    <span class="validate-text" *ngIf="divisionFormControl.div_name ?.errors?.maxlength">Name exceeds max-length {{divisionFormControl.div_name ?.errors?.maxlength.requiredLength}} </span>
-                                    <span class="validate-text color" *ngIf="divisionFormControl.div_name ?.errors?.pattern">Please enter valid characters</span>
                                 </div>
                             </div>
                         </div>

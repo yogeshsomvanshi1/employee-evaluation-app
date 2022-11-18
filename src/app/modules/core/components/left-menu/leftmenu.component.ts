@@ -74,6 +74,10 @@ export class LeftmenuComponent implements OnInit {
           name: "Designation",
           routerLink: ["/performance/performance/designation-table"],
         },
+        {
+          name: "Employee Type",
+          routerLink: ["/performance/performance/employee-type"]
+        }
       ],
     },
     {
@@ -90,7 +94,7 @@ export class LeftmenuComponent implements OnInit {
           routerLink: ["/performance/performance/key-performance-area"]
         },
         {
-          name: "Key Performance Areas EmployeeGrades",
+          name: "Key Performance Areas Employee Grades",
           routerLink: ["/performance/performance/key-performance-areas-employeeGrade"]
         },
         {
@@ -132,8 +136,8 @@ export class LeftmenuComponent implements OnInit {
           routerLink: ["/performance/performance/employee-table"]
         },
         {
-          name: "Employee Type",
-          routerLink: ["/performance/performance/employee-type"]
+          name: "Appraisal Details",
+          routerLink: ["/performance/performance/employee-details"]
         },
       ]
     },
