@@ -6,7 +6,7 @@
                 <div class="card-header ">
                     <h3 class="card-title">Designation </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission"
+                <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission"
                 (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
                 (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>
@@ -55,8 +55,7 @@
                         <div class="row mt-2">
                             <label for="des_description" class="per-subheading col-md-4">Designation Description</label>
                             <div class="col-md-8">
-                                <textarea formControlName="des_description" id="des_description"  cols="30" rows="3"
-                                    class="form-control"></textarea>
+                                <textarea formControlName="des_description" id="des_description"  cols="30" rows="3" class="form-control"></textarea>
                                     <div *ngIf="designationFormControl.des_description?.invalid && designationFormControl.des_description?.touched">
                                         <span class="validate-text" *ngIf="designationFormControl.des_description?.errors?.required">Please enter description</span>
                                     <span class="validate-text color" *ngIf="designationFormControl.des_description?.errors?.pattern">Please enter valid characters</span>

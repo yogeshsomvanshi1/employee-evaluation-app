@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Role </h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
                 (changePageSortSearch)="changePageSortSearch($event)"
                 (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
             </app-data-table-ui>

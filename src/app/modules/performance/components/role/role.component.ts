@@ -21,9 +21,10 @@ export class RoleComponent implements OnInit {
 	
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
+	currentPage=0;
+	columnsMetadata: TableHeaderMetaData;
 	defaultIntialValue: Role;
 	intialValue: Role;
-	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Role>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
 	roleForm: FormGroup;
@@ -34,7 +35,6 @@ export class RoleComponent implements OnInit {
 		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
-		private pattern: ValidatorServiceService,
 		private performanceService: PerformanceService,
 		private roleService: RoleService
 	) {
@@ -58,6 +58,9 @@ export class RoleComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.roleService.getRoleContent(data).subscribe((sucess: { results: Array<Role>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -96,7 +99,7 @@ export class RoleComponent implements OnInit {
 		}
 		else if (data.event == "delete") {
 			this.roleService.softDelete(data.data.role_code).subscribe((sucess:Role) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions.autoClose);
+				this.alertService.success("Record Deleted Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 			})
 		}
@@ -105,19 +108,23 @@ export class RoleComponent implements OnInit {
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.roleService.update(this.roleForm.getRawValue(), this.roleFormControl.role_code.value).subscribe((response: Role) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions.autoClose);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
+				this.alertService.success("Record Updated Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			})
 		} else {
 			this.roleService.create(this.roleForm.value).subscribe((sucess: Role) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions.autoClose);
+				this.params.set('offset' , 0 )
+		    	this.params.set('limit' , 5 )
+				this.alertService.success("Record Added Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			},
 				(error) => {
 					if (error.error.role_code) {
-						this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+						this.alertService.info("Record already exists", this.alertOptions.autoClose);
 					}
 				});
 		}

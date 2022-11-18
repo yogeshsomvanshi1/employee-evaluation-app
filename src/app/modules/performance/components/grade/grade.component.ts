@@ -21,6 +21,7 @@ export class GradeComponent implements OnInit {
 
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
+	currentPage=0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Grade>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Grade;
@@ -58,6 +59,9 @@ export class GradeComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.gradeService.getGradeContent(data).subscribe((sucess: { results: Array<Grade>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -107,6 +111,8 @@ export class GradeComponent implements OnInit {
 
 		if (this.actionBtn !== "Submit") {
 			this.gradeService.update(this.gradeForm.getRawValue(), this.gradeFormControl.grade_code.value).subscribe((response:Grade) => {
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
@@ -114,12 +120,14 @@ export class GradeComponent implements OnInit {
 		}
 		else {
 			this.gradeService.create(this.gradeForm.value).subscribe((sucess:Grade) => {
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.alertService.success("Record Added Successfully", this.alertOptions);
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.grade_code) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
