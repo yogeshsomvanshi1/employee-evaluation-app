@@ -1,5 +1,5 @@
+import { DropdownService } from './../../services/dropdown.service';
 import { AlertService } from './../../../shared/services/alert.service';
-import { RoleService } from './../../services/role.service';
 import { PerformanceService } from './../../services/performance.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { forkJoin } from 'rxjs';
@@ -7,11 +7,9 @@ import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-l
 import { GoalsKeyPerformanceAreasRole } from '../../model/golas-key-performance-areas-role.model';
 import { HttpParams } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { ValidatorServiceService } from 'src/app/modules/shared/component/validator-service/validator-service.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { GoalsKeyperformanceAreasRolesService } from '../../services/goals-key-performance-areas-roles.service';
-import { KeyPerformanceAreaService } from '../../services/key-performance-area.service';
 
 @Component({
 	selector: 'app-goals-key-performance-areas-role',
@@ -24,26 +22,25 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	dataDataTable: { results: Array<GoalsKeyPerformanceAreasRole>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: GoalsKeyPerformanceAreasRole;
 	goalsKeyPerformanceRoleForm: FormGroup;
 	intialValue: GoalsKeyPerformanceAreasRole;
+	kpaIds: Array<GoalsKeyPerformanceAreasRole>=[];
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
 	roleIds: Array<GoalsKeyPerformanceAreasRole>=[];
-	kpaIds: Array<GoalsKeyPerformanceAreasRole>=[];
 
 
 	constructor(
 		private alertService: AlertService,
 		private formBuilder: FormBuilder,
 		private goalsKeyPerformanceRolesService: GoalsKeyperformanceAreasRolesService,
-		private keyPerformanceService: KeyPerformanceAreaService,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
-		private pattern: ValidatorServiceService,
-		private roleService: RoleService
+		private dropdownService:DropdownService
 	) {
 
 		this.goalsKeyPerformanceRoleForm = this.initForm();
@@ -55,7 +52,7 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 			goal_id: ["", [Validators.required, Validators.maxLength(10)]],
 			goal_description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation())]],
 			kpa_id: ["", Validators.required],
-			role_id: ["", Validators.required],
+			role_code: ["", Validators.required],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -82,8 +79,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		);
 
 		forkJoin({
-			tableDataRoleId: this.roleService.getRoleContent(this.params),
-			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
+			tableDataRoleId: this.dropdownService.getDropdownRoleContent(),
+			tableDataKpaId: this.dropdownService.getDropdowntKeyPerformanceListContent(),
 		}).subscribe(
 			(response: any) => {
 				this.roleIds = response.tableDataRoleId.results
@@ -94,7 +91,10 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
-
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
+		
 		this.goalsKeyPerformanceRolesService.getGoalsKeyPerformanceAreasRoleListContent(data).subscribe((sucess: { results: Array<GoalsKeyPerformanceAreasRole>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -140,6 +140,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.goalsKeyPerformanceRolesService.update(this.goalsKeyPerformanceRoleForm.getRawValue(), this.goalsKeyPerformanceRoleFormControl.goal_id.value).subscribe((response: GoalsKeyPerformanceAreasRole) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -147,11 +149,13 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		else {
 			this.goalsKeyPerformanceRolesService.create(this.goalsKeyPerformanceRoleForm.value).subscribe((sucess: GoalsKeyPerformanceAreasRole) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.goal_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}

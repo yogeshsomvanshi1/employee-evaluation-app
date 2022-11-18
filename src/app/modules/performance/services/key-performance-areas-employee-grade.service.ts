@@ -21,6 +21,7 @@ export class KeyPerformanceAreasEmployeeGradeService {
 	getById(id: number): Observable<KeyPerformanceAreasEmployeeGrade> {
 		return this.httpClient.get<KeyPerformanceAreasEmployeeGrade>(`${environment.performance}core/keyperfomanceareasemployeegrades/${id}/`);
 	}
+	
 
 	update(keyPerformanceGrade: KeyPerformanceAreasEmployeeGrade, id: number) {
 		return this.httpClient.put(`${environment.performance}core/keyperfomanceareasemployeegrades/` + id + `/`, keyPerformanceGrade);

@@ -5,23 +5,18 @@
 		"type": "radio",
 		"width": 10
 	}, {
-		"name": "Goal Id",
-		"mappedBy": "goal_id",
-		"type": "text",
-		"width": 30
-	}, {
 		"name": "Goal Description",
 		"mappedBy": "goal_description",
 		"type": "text",
 		"width": 30
 	}, {
-		"name": "KPA Id",
-		"mappedBy": "kpa_id",
+		"name": "KPA",
+		"mappedBy": "kpa_description",
 		"type": "text",
 		"width": 30
 	}, {
-		"name": "Role Id",
-		"mappedBy": "role_id",
+		"name": "Role",
+		"mappedBy": "role_name",
 		"type": "text",
 		"width": 30
 	}

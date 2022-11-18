@@ -1,3 +1,4 @@
+import { DropdownService } from './../../services/dropdown.service';
 import { AlertService } from './../../../shared/services/alert.service';
 import { PerformanceService } from './../../services/performance.service';
 import { HttpParams } from '@angular/common/http';
@@ -23,25 +24,26 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	defaultIntialValue: KeyPerformanceAreasEmployeeGrade;
 	dataDataTable: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceAreasEmployeeGrade;
+	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 	keyPerformanceAreasEmployeeGradeForm: FormGroup;
+	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
-	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 
 
 	constructor(
 		private alertService: AlertService,
+		private dropdownService:DropdownService,
 		private formBuilder: FormBuilder,
-		private gradeService: GradeService,
-		private keyPerformanceService: KeyPerformanceAreaService,
 		private modalService: BsModalService,
 		private performanceAreaGradeService: KeyPerformanceAreasEmployeeGradeService,
 		private performanceService: PerformanceService,
+
 
 	) {
 		this.keyPerformanceAreasEmployeeGradeForm = this.initForm();
@@ -66,16 +68,16 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 
 
 		forkJoin({
-			tableDataGradeId: this.gradeService.getGradeContent(this.params),
-			tableDataKpaId: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
+			tableDataGradeId: this.dropdownService.getDropdownGradeContent(),
+			tableDataKpaId: this.dropdownService.getDropdowntKeyPerformanceListContent(),
 		}).subscribe(
 			(response: any) => {
 				this.gradeIds = response.tableDataGradeId.results
 				this.kpaIds = response.tableDataKpaId.results
+				
 			},
 			(error) => { }
 		);
-
 
 	}
 
@@ -128,6 +130,9 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 
 		this.performanceAreaGradeService.getKeyPerformanceAreaEmployeeGradeListContent(data).subscribe((sucess: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number }) => {
 			this.dataDataTable = sucess;
@@ -139,6 +144,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.performanceAreaGradeService.update(this.keyPerformanceAreasEmployeeGradeForm.value, this.keyPerformanceAreasGradeFormControl.id.value).subscribe((response: KeyPerformanceAreasEmployeeGrade) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -146,11 +153,13 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		else {
 			this.performanceAreaGradeService.create(this.keyPerformanceAreasEmployeeGradeForm.value).subscribe((sucess: KeyPerformanceAreasEmployeeGrade) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}

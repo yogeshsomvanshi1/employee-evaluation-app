@@ -22,6 +22,7 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+	currentPage=0;
 	dataDataTable: { results: Array<PerformanceReviewTypes>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewTypes;
 	intialValue: PerformanceReviewTypes;
@@ -88,6 +89,9 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 
 		this.performanceReviewTypeService.getPerformanceReviewTypeListContent(data).subscribe((sucess: { results: Array<PerformanceReviewTypes>, count: number }) => {
 			this.dataDataTable = sucess;
@@ -122,6 +126,8 @@ export class PerformanceReviewTypeComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewTypeService.update(this.performanceReviewTypeForm.getRawValue(), this.performanceReviewTypeControl.performance_review_type.value).subscribe((response: PerformanceReviewTypes) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -129,11 +135,13 @@ export class PerformanceReviewTypeComponent implements OnInit {
 		else {
 			this.performanceReviewTypeService.create(this.performanceReviewTypeForm.value).subscribe((sucess: PerformanceReviewTypes) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {
 				if (error.error.performance_review_type) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Record already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
