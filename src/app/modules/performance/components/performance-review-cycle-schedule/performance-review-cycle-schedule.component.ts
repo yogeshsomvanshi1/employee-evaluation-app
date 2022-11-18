@@ -1,15 +1,15 @@
+import { DropdownService } from './../../services/dropdown.service';
 import { AlertService } from './../../../shared/services/alert.service';
 import { PerformanceReviewCyclesService } from './../../services/performance-review-cycles.service';
 import { PerformanceReviewCycleScheduleService } from './../../services/performance-review-cycle-schedule.service';
 import { PerformanceService } from './../../services/performance.service';
 import { PerformanceReviewCycleSchedule } from './../../model/performance-review-cycle-schedule.model';
-import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { HttpParams } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
-import { PerformanceReviewPhasesService } from '../../services/performance-review-phases.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import * as moment from 'moment';
 
@@ -25,10 +25,14 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
 	cycleId: PerformanceReviewCycleSchedule
+	currentPage=0;
+	date :string
 	defaultIntialValue: PerformanceReviewCycleSchedule
 	dataDataTable: { results: Array<PerformanceReviewCycleSchedule>, count: number } = { results: [], count: 0 };
 	intialValue: PerformanceReviewCycleSchedule;
 	modalRef: BsModalRef;
+	minLastDay:string;
+	maxDate:string;
 	performanceReviewCyclescheduleForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -36,9 +40,9 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 
 	constructor(
 		private alertService: AlertService,
+		private dropdownService:DropdownService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
-		private performancePhaseServices: PerformanceReviewPhasesService,
 		private performanceService: PerformanceService,
 		private performanceReviewCycleSheduleService: PerformanceReviewCycleScheduleService,
 		private performanceReviewCycleService: PerformanceReviewCyclesService
@@ -54,17 +58,30 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 			phase_id: ["", [Validators.required, Validators.maxLength(20)]],
 			start_date: ["", [Validators.required]],
 			end_date: ["", [Validators.required]],
+			status:['',[Validators.required]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
 			updated_by: ["1"]
 		});
 	}
+
+
+	//   , {validator: this.checkDates} ==use inside formgroup
+	
+
+	changeLastDay() {
+		this.performanceReviewCyclescheduleFormControl.end_date.reset();
+		let res = this.performanceReviewCyclescheduleFormControl.start_date.value
+		this.minLastDay = moment(new Date(res)).add(1, 'day').format('YYYY-MM-DD');
+
+		// let endDate = this.performanceReviewCyclescheduleFormControl.end_date.value
+	}
 	ngOnInit(): void {
 
 		forkJoin({
-			dataPhaseId: this.performancePhaseServices.getPerformanceReviewPhasesListContent(this.params),
-			dataCycleId: this.performanceReviewCycleService.getPerformanceReviewCycleListContent(this.params),
+			dataPhaseId: this.dropdownService.getDropdownPerformanceReviewPhasesListContent(),
+			dataCycleId: this.dropdownService.getDropdownPerformanceReviewCycleListContent(),
 		}).subscribe(
 			(response: any) => {
 				this.phaseId = response.dataPhaseId.results;
@@ -91,6 +108,7 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		);
 	}
 
+	
 
 
 	get performanceReviewCyclescheduleFormControl(): { [key: string]: AbstractControl } {
@@ -98,7 +116,9 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	}
 
 	changePageSortSearch(data: HttpParams) {
-
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
 		this.performanceReviewCycleSheduleService.getPerformanceReviewCycleScheduleListContent(data).subscribe((sucess: { results: Array<PerformanceReviewCycleSchedule>, count: number }) => {
 			this.dataDataTable = sucess;
 		});
@@ -136,6 +156,8 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewCycleSheduleService.update(this.performanceReviewCyclescheduleForm.getRawValue(), this.performanceReviewCyclescheduleFormControl.id.value).subscribe((response: PerformanceReviewCycleSchedule) => {
 				this.alertService.success("Record Updated Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.modalRef.hide();
 				this.changePageSortSearch(this.params);
 			});
@@ -143,6 +165,8 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		else {
 			this.performanceReviewCycleSheduleService.create(this.performanceReviewCyclescheduleForm.value).subscribe((sucess: PerformanceReviewCycleSchedule) => {
 				this.alertService.success("Record Added Successfully", this.alertOptions);
+				this.params.set('offset' , 0 )
+			    this.params.set('limit' , 5 )
 				this.changePageSortSearch(this.params);
 				this.modalRef.hide();
 			}, (error) => {

@@ -5,7 +5,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">Performance Review Grade</h3>
                 </div>
-                <app-data-table-ui [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
                     (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
                     (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
                 </app-data-table-ui>
@@ -55,7 +55,7 @@
                         <div class="row mt-2">
                             <label for="rating_from" class="per-subheading col-md-4">Rating From</label>
                             <div class="col-md-8">
-                                <input type="text" id="rating_from" numbersOnly formControlName="rating_from" class="form-control">
+                                <input validateScore  type="text" id="rating_from" numbersOnly formControlName="rating_from" class="form-control">
                                 <div *ngIf="performanceReviewGradesFormControl.rating_from?.invalid && performanceReviewGradesFormControl.rating_from?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_from?.errors?.required">Please enter Rating From</span>
                                     <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_from?.errors?.maxlength ">Rating exceeds max-length
@@ -67,12 +67,22 @@
                         <div class="row mt-2">
                             <label for="rating_to" class="per-subheading col-md-4">Rating To</label>
                             <div class="col-md-8">
-                                <input type="text" id="rating_to" numbersOnly formControlName="rating_to" class="form-control">
+                                <input validateScore  type="text" id="rating_to" numbersOnly formControlName="rating_to" class="form-control">
                                 <div *ngIf="performanceReviewGradesFormControl.rating_to?.invalid && performanceReviewGradesFormControl.rating_to?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_to?.errors?.required">Please enter Rating To</span>
                                     <span class="validate-text" *ngIf="performanceReviewGradesFormControl.rating_to?.errors?.maxlength ">Rating exceeds max-length
                                         {{performanceReviewGradesFormControl.rating_to?.errors?.maxlength.requiredLength}} 
                                     </span>
+                                </div>
+                                <small class="validate-text" *ngIf="performanceReviewGradesForm.hasError('noMatch') && performanceReviewGradesFormControl.rating_to.value">Please Enter Valid Data</small>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="description" class="per-subheading col-md-4">Description</label>
+                            <div class="col-md-8">
+                                <input  type="text" id="description" formControlName="performance_description" class="form-control">
+                                <div *ngIf="performanceReviewGradesFormControl.performance_description?.invalid && performanceReviewGradesFormControl.performance_description?.touched">
+                                    <span class="validate-text" *ngIf="performanceReviewGradesFormControl.performance_description?.errors?.required">Please enter Description</span>
                                 </div>
                             </div>
                         </div>
