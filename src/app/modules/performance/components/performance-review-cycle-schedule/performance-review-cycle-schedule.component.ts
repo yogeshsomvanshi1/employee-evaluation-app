@@ -77,6 +77,18 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 
 		// let endDate = this.performanceReviewCyclescheduleFormControl.end_date.value
 	}
+
+
+	//   , {validator: this.checkDates} ==use inside formgroup
+	
+
+	changeLastDay() {
+		this.performanceReviewCyclescheduleFormControl.end_date.reset();
+		let res = this.performanceReviewCyclescheduleFormControl.start_date.value
+		this.minLastDay = moment(new Date(res)).add(1, 'day').format('YYYY-MM-DD');
+
+		// let endDate = this.performanceReviewCyclescheduleFormControl.end_date.value
+	}
 	ngOnInit(): void {
 
 		forkJoin({
