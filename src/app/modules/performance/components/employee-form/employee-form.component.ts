@@ -66,7 +66,7 @@ export class EmployeeFormComponent implements OnInit {
 		private alertServices: AlertService,
 		private commonService: CommonService,
 		private divisionService: DivisionService,
-		private dropdownSevice:DropdownService,
+		private dropdownSevice:DropdownSevice,
 		private employeeService: EmployeeService,
 		private fb: FormBuilder,
 		private router: Router,
