@@ -10,6 +10,10 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { GoalsKeyperformanceAreasRolesService } from '../../services/goals-key-performance-areas-roles.service';
+<<<<<<< Updated upstream
+=======
+import { ValidatorServiceService } from 'src/app/modules/shared/component/validator-service/validator-service.service';
+>>>>>>> Stashed changes
 
 @Component({
 	selector: 'app-goals-key-performance-areas-role',
@@ -40,6 +44,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		private goalsKeyPerformanceRolesService: GoalsKeyperformanceAreasRolesService,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
+
+		private pattern: ValidatorServiceService,
 		private dropdownService:DropdownService
 	) {
 
