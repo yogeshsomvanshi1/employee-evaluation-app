@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
 
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-  currentPage = 0;
+  currentPage:number = 0;
 	dataDataTable: { results: Array<Employee>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -54,8 +54,6 @@ export class EmployeeComponent implements OnInit {
 		});
 	}
 
-  
-
 	buttonEvent1(data: any) {
 		if (data.event == "add") {
 			this.router.navigate(['/performance/performance/employee-form'])
@@ -64,7 +62,7 @@ export class EmployeeComponent implements OnInit {
       this.router.navigate(['/performance/performance/employee-form'], { queryParams: { data: data.data.emp_code } });
     }
     else if (data.event == "delete") {
-      this.employeeService.softDelete( data.data.emp_code).subscribe((res) => {
+      this.employeeService.softDelete( data.data.emp_code).subscribe((res:Employee) => {
         this.alertServices.success('Record deleted successfully', this.alertOptions);
         this.changePageSortSearch(this.params);
       })

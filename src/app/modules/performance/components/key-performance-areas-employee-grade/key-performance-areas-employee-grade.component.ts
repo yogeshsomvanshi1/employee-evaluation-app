@@ -22,7 +22,7 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage :number = 0;
 	defaultIntialValue: KeyPerformanceAreasEmployeeGrade;
 	dataDataTable: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number } = { results: [], count: 0 };
 	gradeIds: Array<KeyPerformanceAreasEmployeeGrade> = [];
@@ -35,7 +35,7 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	
 	constructor(
 		private alertService: AlertService,
-		private dropdownService:DropdownService,
+		private dropdownService :DropdownService,
 		private formBuilder: FormBuilder,
 		private modalService: BsModalService,
 		private performanceAreaGradeService: KeyPerformanceAreasEmployeeGradeService,
@@ -57,9 +57,7 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 
 
 		forkJoin({
@@ -69,10 +67,7 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 			(response: any) => {
 				this.gradeIds = response.tableDataGradeId.results
 				this.kpaIds = response.tableDataKpaId.results	
-			},
-			(error) => { }
-		);
-
+			});
 	}
 
 	initForm(): FormGroup {

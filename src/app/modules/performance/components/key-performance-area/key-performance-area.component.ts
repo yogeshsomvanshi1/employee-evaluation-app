@@ -23,7 +23,7 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage:number = 0;
 	defaultIntialValue: KeyPerformanceList;
 	dataDataTable: { results: Array<KeyPerformanceList>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceList;
@@ -122,7 +122,8 @@ export class KeyPerformanceAreaComponent implements OnInit {
 			this.resetForm();
 		}
 		else if (data.event == "edit") {
-			this.keyPerformanceService.getById(data.data.kpa_id).subscribe((res) => {
+
+			this.keyPerformanceService.getById(data.data.kpa_id).subscribe((res :KeyPerformanceList) => {
 			this.openTemplate();
 			this.actionBtn = "Update";
 			this.keyPerformanceForm.patchValue(res);

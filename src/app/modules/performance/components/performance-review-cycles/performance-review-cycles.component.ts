@@ -24,7 +24,7 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage :number = 0;
 	dataDataTable: { results: Array<PerformanceReviewCycles>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewCycles;
 	intialValue: PerformanceReviewCycles;
@@ -64,11 +64,9 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 		this.dropdownService.getDropdownPerformanceReviewTypeListContent().subscribe((res:any) => {
 		this.performanceReviewType = res.results
 		})
-
 		this.defaultIntialValue = this.performanceReviewCyclesForm.value;
 		this.params = this.params.append('offset', 0);
 		this.params = this.params.append('limit', 5);
-
 		forkJoin({
 			tableHeader: this.performanceService.getPerformanceReviewCycleHeaderColumn(),
 			tableData: this.performanceReviewCycleService.getPerformanceReviewCycleListContent(this.params),
@@ -76,9 +74,7 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	get performanceReviewCyclesFormControl(): { [key: string]: AbstractControl } {

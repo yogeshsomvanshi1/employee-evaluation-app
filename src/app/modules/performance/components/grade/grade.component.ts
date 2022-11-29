@@ -22,7 +22,7 @@ export class GradeComponent implements OnInit {
 	@ViewChild('gradeTemplate') gradeTemplate: TemplateRef<BsModalRef>;
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage = 0;
+	currentPage:number = 0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Grade>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Grade;
@@ -93,7 +93,7 @@ export class GradeComponent implements OnInit {
 			this.resetForm();
 		}
 		else if (data.event == "edit") {
-			this.gradeService.getById(data.data.grade_code).subscribe((res) => {
+			this.gradeService.getById(data.data.grade_code).subscribe((res :Grade) => {
 			this.openTemplate();
 			this.actionBtn = "Update";
 			this.gradeForm.patchValue(res);

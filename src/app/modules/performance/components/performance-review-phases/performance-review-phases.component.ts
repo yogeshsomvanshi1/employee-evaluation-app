@@ -22,7 +22,7 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage :number = 0;
 	defaultIntialValue: PerformanceReviewPhases;
 	dataDataTable: { results: Array<PerformanceReviewPhases>, count: number } = { results: [], count: 0 };
 	intialValue: PerformanceReviewPhases;
@@ -66,9 +66,7 @@ export class PerformanceReviewPhasesComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	buttonEvent1(data: any) {
