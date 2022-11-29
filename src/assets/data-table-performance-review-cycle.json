@@ -6,13 +6,13 @@
 		"width": 10
 	}, 
     {
-		"name": "P R Cycle Id",
+		"name": "Performance Review Cycle Id",
 		"mappedBy": "preformance_review_cycle_id",
 		"type": "text",
 		"width": 30
 	},
     {
-		"name": "P R Type",
+		"name": "Performance Review Type",
 		"mappedBy": "preformance_review_type",
 		"type": "text",
 		"width": 30

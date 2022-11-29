@@ -40,6 +40,7 @@
                                     <span class="validate-text" *ngIf="designationFormControl.des_code?.errors?.required">Please enter Id</span>
                                     <span class="validate-text" *ngIf="designationFormControl.des_code?.errors?.maxlength ">Id exceeds max-length {{designationFormControl.des_code?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="designationFormControl.des_code?.invalid && designationFormControl.des_code.value && !designationFormControl.des_code?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -50,6 +51,7 @@
                                     <span class="validate-text" *ngIf="designationFormControl.des_name?.errors?.required">Please enter name</span>
                                     <span class="validate-text" *ngIf="designationFormControl.des_name?.errors?.maxlength ">Name exceeds max-length {{designationFormControl.des_name?.errors?.maxlength.requiredLength}}</span>
                                 </div>
+                                <small class="validate-text" *ngIf="designationFormControl.des_name?.invalid && designationFormControl.des_name.value && !designationFormControl.des_name?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -60,7 +62,8 @@
                                         <span class="validate-text" *ngIf="designationFormControl.des_description?.errors?.required">Please enter description</span>
                                     <span class="validate-text color" *ngIf="designationFormControl.des_description?.errors?.pattern">Please enter valid characters</span>
                                     <span class="validate-text" *ngIf="designationFormControl.des_description?.errors?.maxlength ">Description exceeds max-length {{designationFormControl.des_description?.errors?.maxlength.requiredLength}} </span>
-                                    </div>    
+                                    </div> 
+                                    <small class="validate-text" *ngIf="designationFormControl.des_description?.invalid && designationFormControl.des_description.value && !designationFormControl.des_description?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

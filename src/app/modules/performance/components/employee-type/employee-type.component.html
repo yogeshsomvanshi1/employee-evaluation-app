@@ -31,13 +31,14 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <label for="role_code" class="per-subheading col-md-4" >Employee Type ID</label>
+                            <label for="emp_type_code" class="per-subheading col-md-4" >Employee Type ID</label>
                             <div class="col-md-8">
-                                <input type="text" id="role_code" formControlName="emp_type_code" class="form-control">
+                                <input type="text" id="emp_type_code" formControlName="emp_type_code" class="form-control">
                                 <div *ngIf="employeeTypeFormControl.emp_type_code?.invalid && employeeTypeFormControl.emp_type_code?.touched">
                                     <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_code?.errors?.required">Please enter employee type ID</span>
                                     <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_code?.errors?.maxlength">Id exceeds max-length {{employeeTypeFormControl.emp_type_code?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="employeeTypeFormControl.emp_type_code?.invalid && employeeTypeFormControl.emp_type_code.value && !employeeTypeFormControl.emp_type_code?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -48,6 +49,7 @@
                                     <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_name?.errors?.required">Please enter employee type</span>
                                     <span class="validate-text" *ngIf="employeeTypeFormControl.emp_type_name?.errors?.maxlength">Name exceeds max-length {{employeeTypeFormControl.emp_type_name?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="employeeTypeFormControl.emp_type_name?.invalid && employeeTypeFormControl.emp_type_name.value && !employeeTypeFormControl.emp_type_name?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

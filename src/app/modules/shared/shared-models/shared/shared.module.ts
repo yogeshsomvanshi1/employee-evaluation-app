@@ -21,6 +21,7 @@ import { OnlyNumbersDirective } from '../../component/directives/only-numbers.di
 import { ProgressSpinnerComponent } from '../../component/progress-spinner/progress-spinner.component';
 import { AlertComponent } from '../../component/alert/alert.component';
 import { ProgressSpinnerService } from '../../services/progress-spinner.service';
+import { DeletePopupService } from '../../services/delete-popup.service';
 
 @NgModule({
 	declarations: [
@@ -51,7 +52,7 @@ import { ProgressSpinnerService } from '../../services/progress-spinner.service'
 		BsDropdownModule.forRoot(),
 
 	],
-	providers: [SharedService,ProgressSpinnerService],
+	providers: [SharedService,ProgressSpinnerService,DeletePopupService],
 	exports: [
     AlertComponent,
 		TimepickerModule,

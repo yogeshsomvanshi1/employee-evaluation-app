@@ -14,8 +14,6 @@
     </div>
 </div>
 
-
-
 <ng-template #departmentTemplate class="height-1">
     <div class="modal-header">
         <div class="card-header">
@@ -38,6 +36,7 @@
                                     <span class="validate-text" *ngIf="departmentFormControl.dept_code?.errors?.required">Please enter department id</span>
                                     <span class="validate-text" *ngIf="departmentFormControl.dept_code?.errors?.maxlength">Department id exceeds max-length {{departmentFormControl.dept_code?.errors?.maxlength.requiredLength}}</span>
                                 </div>
+                                <small class="validate-text" *ngIf="departmentFormControl.dept_code?.invalid && departmentFormControl.dept_code.value && !departmentFormControl.dept_code?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -49,6 +48,7 @@
                                     <span class="validate-text color" *ngIf="departmentFormControl.dept_name?.errors?.pattern">Please enter valid characters</span>
                                     <span class="validate-text" *ngIf="departmentFormControl.dept_name?.errors?.maxlength ">Department name exceeds max-length {{departmentFormControl.dept_name?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="departmentFormControl.dept_name?.invalid && departmentFormControl.dept_name.value && !departmentFormControl.dept_name?.errors?.maxlength">  Please Enter Valid Data </small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -60,6 +60,7 @@
                                     <span class="validate-text" *ngIf="departmentFormControl.dept_description?.errors?.maxlength ">Description exceeds max-length {{departmentFormControl.dept_description?.errors?.maxlength.requiredLength}} </span>
                                     <span class="validate-text color" *ngIf="departmentFormControl.dept_description?.errors?.pattern">Please enter valid characters</span>
                                 </div>
+                                <small class="validate-text" *ngIf="departmentFormControl.dept_description?.invalid && departmentFormControl.dept_description.value && !departmentFormControl.dept_description?.errors?.maxlength">  Please Enter Valid Data </small>
                             </div>
                         </div>
                     </div>

@@ -6,12 +6,10 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { forkJoin } from 'rxjs';
-import { GradeService } from '../../services/grade.service';
 import { KeyPerformanceAreasEmployeeGradeService } from '../../services/key-performance-areas-employee-grade.service';
 import { KeyPerformanceAreasEmployeeGrade } from '../../model/key-performance-areas-employee-grade.model';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
-import { KeyPerformanceAreaService } from '../../services/key-performance-area.service';
 
 @Component({
 	selector: 'app-key-performance-areas-employee-grade',
@@ -24,21 +22,17 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0;
+	currentPage = 0;
 	defaultIntialValue: KeyPerformanceAreasEmployeeGrade;
 	dataDataTable: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number } = { results: [], count: 0 };
+	gradeIds: Array<KeyPerformanceAreasEmployeeGrade> = [];
 	intialValue: KeyPerformanceAreasEmployeeGrade;
-	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 	keyPerformanceAreasEmployeeGradeForm: FormGroup;
-	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
+	kpaIds: Array<KeyPerformanceAreasEmployeeGrade> = [];
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	gradeIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
-	kpaIds: Array<KeyPerformanceAreasEmployeeGrade>=[];
 	
-
-
 	constructor(
 		private alertService: AlertService,
 		private dropdownService:DropdownService,
@@ -46,11 +40,6 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		private modalService: BsModalService,
 		private performanceAreaGradeService: KeyPerformanceAreasEmployeeGradeService,
 		private performanceService: PerformanceService,
-		private dropdownService:DropdownService,
-		
-
-
-
 	) {
 		this.keyPerformanceAreasEmployeeGradeForm = this.initForm();
 	}
@@ -79,8 +68,7 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		}).subscribe(
 			(response: any) => {
 				this.gradeIds = response.tableDataGradeId.results
-				this.kpaIds = response.tableDataKpaId.results
-				
+				this.kpaIds = response.tableDataKpaId.results	
 			},
 			(error) => { }
 		);
@@ -89,9 +77,8 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 
 	initForm(): FormGroup {
 		return this.formBuilder.group({
-
 			id: [""],
-			weightage: ["", [Validators.required, Validators.maxLength(7)]],
+			weightage: ["", [Validators.required, Validators.maxLength(7),]],
 			kpa_id: ["", Validators.required],
 			garde_id: ["", Validators.required],
 			org_code: ["AVISYS"],
@@ -101,12 +88,10 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		});
 	}
 
-
 	openTemplate() {
 		this.modalRef = this.modalService.show(this.keyPerformanceAreasEmployeeGrade, Object.assign({}, { class: "gray modal-lg " })
 		);
 	}
-
 
 	get keyPerformanceAreasGradeFormControl(): { [key: string]: AbstractControl } {
 		return this.keyPerformanceAreasEmployeeGradeForm.controls;
@@ -120,17 +105,17 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.performanceAreaGradeService.getById(data.data.id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.keyPerformanceAreasEmployeeGradeForm.patchValue(res);
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.keyPerformanceAreasEmployeeGradeForm.patchValue(res);
+			this.intialValue = res;
 
 			});
 		}
 		else if (data.event == "delete") {
 			this.performanceAreaGradeService.softDelete(data.data.id).subscribe((res: KeyPerformanceAreasEmployeeGrade) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -139,33 +124,32 @@ export class KeyPerformanceAreasEmployeeGradeComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
-
+		this.params = data;
 		this.performanceAreaGradeService.getKeyPerformanceAreaEmployeeGradeListContent(data).subscribe((sucess: { results: Array<KeyPerformanceAreasEmployeeGrade>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
 	submit() {
-
 		if (this.actionBtn !== "Submit") {
 			this.performanceAreaGradeService.update(this.keyPerformanceAreasEmployeeGradeForm.value, this.keyPerformanceAreasGradeFormControl.id.value).subscribe((response: KeyPerformanceAreasEmployeeGrade) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.performanceAreaGradeService.create(this.keyPerformanceAreasEmployeeGradeForm.value).subscribe((sucess: KeyPerformanceAreasEmployeeGrade) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}

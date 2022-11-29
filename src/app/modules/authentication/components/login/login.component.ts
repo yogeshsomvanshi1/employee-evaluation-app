@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     if (this.passwordShown) {
       this.passwordShown = false;
       this.passwordType = 'password';
-
     }
     else {
       this.passwordShown = true;
@@ -60,11 +59,8 @@ export class LoginComponent implements OnInit {
       else {
         this.invalidUser = true;
       }
-
-
     }
     );
   }
-
 
 }

@@ -1,3 +1,4 @@
+import { SweetalertServiceService } from 'src/app/modules/shared/component/sweetalert/sweetalert-service.service';
 import { DropdownService } from './services/dropdown.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared-models/shared/shared.module';
@@ -20,7 +21,7 @@ import { DesignationService } from './services/designation.service';
 import { GradeService } from './services/grade.service';
 import { RoleService } from './services/role.service';
 import { EmployeeService } from './services/employee.service';
-import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+// import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 import { CommonService } from './services/common.service';
 import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
 import { KeyPerformanceAreasEmployeeGradeComponent } from './components/key-performance-areas-employee-grade/key-performance-areas-employee-grade.component';
@@ -40,8 +41,9 @@ import { GoalsKeyperformanceAreasRolesService } from './services/goals-key-perfo
 import { KeyPerformanceAreaComponent } from './components/key-performance-area/key-performance-area.component';
 import { KeyPerformanceAreaService } from './services/key-performance-area.service';
 import { EmployeeTypeService } from './services/employee-type.service';
-import { EmployeeDetailsComponent } from './components/employee-details/employee-details.component';
-import { ApparaisalDetailsComponent } from './components/apparaisal-details/apparaisal-details.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { AppraisalFormComponent } from './components/appraisal-form/appraisal-form.component';
+import { AppraisalDetailsComponent } from './components/appraisal-details/appraisal-details.component';
 
 
 @NgModule({
@@ -63,8 +65,9 @@ import { ApparaisalDetailsComponent } from './components/apparaisal-details/appa
     PerformanceReviewGradesComponent,
     PerformanceReviewCycleScheduleComponent,
     PerformanceReviewCyclesComponent,
-    EmployeeDetailsComponent,
-    ApparaisalDetailsComponent,
+    AppraisalFormComponent,
+    AppraisalDetailsComponent,
+  
    
   ],
   imports: [
@@ -94,7 +97,8 @@ import { ApparaisalDetailsComponent } from './components/apparaisal-details/appa
     PerformanceReviewGradesService,
     PerformanceReviewCyclesService,
     PerformanceReviewCycleScheduleService,
-    DropdownService
+    DropdownService,
+    SweetalertServiceService
   ]
 })
 export class PerformanceModule { }

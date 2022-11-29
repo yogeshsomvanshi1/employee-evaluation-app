@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DropdownService } from './dropdown.service';
+import { DeletePopupService } from './delete-popup.service';
 
-describe('DropdownService', () => {
-  let service: DropdownService;
+describe('DeletePopupService', () => {
+  let service: DeletePopupService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DropdownService);
+    service = TestBed.inject(DeletePopupService);
   });
 
   it('should be created', () => {

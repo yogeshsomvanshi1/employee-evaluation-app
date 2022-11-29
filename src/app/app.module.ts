@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { FeatureComponent } from './modules/core/components/feature/feature.component';
 import { MyInterceptor } from './modules/core/intersepter/intersepter.service';
 import { SharedModule } from './modules/shared/shared-models/shared/shared.module';
+import { DeletePopupComponent } from './modules/shared/component/delete-popup/delete-popup.component';
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
       {prefix: "assets/translate/modules/client/header/", suffix: ".json"},
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     FeatureComponent,
+    DeletePopupComponent,
   ],
   imports: [
     BrowserModule,

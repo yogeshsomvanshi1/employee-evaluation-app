@@ -84,8 +84,8 @@
                                 <select formControlName="status" class="form-control " aria-label="Default select example">
                                     <option selected disabled value="">Select</option>
                                     <!-- <option *ngFor="let cycleIds of cycleId" [value]="cycleIds.status"> {{cycleIds.status}}</option> -->
-                                    <option value="open">open</option>
-                                    <option value="closed">closed</option>
+                                    <option value="OPEN">open</option>
+                                    <option value="CLOSE">close</option>
                                 </select>
                                 <div *ngIf="performanceReviewCyclescheduleFormControl.status?.invalid && performanceReviewCyclescheduleFormControl.status?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewCyclescheduleFormControl.status?.errors?.required">Please Select Status</span>

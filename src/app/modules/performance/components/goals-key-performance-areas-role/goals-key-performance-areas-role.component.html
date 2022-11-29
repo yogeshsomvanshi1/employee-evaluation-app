@@ -41,6 +41,7 @@
                                         {{goalsKeyPerformanceRoleFormControl.goal_id?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_id?.invalid && goalsKeyPerformanceRoleFormControl.goal_id.value && !goalsKeyPerformanceRoleFormControl.goal_id?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -53,6 +54,7 @@
                                         {{goalsKeyPerformanceRoleFormControl.goal_description?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="goalsKeyPerformanceRoleFormControl.goal_description?.invalid && goalsKeyPerformanceRoleFormControl.goal_description.value && !goalsKeyPerformanceRoleFormControl.goal_description?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                         <div class="row mt-2">

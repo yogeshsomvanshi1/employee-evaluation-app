@@ -10,6 +10,7 @@ import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-l
 import { HttpParams } from '@angular/common/http';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { KeyPerformanceAreaService } from '../../services/key-performance-area.service';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: 'app-key-performance-area',
@@ -22,7 +23,7 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0;
+	currentPage = 0;
 	defaultIntialValue: KeyPerformanceList;
 	dataDataTable: { results: Array<KeyPerformanceList>, count: number } = { results: [], count: 0 };
 	intialValue: KeyPerformanceList;
@@ -43,10 +44,9 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	}
 
 	initForm(): FormGroup {
-
 		return this.formBuilder.group({
-			kpa_id: ["", [Validators.required, Validators.maxLength(10)]],
-			kpa_description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation())]],
+			kpa_id: ["", [Validators.required, Validators.maxLength(10) ,alphaNumeric]],
+			kpa_description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -58,7 +58,6 @@ export class KeyPerformanceAreaComponent implements OnInit {
 		this.defaultIntialValue = this.keyPerformanceForm.value;
 		this.params = this.params.append('offset', 0);
 		this.params = this.params.append('limit', 5);
-
 		forkJoin({
 			tableHeader: this.performanceService.getKeyPerformanceAreaHeaderColumn(),
 			tableData: this.keyPerformanceService.getKeyPerformanceListContent(this.params),
@@ -74,28 +73,27 @@ export class KeyPerformanceAreaComponent implements OnInit {
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.keyPerformanceService.update(this.keyPerformanceForm.getRawValue(), this.keyPerformanceFormControl.kpa_id.value).subscribe((response: KeyPerformanceList) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.keyPerformanceService.create(this.keyPerformanceForm.value).subscribe((sucess: KeyPerformanceList) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.kpa_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
 	}
-
 
 	get keyPerformanceFormControl(): { [key: string]: AbstractControl } {
 		return this.keyPerformanceForm.controls;
@@ -110,9 +108,9 @@ export class KeyPerformanceAreaComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
-
+		this.params = data;
 		this.keyPerformanceService.getKeyPerformanceListContent(data).subscribe((sucess: { results: Array<KeyPerformanceList>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -125,17 +123,17 @@ export class KeyPerformanceAreaComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.keyPerformanceService.getById(data.data.kpa_id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.keyPerformanceForm.patchValue(res);
-				this.keyPerformanceFormControl.kpa_id.disable();
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.keyPerformanceForm.patchValue(res);
+			this.keyPerformanceFormControl.kpa_id.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.keyPerformanceService.softDelete(data.data.kpa_id).subscribe((res: KeyPerformanceList) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}

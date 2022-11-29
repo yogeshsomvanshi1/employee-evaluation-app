@@ -6,12 +6,22 @@
 		"width": 10
 	}, {
 		"name": "Name",
-		"mappedBy": "first_name",
+		"mappedBy": "emp_fullname",
 		"type": "text",
 		"width": 30
 	}, {
-		"name": "Salutation",
-		"mappedBy": "salutation",
+		"name": "Department",
+		"mappedBy": "dept_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Designation",
+		"mappedBy": "des_name",
+		"type": "text",
+		"width": 30
+	}, {
+		"name": "Division",
+		"mappedBy": "div_id",
 		"type": "text",
 		"width": 30
 	}
