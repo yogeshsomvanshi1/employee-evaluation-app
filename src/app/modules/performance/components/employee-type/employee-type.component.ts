@@ -3,7 +3,6 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { forkJoin } from 'rxjs';
-import { ValidatorServiceService } from 'src/app/modules/shared/component/validator-service/validator-service.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { AlertService } from 'src/app/modules/shared/services/alert.service';

@@ -91,12 +91,12 @@ export class GradeComponent implements OnInit {
 			this.resetForm();
 		}
 		else if (data.event == "edit") {
-			this.gradeService.getById(data.data.grade_code).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.gradeForm.patchValue(res);
-				this.gradeFormControl.grade_code.disable();
-				this.intialValue = res;
+			this.gradeService.getById(data.data.grade_code).subscribe((res :Grade) => {
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.gradeForm.patchValue(res);
+			this.gradeFormControl.grade_code.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {

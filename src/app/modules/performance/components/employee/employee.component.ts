@@ -57,7 +57,7 @@ export class EmployeeComponent implements OnInit {
       console.log(data.data.emp_code)
     }
     else if (data.event == "delete") {
-      this.employeeService.softDelete( data.data.emp_code).subscribe((res) => {
+      this.employeeService.softDelete( data.data.emp_code).subscribe((res:Employee) => {
         this.alertServices.success('Record deleted successfully', this.alertOptions);
         this.changePageSortSearch(this.params);
       })

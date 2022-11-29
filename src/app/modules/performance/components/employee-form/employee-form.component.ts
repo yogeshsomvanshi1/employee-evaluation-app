@@ -122,7 +122,7 @@ export class EmployeeFormComponent implements OnInit {
 		let country = this.employeeFormControl.location_country.value;
 		if(country){
 			this.commonService.stateList(country).subscribe((res:{ results: Array<State>, count: number })=>{
-				this.states = res.results;
+			    this.states = res.results;
 				this.employeeFormControl.location_state.reset('');
 				this.employeeFormControl.location_city.reset('');
 				this.cities = [];
@@ -246,7 +246,7 @@ export class EmployeeFormComponent implements OnInit {
 			var reader = new FileReader();
 			reader.readAsDataURL(this.file);
 			reader.onload = (_event) => {
-				let imagePath = reader.result;
+			    let imagePath = reader.result;
 				this.employeeForm.controls.profile_details.setValue(imagePath);
 			}
 		}

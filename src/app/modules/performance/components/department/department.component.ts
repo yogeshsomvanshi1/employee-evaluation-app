@@ -22,7 +22,7 @@ export class DepartmentComponent implements OnInit {
 	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage=0
+	currentPage:number=0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Department>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Department;
@@ -55,9 +55,7 @@ export class DepartmentComponent implements OnInit {
 			(response:any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	changePageSortSearch(data: HttpParams) {
@@ -107,8 +105,7 @@ export class DepartmentComponent implements OnInit {
 				if(error.error.dept_code){
 					this.alertService.info("Record already exists", this.alertOptions.autoClose );
 				}
-			}
-			);
+			});
 		}
 	}
 
@@ -121,17 +118,18 @@ export class DepartmentComponent implements OnInit {
 		} 
 		else if (data.event == "edit") {
 			this.departmentFormControl.dept_code.disable();
-			this.departmentService.getById(data.data.dept_code).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.departmentForm.patchValue(res);
-				this.intialValue = res;
+
+			this.departmentService.getById(data.data.dept_code).subscribe((res:Department) => {
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.departmentForm.patchValue(res);
+			this.intialValue = res;
 			});
 		} 
 		else if (data.event == "delete") {
-			this.departmentService.softDelete(data.data.dept_code).subscribe((sucess) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.departmentService.softDelete(data.data.dept_code).subscribe((sucess:Department) => {
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}

@@ -118,12 +118,12 @@ export class DivisionComponent implements OnInit {
 			this.resetForm();
 		}
 		else if (data.event == "edit") {
-			this.divisionService.getById(data.data.div_code).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.divisionFormControl.div_code.disable();
-				this.divisionForm.patchValue(res);
-				this.intialValue = res;
+			this.divisionService.getById(data.data.div_code).subscribe((res:Division) => {
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.divisionFormControl.div_code.disable();
+			this.divisionForm.patchValue(res);
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {

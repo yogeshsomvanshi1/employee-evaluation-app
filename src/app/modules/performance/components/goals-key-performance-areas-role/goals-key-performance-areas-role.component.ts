@@ -10,10 +10,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { GoalsKeyperformanceAreasRolesService } from '../../services/goals-key-performance-areas-roles.service';
-<<<<<<< Updated upstream
-=======
 import { ValidatorServiceService } from 'src/app/modules/shared/component/validator-service/validator-service.service';
->>>>>>> Stashed changes
 
 @Component({
 	selector: 'app-goals-key-performance-areas-role',
@@ -120,13 +117,12 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 
 		}
 		else if (data.event == "edit") {
-			this.goalsKeyPerformanceRolesService.getById(data.data.goal_id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.goalsKeyPerformanceRoleFormControl.goal_id.disable();
-				this.goalsKeyPerformanceRoleForm.patchValue(res);
-				this.intialValue = res;
-
+			this.goalsKeyPerformanceRolesService.getById(data.data.goal_id).subscribe((res :GoalsKeyPerformanceAreasRole) => {
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.goalsKeyPerformanceRoleFormControl.goal_id.disable();
+			this.goalsKeyPerformanceRoleForm.patchValue(res);
+			this.intialValue = res;
 			});
 		}
 

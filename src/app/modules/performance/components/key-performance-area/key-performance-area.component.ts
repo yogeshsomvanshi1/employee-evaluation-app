@@ -124,12 +124,13 @@ export class KeyPerformanceAreaComponent implements OnInit {
 			this.resetForm();
 		}
 		else if (data.event == "edit") {
-			this.keyPerformanceService.getById(data.data.kpa_id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.keyPerformanceForm.patchValue(res);
-				this.keyPerformanceFormControl.kpa_id.disable();
-				this.intialValue = res;
+
+			this.keyPerformanceService.getById(data.data.kpa_id).subscribe((res :KeyPerformanceList) => {
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.keyPerformanceForm.patchValue(res);
+			this.keyPerformanceFormControl.kpa_id.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
