@@ -22,7 +22,7 @@ export class DesignationComponent implements OnInit {
 	@ViewChild('designationTemplate') designationTemplate: TemplateRef<BsModalRef>;
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage = 0;
+	currentPage: number = 0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Designation>, count: number } = { results: [], count: 0 };
 	designationForm: FormGroup;
@@ -53,9 +53,7 @@ export class DesignationComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 

@@ -22,7 +22,7 @@ export class GradeComponent implements OnInit {
 	@ViewChild('gradeTemplate') gradeTemplate: TemplateRef<BsModalRef>;
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage = 0;
+	currentPage:number = 0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Grade>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Grade;

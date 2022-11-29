@@ -24,7 +24,7 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage:number = 0;
 	dataDataTable: { results: Array<GoalsKeyPerformanceAreasRole>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: GoalsKeyPerformanceAreasRole;
 	goalsKeyPerformanceRoleForm: FormGroup;
@@ -45,7 +45,6 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		private performanceService: PerformanceService,
 		private pattern: ValidatorServiceService,
 	) {
-
 		this.goalsKeyPerformanceRoleForm = this.initForm();
 	}
 

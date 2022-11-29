@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
 
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-  currentPage = 0;
+  currentPage:number = 0;
 	dataDataTable: { results: Array<Employee>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -53,8 +53,6 @@ export class EmployeeComponent implements OnInit {
 		this.dataDataTable = sucess;
 		});
 	}
-
-  
 
 	buttonEvent1(data: any) {
 		if (data.event == "add") {

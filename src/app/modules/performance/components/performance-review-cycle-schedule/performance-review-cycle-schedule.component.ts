@@ -1,17 +1,16 @@
-import { DropdownService } from './../../services/dropdown.service';
-import { AlertService } from './../../../shared/services/alert.service';
-import { PerformanceReviewCyclesService } from './../../services/performance-review-cycles.service';
-import { PerformanceReviewCycleScheduleService } from './../../services/performance-review-cycle-schedule.service';
-import { PerformanceService } from './../../services/performance.service';
-import { PerformanceReviewCycleSchedule } from './../../model/performance-review-cycle-schedule.model';
-import { AbstractControl, FormGroup, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { HttpParams } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as moment from 'moment';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { forkJoin } from 'rxjs';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
-import * as moment from 'moment';
+import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
+import { AlertService } from './../../../shared/services/alert.service';
+import { PerformanceReviewCycleSchedule } from './../../model/performance-review-cycle-schedule.model';
+import { DropdownService } from './../../services/dropdown.service';
+import { PerformanceReviewCycleScheduleService } from './../../services/performance-review-cycle-schedule.service';
+import { PerformanceService } from './../../services/performance.service';
 
 @Component({
 	selector: 'app-performance-review-cycle-schedule',
@@ -25,7 +24,7 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
 	cycleId: PerformanceReviewCycleSchedule
-	currentPage = 0;
+	currentPage :number = 0;
 	date: string
 	defaultIntialValue: PerformanceReviewCycleSchedule
 	dataDataTable: { results: Array<PerformanceReviewCycleSchedule>, count: number } = { results: [], count: 0 };

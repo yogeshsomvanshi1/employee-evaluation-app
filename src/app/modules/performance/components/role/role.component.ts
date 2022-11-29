@@ -21,7 +21,7 @@ export class RoleComponent implements OnInit {
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef<BsModalRef>;
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
-	currentPage = 0;
+	currentPage :number = 0;
 	columnsMetadata: TableHeaderMetaData;
 	defaultIntialValue: Role;
 	dataDataTable: { results: Array<Role>, count: number } = { results: [], count: 0 };

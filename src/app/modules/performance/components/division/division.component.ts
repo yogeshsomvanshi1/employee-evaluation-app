@@ -21,7 +21,7 @@ export class DivisionComponent implements OnInit {
 	@ViewChild('divisionTemplate') divisionTemplate: TemplateRef<BsModalRef>;
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage=0
+	currentPage :number=0
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Division>, count: number } = { results: [], count: 0 };
 	divisionForm: FormGroup;
@@ -53,9 +53,7 @@ export class DivisionComponent implements OnInit {
 			(response:any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	openTemplate() {
@@ -86,7 +84,6 @@ export class DivisionComponent implements OnInit {
 	}
 
 	submit() {
-
 		if (this.actionBtn !== "Submit") {
 			this.divisionService.update(this.divisionForm.getRawValue(), this.divisionFormControl.div_code.value).subscribe((response:Division) => {
 			this.params.set('offset' , 0 )
@@ -142,5 +139,4 @@ export class DivisionComponent implements OnInit {
 	resetForm() {
 		this.divisionForm.reset(this.actionBtn === 'Submit' ? this.defaultIntialValue : this.intialValue);
 	}
-
 }

@@ -23,7 +23,7 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage :number = 0;
 	dataDataTable: { results: Array<PerformanceReviewTypes>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewTypes;
 	intialValue: PerformanceReviewTypes;
@@ -55,9 +55,7 @@ export class PerformanceReviewTypeComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	initForm(): FormGroup {

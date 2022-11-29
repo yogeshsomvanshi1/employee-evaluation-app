@@ -1,16 +1,16 @@
+import { HttpParams } from '@angular/common/http';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { forkJoin } from 'rxjs';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
+import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
+import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
+import { AlertService } from 'src/app/modules/shared/services/alert.service';
+import { PerformanceReviewGradesService } from '../../services/performance-review-grades.service';
 import { ValidatorServiceService } from './../../../shared/component/validator-service/validator-service.service';
 import { PerformanceReviewGrades } from './../../model/performance-review-grade.model';
 import { PerformanceService } from './../../services/performance.service';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { AbstractControl, FormGroup, FormBuilder, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { forkJoin } from 'rxjs';
-import { PerformanceReviewGradesService } from '../../services/performance-review-grades.service';
-import { HttpParams } from '@angular/common/http';
-import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
-import { AlertService } from 'src/app/modules/shared/services/alert.service';
-import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
-import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: 'app-performance-review-grades',
@@ -23,7 +23,7 @@ export class PerformanceReviewGradesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage = 0;
+	currentPage :number = 0;
 	dataDataTable: { results: Array<PerformanceReviewGrades>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewGrades;
 	intialValue: PerformanceReviewGrades;
@@ -70,9 +70,7 @@ export class PerformanceReviewGradesComponent implements OnInit {
 			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
-			},
-			(error) => { }
-		);
+			});
 	}
 
 	checkMinMax(control: AbstractControl): ValidationErrors | null{

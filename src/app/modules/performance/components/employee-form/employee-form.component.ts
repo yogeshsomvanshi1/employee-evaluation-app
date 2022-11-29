@@ -1,28 +1,26 @@
-import { EmployeeType } from './../../model/employee-type.model';
-import { Grade } from '../../model/grade.model';
-import { forkJoin } from 'rxjs';
-import { City } from '../../model/city.model';
+import { HttpParams } from '@angular/common/http';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from '../../model/employee.model';
-import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { EmployeeService } from '../../services/employee.service';
+import * as moment from 'moment';
+import { forkJoin } from 'rxjs';
+import { alphaNumeric } from 'src/app/modules/shared/component/validators/validation';
 import { AlertOptions } from '../../../shared/model/alert.model';
 import { AlertService } from '../../../shared/services/alert.service';
-import { CommonService } from '../../services/common.service';
+import { City } from '../../model/city.model';
 import { Country } from '../../model/country.model';
-import { State } from '../../model/state.model';
-import { Division } from '../../model/division.model';
-import { Role } from '../../model/role.model';
-import { Designation } from '../../model/designation.model';
-import { DivisionService } from '../../services/division.service';
-import * as moment from 'moment';
-import { DropdownService } from '../../services/dropdown.service';
 import { Department } from '../../model/department.model';
-import { alphaNumeric } from 'src/app/modules/shared/component/validators/validation';
-import { HttpParams } from '@angular/common/http';
+import { Designation } from '../../model/designation.model';
+import { Division } from '../../model/division.model';
+import { Employee } from '../../model/employee.model';
+import { Grade } from '../../model/grade.model';
+import { Role } from '../../model/role.model';
+import { State } from '../../model/state.model';
+import { CommonService } from '../../services/common.service';
+import { DivisionService } from '../../services/division.service';
+import { DropdownService } from '../../services/dropdown.service';
+import { EmployeeService } from '../../services/employee.service';
+import { EmployeeType } from './../../model/employee-type.model';
 
 @Component({
 	selector: 'app-employee-form',
@@ -33,7 +31,7 @@ export class EmployeeFormComponent implements OnInit {
 
 	@ViewChild('file1') fileinput: ElementRef;
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
-	actionBtn = "Save";
+	actionBtn:string = "Save";
 	countries: Array<Country> = [];
 	changedImgPath: string;
 	cities: Array<City> = [];
@@ -97,12 +95,10 @@ export class EmployeeFormComponent implements OnInit {
 			this.grades = res.grades.results;
 			this.roles = res.roles.results;
 			this.designations = res.designations.results;
-			this.department =res.department.results
-			this.employees =res.employees.results
-		
+			this.department =res.department.results;
+			this.employees =res.employees.results;		
 		})
-		
-		
+				
 		this.route.queryParams.subscribe((params: any) => {
 			if (params.data) {
 				this.actionBtn = "Update";
@@ -160,7 +156,6 @@ export class EmployeeFormComponent implements OnInit {
 		this.minJoiningDate = moment(new Date(res)).add(18, 'years').format('YYYY-MM-DD');
 		this.maxDate = moment(new Date()).subtract(1, 'day').format('YYYY-MM-DD');
 	}
-
 
 	changeLwd() {
 		let res = this.employeeFormControl.dob.value
@@ -244,8 +239,6 @@ export class EmployeeFormComponent implements OnInit {
 		this.file = null
 		this.actionBtn == "Save" ? 
 		this.employeeForm.controls.profile_details.setValue(this.img): this.setIconImage(this.intialValue.profile_details);
-		
-
 	}
 
 	dob = (maxAge: number): ValidatorFn => (control: { value: string | number | Date; }) =>
@@ -296,8 +289,7 @@ export class EmployeeFormComponent implements OnInit {
 						this.alertServices.info("Employee Already exist");
 					})
 			}
-			else {
-				
+			else {				
 				this.employeeService.update(formData, this.employeeFormControl.emp_code.value).
 					subscribe((sucess) => {
 						this.alertServices.success("Record Updated Successfully", this.alertOptions);
