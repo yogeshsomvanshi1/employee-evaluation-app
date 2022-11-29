@@ -1,3 +1,4 @@
+
 import { HttpParams } from "@angular/common/http";
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -10,6 +11,7 @@ import { Department } from "../../model/department.model";
 import { PerformanceService } from "../../services/performance.service";
 import { AlertService } from '../../../shared/services/alert.service';
 import { DepartmentService } from "../../services/department.service";
+import { alphaNumeric, nameAndDescription } from "src/app/modules/shared/component/validators/validation";
 
 @Component({
 	selector: "app-department",
@@ -24,14 +26,13 @@ export class DepartmentComponent implements OnInit {
 	actionBtn: string = "Submit";
 	currentPage:number=0;
 	columnsMetadata: TableHeaderMetaData;
+	departmentForm: FormGroup;
 	dataDataTable: { results: Array<Department>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: Department;
 	intialValue: Department;
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	departmentForm: FormGroup;
-	
   
 	constructor(
 		private alertService: AlertService,
@@ -39,7 +40,7 @@ export class DepartmentComponent implements OnInit {
 		private formbuilder: FormBuilder,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
-		private pattern: ValidatorServiceService
+		private pattern: ValidatorServiceService,
 	) {
 		this.departmentForm = this.initForm();
 	}
@@ -60,19 +61,19 @@ export class DepartmentComponent implements OnInit {
 
 	changePageSortSearch(data: HttpParams) {
 		let offset = data.get('offset')
-		let limit =data.get('limit')
-		this.currentPage =Number (offset) / Number (limit)
+		let limit = data.get('limit')
+		this.currentPage = Number(offset) / Number(limit)
 		this.params = data;
 		this.departmentService.getDepartmentContent(data).subscribe((sucess: { results: Array<Department>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
 	initForm(): FormGroup {
 		return this.formbuilder.group({
-			dept_code: ['', [Validators.required, Validators.maxLength(10)]],
-			dept_name: ['', [Validators.required, Validators.maxLength(50)]],
-			dept_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation())]],
+			dept_code: ['', [Validators.required, Validators.maxLength(10), alphaNumeric]],
+			dept_name: ['', [Validators.required, Validators.maxLength(50),nameAndDescription]],
+			dept_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			org_code : ["AVISYS"],
 			is_deleted : [false],
 			created_by : ["1"],
@@ -85,7 +86,6 @@ export class DepartmentComponent implements OnInit {
 	}
 
 	submit() {
-
 		if (this.actionBtn !== "Submit") {
 			this.departmentService.update(this.departmentForm.getRawValue(), this.departmentFormControl.dept_code.value).subscribe((response: Department) => {
 			this.alertService.success("Record Updated Successfully", this.alertOptions);
@@ -103,7 +103,7 @@ export class DepartmentComponent implements OnInit {
 				this.modalRef.hide();
 			},(error)=>{
 				if(error.error.dept_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose );
+					this.alertService.info("Id already exists", this.alertOptions.autoClose );
 				}
 			});
 		}

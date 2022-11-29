@@ -41,6 +41,7 @@
                                         {{keyPerformanceFormControl.kpa_id?.errors?.maxlength.requiredLength}} 
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="keyPerformanceFormControl.kpa_id?.invalid && keyPerformanceFormControl.kpa_id.value && !keyPerformanceFormControl.kpa_id?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -53,6 +54,7 @@
                                         {{keyPerformanceFormControl.kpa_description?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="keyPerformanceFormControl.kpa_description?.invalid && keyPerformanceFormControl.kpa_description.value && !keyPerformanceFormControl.kpa_description?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

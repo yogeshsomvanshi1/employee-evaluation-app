@@ -25,14 +25,14 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
 	cycleId: PerformanceReviewCycleSchedule
-	currentPage=0;
-	date :string
+	currentPage = 0;
+	date: string
 	defaultIntialValue: PerformanceReviewCycleSchedule
 	dataDataTable: { results: Array<PerformanceReviewCycleSchedule>, count: number } = { results: [], count: 0 };
 	intialValue: PerformanceReviewCycleSchedule;
 	modalRef: BsModalRef;
-	minLastDay:string;
-	maxDate:string;
+	minLastDay: string;
+	maxDate: string;
 	performanceReviewCyclescheduleForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -45,13 +45,11 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
 		private performanceReviewCycleSheduleService: PerformanceReviewCycleScheduleService,
-		private performanceReviewCycleService: PerformanceReviewCyclesService
 	) {
 		this.performanceReviewCyclescheduleForm = this.initForm();
 	}
 
 	initForm(): FormGroup {
-
 		return this.formBuilder.group({
 			id: [""],
 			preformance_review_cycle_id: ["", [Validators.required]],
@@ -64,33 +62,15 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 			created_by: ["1"],
 			updated_by: ["1"]
 		});
-	}
-
-
-	//   , {validator: this.checkDates} ==use inside formgroup
-	
+	}	
 
 	changeLastDay() {
 		this.performanceReviewCyclescheduleFormControl.end_date.reset();
 		let res = this.performanceReviewCyclescheduleFormControl.start_date.value
 		this.minLastDay = moment(new Date(res)).add(1, 'day').format('YYYY-MM-DD');
+	}	
 
-		// let endDate = this.performanceReviewCyclescheduleFormControl.end_date.value
-	}
-
-
-	//   , {validator: this.checkDates} ==use inside formgroup
-	
-
-	changeLastDay() {
-		this.performanceReviewCyclescheduleFormControl.end_date.reset();
-		let res = this.performanceReviewCyclescheduleFormControl.start_date.value
-		this.minLastDay = moment(new Date(res)).add(1, 'day').format('YYYY-MM-DD');
-
-		// let endDate = this.performanceReviewCyclescheduleFormControl.end_date.value
-	}
 	ngOnInit(): void {
-
 		forkJoin({
 			dataPhaseId: this.dropdownService.getDropdownPerformanceReviewPhasesListContent(),
 			dataCycleId: this.dropdownService.getDropdownPerformanceReviewCycleListContent(),
@@ -101,8 +81,6 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 			},
 			(error) => { }
 		);
-
-
 
 		this.defaultIntialValue = this.performanceReviewCyclescheduleForm.value;
 		this.params = this.params.append('offset', 0);
@@ -120,9 +98,6 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		);
 	}
 
-	
-
-
 	get performanceReviewCyclescheduleFormControl(): { [key: string]: AbstractControl } {
 		return this.performanceReviewCyclescheduleForm.controls;
 	}
@@ -131,8 +106,9 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.performanceReviewCycleSheduleService.getPerformanceReviewCycleScheduleListContent(data).subscribe((sucess: { results: Array<PerformanceReviewCycleSchedule>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -149,41 +125,41 @@ export class PerformanceReviewCycleScheduleComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.performanceReviewCycleSheduleService.getById(data.data.id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.performanceReviewCyclescheduleForm.patchValue(res);
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.performanceReviewCyclescheduleForm.patchValue(res);
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.performanceReviewCycleSheduleService.softDelete(data.data.id).subscribe((res: PerformanceReviewCycleSchedule) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
-			})
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
+		  })
 		}
 	}
 
 	submit() {
 
-		if (this.actionBtn !== "Submit") {
+		if (this.actionBtn !== "Submit") {  
 			this.performanceReviewCycleSheduleService.update(this.performanceReviewCyclescheduleForm.getRawValue(), this.performanceReviewCyclescheduleFormControl.id.value).subscribe((response: PerformanceReviewCycleSchedule) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.performanceReviewCycleSheduleService.create(this.performanceReviewCyclescheduleForm.value).subscribe((sucess: PerformanceReviewCycleSchedule) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose = false);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose = false);
 				}
 			});
 		}

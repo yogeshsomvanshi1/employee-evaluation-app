@@ -11,9 +11,7 @@ import Swal from 'sweetalert2';
  *   already provides we just need to create a service which is not a 
  *   priority right now as discussed so leaving it as is
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SweetalertServiceService {
 
   constructor(private router: Router) { }

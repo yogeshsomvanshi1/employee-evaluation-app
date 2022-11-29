@@ -1,3 +1,4 @@
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 import { AlertService } from './../../../shared/services/alert.service';
 import { PerformanceReviewTypeService } from './../../services/performance-review-type.service';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
@@ -22,7 +23,7 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0;
+	currentPage = 0;
 	dataDataTable: { results: Array<PerformanceReviewTypes>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewTypes;
 	intialValue: PerformanceReviewTypes;
@@ -30,7 +31,6 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	performanceReviewTypeForm: FormGroup;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-
 
 	constructor(
 		private alertService: AlertService,
@@ -43,10 +43,8 @@ export class PerformanceReviewTypeComponent implements OnInit {
 		this.performanceReviewTypeForm = this.initForm();
 	}
 
-
 	ngOnInit(): void {
 		this.defaultIntialValue = this.performanceReviewTypeForm.value;
-
 		this.params = this.params.append('offset', 0);
 		this.params = this.params.append('limit', 5);
 
@@ -60,25 +58,20 @@ export class PerformanceReviewTypeComponent implements OnInit {
 			},
 			(error) => { }
 		);
-
-
 	}
 
-
 	initForm(): FormGroup {
-
 		return this.formBuilder.group({
 			id: [""],
-			performance_review_type: ["", [Validators.required, Validators.maxLength(10)]],
-			description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation())]],
+			performance_review_type: ["", [Validators.required, Validators.maxLength(10),alphaNumeric]],
+			description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
 			updated_by: ["1"]
 		});
 	}
-
-
+	
 	openTemplate() {
 		this.modalRef = this.modalService.show(this.performanceReviewType, Object.assign({}, { class: "gray modal-lg " })
 		);
@@ -92,9 +85,9 @@ export class PerformanceReviewTypeComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
-
+		this.params = data;
 		this.performanceReviewTypeService.getPerformanceReviewTypeListContent(data).subscribe((sucess: { results: Array<PerformanceReviewTypes>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -107,17 +100,17 @@ export class PerformanceReviewTypeComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.performanceReviewTypeService.getById(data.data.performance_review_type).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.performanceReviewTypeForm.patchValue(res);
-				this.performanceReviewTypeControl.performance_review_type.disable();
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.performanceReviewTypeForm.patchValue(res);
+			this.performanceReviewTypeControl.performance_review_type.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.performanceReviewTypeService.softDelete(data.data.performance_review_type).subscribe((res: PerformanceReviewTypes) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -125,23 +118,23 @@ export class PerformanceReviewTypeComponent implements OnInit {
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewTypeService.update(this.performanceReviewTypeForm.getRawValue(), this.performanceReviewTypeControl.performance_review_type.value).subscribe((response: PerformanceReviewTypes) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.performanceReviewTypeService.create(this.performanceReviewTypeForm.value).subscribe((sucess: PerformanceReviewTypes) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.performance_review_type) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}

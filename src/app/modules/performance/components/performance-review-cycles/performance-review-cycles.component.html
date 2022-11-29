@@ -41,6 +41,7 @@
                                         {{performanceReviewCyclesFormControl.preformance_review_cycle_id?.errors?.maxlength.requiredLength}} 
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewCyclesFormControl.preformance_review_cycle_id?.invalid && performanceReviewCyclesFormControl.preformance_review_cycle_id.value && !performanceReviewCyclesFormControl.preformance_review_cycle_id?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -87,7 +88,11 @@
                             <label for="kpa_description" class="per-subheading col-md-4">Status</label>
                             <div class="col-md-8">
                                 <div class="input-group mb-2">
-                                    <input type="text" placeholder="" class="form-control" formControlName="status">
+                                    <select formControlName="status" class="form-control "aria-label="Default select example">
+                                        <option selected disabled value="">Select </option>
+                                        <option value="OPEN">Open</option>
+                                        <option value="CLOSE">Close</option>
+                                   </select>
                                 </div>
                                 <div *ngIf="performanceReviewCyclesFormControl.status?.invalid && performanceReviewCyclesFormControl.status?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewCyclesFormControl.status?.errors?.required">Please Enter Status</span>

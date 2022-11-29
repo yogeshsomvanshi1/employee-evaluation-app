@@ -1,3 +1,5 @@
+import { AlertService } from './../../services/alert.service';
+import { DeletePopupService } from './../../services/delete-popup.service';
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
@@ -34,7 +36,10 @@ export class DataTableUiComponent implements OnInit {
   selectedData: any = null;
   pageList = [];
   idRadio: string
-  constructor() { }
+  constructor(
+    private deleteConfirmationService:DeletePopupService,
+    private alertService:AlertService
+  ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     let pageListTemp = []
@@ -150,19 +155,38 @@ export class DataTableUiComponent implements OnInit {
     if (event == 'edit' || event == 'delete') {
       if (this.selectedData != "" && this.selectedData != undefined && this.selectedData != null && this.selectedData != {}) {
         if (event == 'delete') {
-          this.DeleteRecord();
+          this.showDeleteModal();
         }
         else {
           this.buttonEvent1.emit(data);
         }
         return;
       } else {
-        SelectRecord();
+        this.alertService.warn('Please select a record');
         return
       }
     }
     this.buttonEvent1.emit(data);
   }
+
+  showDeleteModal(){
+    let data = {
+      event: 'delete',
+      data: this.selectedData,
+      pageNumber : this.pagination.pageNumber
+    }
+    this.deleteConfirmationService.showModal().subscribe((isDelete: boolean) =>{
+      if(isDelete){         
+        data.pageNumber =this.pagination.pageNumber;
+        if (this.content.length == 1 && this.pagination.pageNumber != 0 ){      
+          data.pageNumber = this.pagination.pageNumber - 1;    
+        }       
+        this.buttonEvent1.emit(data);     
+        this.pagination.pageNumber=data.pageNumber;   
+      }
+    });
+  }
+
   btnEventInside(value: any, btnvalue) {
     let data = {
       event: 'inSidebtn',

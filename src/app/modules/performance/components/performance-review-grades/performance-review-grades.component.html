@@ -38,6 +38,7 @@
                                         {{performanceReviewGradesFormControl.preformance_review_grade_id?.errors?.maxlength.requiredLength}} 
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review_grade_id?.invalid && performanceReviewGradesFormControl.preformance_review_grade_id.value && !performanceReviewGradesFormControl.preformance_review_grade_id?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -50,6 +51,7 @@
                                         {{performanceReviewGradesFormControl.preformance_review?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewGradesFormControl.preformance_review?.invalid && performanceReviewGradesFormControl.preformance_review.value && !performanceReviewGradesFormControl.preformance_review?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -84,6 +86,7 @@
                                 <div *ngIf="performanceReviewGradesFormControl.performance_description?.invalid && performanceReviewGradesFormControl.performance_description?.touched">
                                     <span class="validate-text" *ngIf="performanceReviewGradesFormControl.performance_description?.errors?.required">Please enter Description</span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewGradesFormControl.performance_description?.invalid && performanceReviewGradesFormControl.performance_description.value && !performanceReviewGradesFormControl.performance_description?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

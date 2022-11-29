@@ -10,6 +10,7 @@ import { AlertService } from '../../../shared/services/alert.service';
 import { AlertOptions } from '../../../shared/model/alert.model';
 import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
 import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: "app-designation",
@@ -17,11 +18,11 @@ import { TableHeaderMetaData } from '../../../shared/model/table-header-list.mod
 	styleUrls: ["./designation.component.scss"],
 })
 export class DesignationComponent implements OnInit {
+
 	@ViewChild('designationTemplate') designationTemplate: TemplateRef<BsModalRef>;
-	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
-	currentPage=0
+	currentPage = 0;
 	columnsMetadata: TableHeaderMetaData;
 	dataDataTable: { results: Array<Designation>, count: number } = { results: [], count: 0 };
 	designationForm: FormGroup;
@@ -38,7 +39,8 @@ export class DesignationComponent implements OnInit {
 		private modalService: BsModalService,
 		private pattern: ValidatorServiceService,
 		private performanceService: PerformanceService,
-	) { this.designationForm = this.initForm(); }
+	) 
+	{ this.designationForm = this.initForm(); }
 
 	ngOnInit(): void {
 		this.defaultIntialValue = this.designationForm.value;
@@ -48,7 +50,7 @@ export class DesignationComponent implements OnInit {
 			tableHeader: this.performanceService.getDesignationHeaderColumn(),
 			tableData: this.designationService.getDesignationContent(this.params),
 		}).subscribe(
-			(response:any) => {
+			(response: any) => {
 				this.columnsMetadata = response.tableHeader;
 				this.dataDataTable = response.tableData;
 			},
@@ -61,6 +63,7 @@ export class DesignationComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.designationService.getDesignationContent(data).subscribe((sucess: { results: Array<Designation>, count: number }) => {
 		this.dataDataTable = sucess;
 		});
@@ -72,9 +75,9 @@ export class DesignationComponent implements OnInit {
 
 	initForm(): FormGroup {
 		return this.formBuilder.group({
-			des_code: ['', [Validators.required, Validators.maxLength(10)]],
-			des_name: ['', [Validators.required, Validators.maxLength(50)]],
-			des_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation())]],
+			des_code: ['', [Validators.required, Validators.maxLength(10) ,alphaNumeric]],
+			des_name: ['', [Validators.required, Validators.maxLength(50),nameAndDescription]],
+			des_description: ['', [Validators.required, Validators.maxLength(500), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			org_code:['AVISYS', Validators.required],
 			is_deleted:[false ],
 			created_by:['1'],
@@ -92,20 +95,18 @@ export class DesignationComponent implements OnInit {
 		else if (data.event == "edit") {
 			this.designationFormControl.des_code.disable();
 			this.designationService.getById(data.data.des_code).subscribe((res:Designation) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.designationForm.patchValue(res);
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.designationForm.patchValue(res);
+			this.intialValue = res;
 			});
-
 		} 
 		else if (data.event == "delete") {
 			this.designationService.softDelete(data.data.des_code).subscribe((sucess:Designation) => {
 			this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.changePageSortSearch(this.params);
 			})
 		}
-
 	}
 
 	submit() {
@@ -120,15 +121,15 @@ export class DesignationComponent implements OnInit {
 		} 
 		else {
 			this.designationService.create(this.designationForm.value).subscribe((sucess:Designation) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-				this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-			    this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			},
 			(error)=>{
 				if(error.error.des_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose );
+					this.alertService.info("Id already exists", this.alertOptions.autoClose );
 				  }
 			});
 		}

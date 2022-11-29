@@ -23,7 +23,6 @@
         <button type="button" class="close pull-right" aria-label="Close">
             <span aria-hidden="true" (click)="modalRef.hide()">×</span>
         </button>
-
     </div>
     <div class="modal-body">
         <form [formGroup]="roleForm">
@@ -38,6 +37,7 @@
                                     <span class="validate-text" *ngIf="roleFormControl.role_code?.errors?.required">Please enter Id</span>
                                     <span class="validate-text" *ngIf="roleFormControl.role_code?.errors?.maxlength">Id exceeds max-length {{roleFormControl.role_code?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="roleFormControl.role_code?.invalid && roleFormControl.role_code.value && !roleFormControl.role_code?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -48,6 +48,7 @@
                                     <span class="validate-text" *ngIf="roleFormControl.role_name?.errors?.required">Please enter name</span>
                                     <span class="validate-text" *ngIf="roleFormControl.role_name?.errors?.maxlength">Name exceeds max-length {{roleFormControl.role_name?.errors?.maxlength.requiredLength}} </span>
                                 </div>
+                                <small class="validate-text" *ngIf="roleFormControl.role_name?.invalid && roleFormControl.role_name.value && !roleFormControl.role_name?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

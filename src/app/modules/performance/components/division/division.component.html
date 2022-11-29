@@ -41,6 +41,7 @@
                                     <span class="validate-text" *ngIf="divisionFormControl.div_code?.errors?.maxlength">Id exceeds max-length {{divisionFormControl.div_code?.errors?.maxlength.requiredLength}} </span>
                                     <span class="validate-text color" *ngIf="divisionFormControl.div_code?.errors?.pattern">Please enter valid characters</span>
                                 </div>
+                                <small class="validate-text" *ngIf="divisionFormControl.div_code?.invalid && divisionFormControl.div_code.value && !divisionFormControl.div_code?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -50,6 +51,7 @@
                                 <div *ngIf="divisionFormControl.div_name ?.invalid && divisionFormControl.div_name ?.touched">
                                     <span class="validate-text" *ngIf="divisionFormControl.div_name ?.errors?.required">Please enter name</span>
                                 </div>
+                                <small class="validate-text" *ngIf="divisionFormControl.div_name?.invalid && divisionFormControl.div_name.value">Please Enter Valid data</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -61,7 +63,8 @@
                                         <span class="validate-text" *ngIf="divisionFormControl.div_description?.errors?.required">Please enter description</span>
                                         <span class="validate-text" *ngIf="divisionFormControl.div_description?.errors?.maxlength">Description exceeds max-length {{divisionFormControl.div_description?.errors?.maxlength.requiredLength}} </span>
                                         <span class="validate-text color" *ngIf="divisionFormControl.div_description?.errors?.pattern">Please enter valid characters</span>
-                                    </div>    
+                                    </div>   
+                                    <small class="validate-text" *ngIf="divisionFormControl.div_description?.invalid && divisionFormControl.div_description.value && !divisionFormControl.div_code?.errors?.maxlength">Please Enter Valid data</small> 
                             </div>
                         </div>
                     </div>
@@ -72,7 +75,7 @@
     </div>
     <div class="modal-footer">
             <div class="d-flex px-2">
-                <button class="btn btn-primary" (click)="submit()">{{ actionBtn }}</button>
+                <button class="btn btn-primary" [disabled]="divisionForm.invalid" (click)="submit()">{{ actionBtn }}</button>
                 <button class="btn btn-danger ml-2" (click)="resetForm()">Reset</button>
             </div>
     </div>

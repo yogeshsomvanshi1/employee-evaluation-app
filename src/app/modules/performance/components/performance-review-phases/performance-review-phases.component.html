@@ -40,6 +40,7 @@
                                         {{performanceReviewPhasesControl.phase_id?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewPhasesControl.phase_id?.invalid && performanceReviewPhasesControl.phase_id.value && !performanceReviewPhasesControl.phase_id?.errors?.maxlength">This fields accepts only alphanumeric characters</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -52,6 +53,7 @@
                                         {{performanceReviewPhasesControl.phase_short_name?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewPhasesControl.phase_short_name?.invalid && performanceReviewPhasesControl.phase_short_name.value && !performanceReviewPhasesControl.phase_short_name?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -64,6 +66,7 @@
                                         {{performanceReviewPhasesControl.phase_description?.errors?.maxlength.requiredLength}}
                                     </span>
                                 </div>
+                                <small class="validate-text" *ngIf="performanceReviewPhasesControl.phase_description?.invalid && performanceReviewPhasesControl.phase_description.value && !performanceReviewPhasesControl.phase_description?.errors?.maxlength">Please Enter Valid Data</small>
                             </div>
                         </div>
                     </div>

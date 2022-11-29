@@ -11,6 +11,7 @@ import { HttpParams } from '@angular/common/http';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { AlertService } from 'src/app/modules/shared/services/alert.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
+import { alphaNumeric } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: 'app-performance-review-cycles',
@@ -23,14 +24,14 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0;
+	currentPage = 0;
 	dataDataTable: { results: Array<PerformanceReviewCycles>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewCycles;
 	intialValue: PerformanceReviewCycles;
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
-	performanceReviewType : Array<PerformanceReviewTypes>;
+	performanceReviewType: Array<PerformanceReviewTypes>;
 	performanceReviewCyclesForm: FormGroup;
 
 	constructor(
@@ -45,9 +46,8 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	}
 
 	initForm(): FormGroup {
-
 		return this.formBuilder.group({
-			preformance_review_cycle_id: ["", [Validators.required, Validators.maxLength(10)]],
+			preformance_review_cycle_id: ["", [Validators.required, Validators.maxLength(10),alphaNumeric]],
 			preformance_review_type: ["", [Validators.required]],
 			year: ["", [Validators.required, Validators.maxLength(4)]],
 			quarter: ["", [Validators.required, Validators.maxLength(2)]],
@@ -62,9 +62,7 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 	ngOnInit(): void {
 
 		this.dropdownService.getDropdownPerformanceReviewTypeListContent().subscribe((res:any) => {
-			this.performanceReviewType = res.results
-
-			console.log(this.performanceReviewType)
+		this.performanceReviewType = res.results
 		})
 
 		this.defaultIntialValue = this.performanceReviewCyclesForm.value;
@@ -96,8 +94,9 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.performanceReviewCycleService.getPerformanceReviewCycleListContent(data).subscribe((sucess: { results: Array<PerformanceReviewCycles>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -110,17 +109,17 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.performanceReviewCycleService.getById(data.data.preformance_review_cycle_id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.performanceReviewCyclesForm.patchValue(res);
-				this.performanceReviewCyclesFormControl.preformance_review_cycle_id.disable();
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.performanceReviewCyclesForm.patchValue(res);
+			this.performanceReviewCyclesFormControl.preformance_review_cycle_id.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.performanceReviewCycleService.softDelete(data.data.preformance_review_cycle_id).subscribe((res: PerformanceReviewCycles) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -129,29 +128,27 @@ export class PerformanceReviewCyclesComponent implements OnInit {
 
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewCycleService.update(this.performanceReviewCyclesForm.getRawValue(), this.performanceReviewCyclesFormControl.preformance_review_cycle_id.value).subscribe((response: PerformanceReviewCycles) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.performanceReviewCycleService.create(this.performanceReviewCyclesForm.value).subscribe((sucess: PerformanceReviewCycles) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.preformance_review_cycle_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
-
 	}
-
 
 	resetForm() {
 		this.performanceReviewCyclesForm.reset(this.actionBtn === 'Submit' ? this.defaultIntialValue : this.intialValue);

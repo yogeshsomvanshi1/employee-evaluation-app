@@ -18,6 +18,7 @@ export class EmployeeComponent implements OnInit {
 
   alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
+  currentPage = 0;
 	dataDataTable: { results: Array<Employee>, count: number } = { results: [], count: 0 };
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -31,22 +32,29 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit(): void {
 
-	this.params = this.params.append('offset', 0);
-	this.params = this.params.append('limit', 5);
+    this.params = this.params.append('offset', 0);
+    this.params = this.params.append('limit', 5);
     forkJoin({
-		tableHeader: this.performanceService.getEmployeHeader(),
-		tableData: this.employeeService.getEmployeeContent(this.params)
-	}).subscribe((res:any)=>{
-		this.columnsMetadata = res.tableHeader;
-		this.dataDataTable = res.tableData;
+      tableHeader: this.performanceService.getEmployeHeader(),
+      tableData: this.employeeService.getEmployeeContent(this.params)
+    }).subscribe((res: any) => {
+      this.columnsMetadata = res.tableHeader;
+      this.dataDataTable = res.tableData;
     })
   }
 
-  changePageSortSearch(data: HttpParams){
-	this.employeeService.getEmployeeContent(data).subscribe((response: { results: Array<Employee>, count: number })=>{
-		this.dataDataTable = response;
-	})
-  }
+
+  changePageSortSearch(data: HttpParams) {
+		let offset = data.get('offset')
+		let limit =data.get('limit')
+		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
+		this.employeeService.getEmployeeContent(data).subscribe((sucess: { results: Array<Employee>, count: number }) => {
+		this.dataDataTable = sucess;
+		});
+	}
+
+  
 
 	buttonEvent1(data: any) {
 		if (data.event == "add") {
@@ -54,7 +62,6 @@ export class EmployeeComponent implements OnInit {
     } 
 		else if (data.event == "edit") {
       this.router.navigate(['/performance/performance/employee-form'], { queryParams: { data: data.data.emp_code } });
-      console.log(data.data.emp_code)
     }
     else if (data.event == "delete") {
       this.employeeService.softDelete( data.data.emp_code).subscribe((res:Employee) => {

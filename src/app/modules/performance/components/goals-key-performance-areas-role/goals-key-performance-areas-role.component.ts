@@ -11,6 +11,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 import { GoalsKeyperformanceAreasRolesService } from '../../services/goals-key-performance-areas-roles.service';
 import { ValidatorServiceService } from 'src/app/modules/shared/component/validator-service/validator-service.service';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: 'app-goals-key-performance-areas-role',
@@ -23,12 +24,12 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0;
+	currentPage = 0;
 	dataDataTable: { results: Array<GoalsKeyPerformanceAreasRole>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: GoalsKeyPerformanceAreasRole;
 	goalsKeyPerformanceRoleForm: FormGroup;
 	intialValue: GoalsKeyPerformanceAreasRole;
-	kpaIds: Array<GoalsKeyPerformanceAreasRole>=[];
+	kpaIds: Array<GoalsKeyPerformanceAreasRole> = [];
 	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	params: HttpParams = new HttpParams();
@@ -37,13 +38,12 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 
 	constructor(
 		private alertService: AlertService,
+		private dropdownService:DropdownService,
 		private formBuilder: FormBuilder,
 		private goalsKeyPerformanceRolesService: GoalsKeyperformanceAreasRolesService,
 		private modalService: BsModalService,
 		private performanceService: PerformanceService,
-
 		private pattern: ValidatorServiceService,
-		private dropdownService:DropdownService
 	) {
 
 		this.goalsKeyPerformanceRoleForm = this.initForm();
@@ -51,9 +51,8 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 
 	initForm(): FormGroup {
 		return this.formBuilder.group({
-
-			goal_id: ["", [Validators.required, Validators.maxLength(10)]],
-			goal_description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation())]],
+			goal_id: ["", [Validators.required, Validators.maxLength(10),alphaNumeric]],
+			goal_description: ["", [Validators.required, Validators.maxLength(200), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			kpa_id: ["", Validators.required],
 			role_code: ["", Validators.required],
 			org_code: ["AVISYS"],
@@ -65,8 +64,6 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.defaultIntialValue = this.goalsKeyPerformanceRoleForm.value;
-
-
 		this.params = this.params.append('offset', 0);
 		this.params = this.params.append('limit', 5);
 
@@ -97,9 +94,9 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
-		
+		this.params = data;
 		this.goalsKeyPerformanceRolesService.getGoalsKeyPerformanceAreasRoleListContent(data).subscribe((sucess: { results: Array<GoalsKeyPerformanceAreasRole>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -114,7 +111,6 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 			this.openTemplate();
 			this.goalsKeyPerformanceRoleFormControl.goal_id.enable();
 			this.resetForm();
-
 		}
 		else if (data.event == "edit") {
 			this.goalsKeyPerformanceRolesService.getById(data.data.goal_id).subscribe((res :GoalsKeyPerformanceAreasRole) => {
@@ -125,11 +121,10 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 			this.intialValue = res;
 			});
 		}
-
 		else if (data.event == "delete") {
 			this.goalsKeyPerformanceRolesService.softDelete(data.data.goal_id).subscribe((res: GoalsKeyPerformanceAreasRole) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -138,30 +133,30 @@ export class GoalsKeyPerformanceAreasRoleComponent implements OnInit {
 	get goalsKeyPerformanceRoleFormControl(): { [key: string]: AbstractControl } {
 		return this.goalsKeyPerformanceRoleForm.controls;
 	}
+
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.goalsKeyPerformanceRolesService.update(this.goalsKeyPerformanceRoleForm.getRawValue(), this.goalsKeyPerformanceRoleFormControl.goal_id.value).subscribe((response: GoalsKeyPerformanceAreasRole) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.goalsKeyPerformanceRolesService.create(this.goalsKeyPerformanceRoleForm.value).subscribe((sucess: GoalsKeyPerformanceAreasRole) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.goal_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
-
 	}
 
 	resetForm() {

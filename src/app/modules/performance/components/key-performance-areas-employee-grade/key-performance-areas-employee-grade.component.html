@@ -34,7 +34,7 @@
                         <div class="row">
                             <label for="weightage" class="per-subheading col-md-4">Weightage</label>
                             <div class="col-md-8">
-                                <input type="text" id="weightage" formControlName="weightage" class="form-control">
+                                <input type="text"numbersOnly id="weightage" formControlName="weightage" class="form-control">
                                 <div *ngIf="keyPerformanceAreasGradeFormControl.weightage?.invalid && keyPerformanceAreasGradeFormControl.weightage?.touched">
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.required">Please enter Weightage</span>
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength ">Weightage exceeds max-length {{keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength.requiredLength}}</span>

@@ -1,4 +1,6 @@
 export interface Employee{
+    [x: string]: any;
+    "role_code": string;
     "emp_code": string,
     "first_name": string,
     "middle_name": string,
@@ -27,6 +29,7 @@ export interface Employee{
     "des_id": string,
     "emp_type_id": string,
     "div_id": string,
-    "org_code": string
+    "org_code": string,
+    deleted: boolean
 
 }
