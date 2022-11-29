@@ -8,8 +8,8 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 import { HttpParams } from "@angular/common/http";
 import { AlertOptions } from '../../../shared/model/alert.model';
 import { AlertService } from '../../../shared/services/alert.service';
-import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
 import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: "app-role",
@@ -17,18 +17,18 @@ import { TableHeaderMetaData } from '../../../shared/model/table-header-list.mod
 	styleUrls: ["./role.component.scss"]
 })
 export class RoleComponent implements OnInit {
+
 	@ViewChild('roleTemplate') roleTemplate: TemplateRef<BsModalRef>;
-	
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
-	currentPage=0;
+	currentPage = 0;
 	columnsMetadata: TableHeaderMetaData;
 	defaultIntialValue: Role;
-	intialValue: Role;
 	dataDataTable: { results: Array<Role>, count: number } = { results: [], count: 0 };
+	intialValue: Role;
+	modalRef: BsModalRef;
 	permission: Array<boolean> = [true, true, true];
 	roleForm: FormGroup;
-	modalRef: BsModalRef;
 	params: HttpParams = new HttpParams();
 
 	constructor(
@@ -61,8 +61,9 @@ export class RoleComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.roleService.getRoleContent(data).subscribe((sucess: { results: Array<Role>, count: number }) => {
-			this.dataDataTable = sucess;
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -72,8 +73,8 @@ export class RoleComponent implements OnInit {
 
 	initForm(): FormGroup {
 		return this.formBuilder.group({
-			role_code: ["", [Validators.required, Validators.maxLength(10)]],
-			role_name: ["", [Validators.required, Validators.maxLength(50)]],
+			role_code: ["", [Validators.required, Validators.maxLength(10) ,alphaNumeric]],
+			role_name: ["", [Validators.required, Validators.maxLength(50),nameAndDescription]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -90,17 +91,17 @@ export class RoleComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.roleService.getById(data.data.role_code).subscribe((res:Role) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.roleFormControl.role_code.disable();
-				this.roleForm.patchValue(res);
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.roleFormControl.role_code.disable();
+			this.roleForm.patchValue(res);
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.roleService.softDelete(data.data.role_code).subscribe((sucess:Role) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -108,28 +109,27 @@ export class RoleComponent implements OnInit {
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.roleService.update(this.roleForm.getRawValue(), this.roleFormControl.role_code.value).subscribe((response: Role) => {
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			})
 		} else {
 			this.roleService.create(this.roleForm.value).subscribe((sucess: Role) => {
-				this.params.set('offset' , 0 )
-		    	this.params.set('limit' , 5 )
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
-				this.modalRef.hide();
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
+			this.modalRef.hide();
 			},
 				(error) => {
 					if (error.error.role_code) {
-						this.alertService.info("Record already exists", this.alertOptions.autoClose);
+						this.alertService.info("Id already exists", this.alertOptions.autoClose);
 					}
 				});
 		}
 	}
-
 
 	get roleFormControl(): { [key: string]: AbstractControl } {
 		return this.roleForm.controls;

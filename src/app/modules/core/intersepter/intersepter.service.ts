@@ -15,20 +15,20 @@ export class MyInterceptor implements HttpInterceptor {
         // request = request.clone({
         //     setHeaders: { 'Content-Type': 'application/json', 'rejectUnauthorized': 'false', 'Access-Control-Allow-Origin': '*' }
         // });
-        if (request.url.indexOf('token/accessToken') < 1) {
+        // if (request.url.indexOf('token/accessToken') < 1) {
 
-            const token = "Bearer" + " " + sessionStorage.getItem('access_token');
-            if (sessionStorage.getItem('access_token') != null) {
-                request = request.clone({
-                    headers: request.headers
-                        .set('Authorization', token),
-                    setHeaders: { 'Access-Control-Allow-Origin': '*', 'rejectUnauthorized': 'false' }
-                });
-            }
-            else {
+        //     const token = "Bearer" + " " + sessionStorage.getItem('access_token');
+        //     if (sessionStorage.getItem('access_token') != null) {
+        //         request = request.clone({
+        //             headers: request.headers
+        //                 .set('Authorization', token),
+        //             setHeaders: { 'Access-Control-Allow-Origin': '*', 'rejectUnauthorized': 'false' }
+        //         });
+        //     }
+        //     else {
 
-            }
-        }
+        //     }
+        // }
 
 
         return next.handle(request).pipe(tap((event: HttpEvent<any>) => {

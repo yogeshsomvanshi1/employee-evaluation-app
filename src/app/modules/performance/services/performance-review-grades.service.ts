@@ -9,6 +9,7 @@ export class PerformanceReviewGradesService {
 
   constructor(private httpClient:HttpClient) { }
 
+
   getPerformanceReviewGradesListContent(param: HttpParams): Observable<{ results: Array<PerformanceReviewGrades>, count: number }> {
     const options = { params: param };
     return this.httpClient.get<{ results: Array<PerformanceReviewGrades>, count: number }>(`${environment.performance}core/performance-review-grades/`, options);

@@ -59,7 +59,7 @@ export function onlyChar(control: AbstractControl){
 
 export function alphaNumeric(control: AbstractControl){
     if(control.value !== null){
-       const charAN = new RegExp('^[A-Za-z0-9 ]+$');
+       const charAN = new RegExp('^[A-Za-z0-9- ]+$');
        if(!charAN.test(control.value)){
            return{
                isAlphaNum: true
@@ -69,6 +69,17 @@ export function alphaNumeric(control: AbstractControl){
     return null;
 }
 
+export function nameAndDescription(control: AbstractControl){
+    if(control.value !== null){
+       const charAN = new RegExp('^[A-Za-z0-9-@,.!?%&@ ]+$');
+       if(!charAN.test(control.value)){
+           return{
+               isAlphanumeric: true
+           }
+       }
+    }
+    return null;
+}
 
 
 

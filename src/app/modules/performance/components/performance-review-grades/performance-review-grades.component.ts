@@ -10,6 +10,7 @@ import { HttpParams } from '@angular/common/http';
 import { TableHeaderMetaData } from 'src/app/modules/shared/model/table-header-list.model';
 import { AlertService } from 'src/app/modules/shared/services/alert.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: 'app-performance-review-grades',
@@ -21,9 +22,8 @@ export class PerformanceReviewGradesComponent implements OnInit {
 	@ViewChild('performanceReviewGrades') performanceReviewGrade: TemplateRef<BsModalRef>;
 	actionBtn: string = "Submit";
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
-
 	columnsMetadata: TableHeaderMetaData;
-	currentPage=0
+	currentPage = 0;
 	dataDataTable: { results: Array<PerformanceReviewGrades>, count: number } = { results: [], count: 0 };
 	defaultIntialValue: PerformanceReviewGrades;
 	intialValue: PerformanceReviewGrades;
@@ -40,19 +40,16 @@ export class PerformanceReviewGradesComponent implements OnInit {
 		private performanceService: PerformanceService,
 		private pattern: ValidatorServiceService
 	) {
-
 		this.performanceReviewGradesForm = this.initForm();
 	}
 
 	initForm(): FormGroup {
-
-
 		return this.formBuilder.group({
-			preformance_review_grade_id: ["", [Validators.required, Validators.maxLength(10)]],
-			preformance_review: ["", [Validators.required, Validators.maxLength(250), Validators.pattern(this.pattern.descriptionValidation())]],
+			preformance_review_grade_id: ["", [Validators.required, Validators.maxLength(10),alphaNumeric]],
+			preformance_review: ["", [Validators.required, Validators.maxLength(250), Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			rating_from: ["", [Validators.required, Validators.maxLength(7)]],
 			rating_to: ["", [Validators.required, Validators.maxLength(7)]],
-			performance_description: ["", [Validators.required]],
+			performance_description: ["", [Validators.required,nameAndDescription]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -60,10 +57,8 @@ export class PerformanceReviewGradesComponent implements OnInit {
 
 		}, {validator: this.checkMinMax});
 	}
-	ngOnInit(): void {
-		
-		
 
+	ngOnInit(): void {
 		this.defaultIntialValue = this.performanceReviewGradesForm.value;
 		this.params = this.params.append('offset', 0);
 		this.params = this.params.append('limit', 5);
@@ -80,25 +75,19 @@ export class PerformanceReviewGradesComponent implements OnInit {
 		);
 	}
 
-
 	checkMinMax(control: AbstractControl): ValidationErrors | null{
-
-			if (+control.get("rating_from").value >= +control.get("rating_to").value)
+		if (+control.get("rating_from").value >= +control.get("rating_to").value)
 			{ return { 'noMatch': true } }
-		 
 			return null
-		 
-		  }	
-
+    }	
 
 	changePageSortSearch(data: HttpParams) {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
-		
+		this.params = data;
 		this.performanceReviewGradeService.getPerformanceReviewGradesListContent(data).subscribe((sucess: { results: Array<PerformanceReviewGrades>, count: number }) => {
-			this.dataDataTable = sucess;
-
+		this.dataDataTable = sucess;
 		});
 	}
 
@@ -116,17 +105,17 @@ export class PerformanceReviewGradesComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.performanceReviewGradeService.getById(data.data.preformance_review_grade_id).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.performanceReviewGradesForm.patchValue(res);
-				this.performanceReviewGradesFormControl.preformance_review_grade_id.disable();
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.performanceReviewGradesForm.patchValue(res);
+			this.performanceReviewGradesFormControl.preformance_review_grade_id.disable();
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.performanceReviewGradeService.softDelete(data.data.preformance_review_grade_id).subscribe((res: PerformanceReviewGrades) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}
@@ -142,23 +131,23 @@ export class PerformanceReviewGradesComponent implements OnInit {
 	submit() {
 		if (this.actionBtn !== "Submit") {
 			this.performanceReviewGradeService.update(this.performanceReviewGradesForm.getRawValue(), this.performanceReviewGradesFormControl.preformance_review_grade_id.value).subscribe((response: PerformanceReviewGrades) => {
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-				this.params.set('limit' , 5 )
-				this.modalRef.hide();
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.modalRef.hide();
+			this.changePageSortSearch(this.params);
 			});
 		}
 		else {
 			this.performanceReviewGradeService.create(this.performanceReviewGradesForm.value).subscribe((sucess: PerformanceReviewGrades) => {
-				this.alertService.success("Record Added Successfully", this.alertOptions);
-				this.params.set('offset' , 0 )
-				this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params );
-				this.modalRef.hide();
+			this.alertService.success("Record Added Successfully", this.alertOptions);
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params );
+			this.modalRef.hide();
 			}, (error) => {
 				if (error.error.preformance_review_grade_id) {
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}

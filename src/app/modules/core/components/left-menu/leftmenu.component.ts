@@ -137,7 +137,7 @@ export class LeftmenuComponent implements OnInit {
         },
         {
           name: "Appraisal Details",
-          routerLink: ["/performance/performance/employee-details"]
+          routerLink: ["/performance/performance/appraisal-details"]
         },
       ]
     },

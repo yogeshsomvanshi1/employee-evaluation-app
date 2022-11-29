@@ -10,6 +10,7 @@ import { AlertOptions } from '../../../shared/model/alert.model';
 import { ValidatorServiceService } from '../../../shared/component/validator-service/validator-service.service';
 import { AlertService } from '../../../shared/services/alert.service';
 import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
+import { alphaNumeric, nameAndDescription } from 'src/app/modules/shared/component/validators/validation';
 
 @Component({
 	selector: "app-division",
@@ -18,7 +19,6 @@ import { TableHeaderMetaData } from '../../../shared/model/table-header-list.mod
 })
 export class DivisionComponent implements OnInit {
 	@ViewChild('divisionTemplate') divisionTemplate: TemplateRef<BsModalRef>;
-	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
 	actionBtn: string = "Submit";
 	currentPage=0
@@ -67,16 +67,17 @@ export class DivisionComponent implements OnInit {
 		let offset = data.get('offset')
 		let limit =data.get('limit')
 		this.currentPage =Number (offset) / Number (limit)
+		this.params = data;
 		this.divisionService.getDivisionContent(data).subscribe((sucess: { results: Array<Division>, count: number }) => {
-			this.dataDataTable = sucess;	
+		this.dataDataTable = sucess;	
 		});
 	}
 
 	initForm(): FormGroup {
 		return this.formbuilder.group({
-			div_code: ["",  [Validators.required, Validators.maxLength(10)]],
-			div_name: ["",  [Validators.required, Validators.maxLength(50)]],
-			div_description: ["", [Validators.required, Validators.maxLength(500),Validators.pattern(this.pattern.descriptionValidation())]],
+			div_code: ["",  [Validators.required, Validators.maxLength(10) ,alphaNumeric]],
+			div_name: ["",  [Validators.required, Validators.maxLength(50),nameAndDescription]],
+			div_description: ["", [Validators.required, Validators.maxLength(500),Validators.pattern(this.pattern.descriptionValidation()),nameAndDescription]],
 			org_code: ["AVISYS"],
 			is_deleted: [false],
 			created_by: ["1"],
@@ -88,11 +89,11 @@ export class DivisionComponent implements OnInit {
 
 		if (this.actionBtn !== "Submit") {
 			this.divisionService.update(this.divisionForm.getRawValue(), this.divisionFormControl.div_code.value).subscribe((response:Division) => {
-				this.params.set('offset' , 0 )
-			    this.params.set('limit' , 5 )
-				this.changePageSortSearch(this.params);
-				this.alertService.success("Record Updated Successfully", this.alertOptions);
-				this.modalRef.hide();
+			this.params.set('offset' , 0 )
+			this.params.set('limit' , 5 )
+			this.changePageSortSearch(this.params);
+			this.alertService.success("Record Updated Successfully", this.alertOptions);
+			this.modalRef.hide();
 			});
 		} 
 		else {
@@ -104,7 +105,7 @@ export class DivisionComponent implements OnInit {
 				this.modalRef.hide();
 			}, (error)=>{
 				if(error.error.div_code){
-					this.alertService.info("Record already exists", this.alertOptions.autoClose);
+					this.alertService.info("Id already exists", this.alertOptions.autoClose);
 				}
 			});
 		}
@@ -119,17 +120,17 @@ export class DivisionComponent implements OnInit {
 		}
 		else if (data.event == "edit") {
 			this.divisionService.getById(data.data.div_code).subscribe((res) => {
-				this.openTemplate();
-				this.actionBtn = "Update";
-				this.divisionFormControl.div_code.disable();
-				this.divisionForm.patchValue(res);
-				this.intialValue = res;
+			this.openTemplate();
+			this.actionBtn = "Update";
+			this.divisionFormControl.div_code.disable();
+			this.divisionForm.patchValue(res);
+			this.intialValue = res;
 			});
 		}
 		else if (data.event == "delete") {
 			this.divisionService.softDelete(data.data.div_code).subscribe((sucess:Division) => {
-				this.alertService.success("Record Deleted Successfully", this.alertOptions);
-				this.changePageSortSearch(this.params);
+			this.alertService.success("Record Deleted Successfully", this.alertOptions);
+			this.changePageSortSearch(this.params);
 			})
 		}
 	}

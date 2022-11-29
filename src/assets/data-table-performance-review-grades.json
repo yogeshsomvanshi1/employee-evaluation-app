@@ -6,13 +6,13 @@
 		"width": 10
 	}, 
     {
-		"name": "P R Grade Id",
+		"name": "Peformance Review Grade Id",
 		"mappedBy": "preformance_review_grade_id",
 		"type": "text",
 		"width": 30
 	},
     {
-		"name": "Perf. Review",
+		"name": "Performance Review",
 		"mappedBy": "preformance_review",
 		"type": "text",
 		"width": 30
@@ -26,13 +26,6 @@
     {
 		"name": "Rating To",
 		"mappedBy": "rating_to",
-		"type": "text",
-		"width": 30
-	}
-	,
-    {
-		"name": "Description",
-		"mappedBy": "performance_description",
 		"type": "text",
 		"width": 30
 	}
