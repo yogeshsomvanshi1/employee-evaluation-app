@@ -19,5 +19,11 @@
 		"mappedBy": "role_name",
 		"type": "text",
 		"width": 30
+	}, {
+		"name": "Weightage",
+		"mappedBy": "weightage",
+		"type": "text",
+		"width": 30
 	}
 ]}
+

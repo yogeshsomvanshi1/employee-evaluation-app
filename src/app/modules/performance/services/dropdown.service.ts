@@ -6,9 +6,12 @@ import { Department } from '../model/department.model';
 import { Designation } from '../model/designation.model';
 import { EmployeeType } from '../model/employee-type.model';
 import { Employee } from '../model/employee.model';
+import { GoalsKeyPerformanceAreasRole } from '../model/golas-key-performance-areas-role.model';
 import { Grade } from '../model/grade.model';
+import { KeyPerformanceAreasEmployeeGrade } from '../model/key-performance-areas-employee-grade.model';
 import { KeyPerformanceList } from '../model/key-performance-areas.model';
 import { PerformanceReviewCycles } from '../model/performance-review-cycles.model';
+import { PerformanceReviewGrades } from '../model/performance-review-grade.model';
 import { PerformanceReviewPhases } from '../model/performance-review-phases.model';
 import { PerformanceReviewTypes } from '../model/performance-review-type.model';
 import { Role } from '../model/role.model';
@@ -17,6 +20,10 @@ import { Role } from '../model/role.model';
 export class DropdownService {
 
 	constructor(private httpClient: HttpClient) { }
+
+	getDropdownKeyPerformanceAreaEmployeeGradeListContent(): Observable<KeyPerformanceAreasEmployeeGrade> {
+		return this.httpClient.get<KeyPerformanceAreasEmployeeGrade>(`${environment.performance}core/keyperfomanceareasemployeegrades/`);
+	}
 
 	getDropdowntKeyPerformanceListContent(): Observable<KeyPerformanceList> {
 		return this.httpClient.get<KeyPerformanceList>(`${environment.performance}core/keyperformance/`);
@@ -67,4 +74,16 @@ export class DropdownService {
 	getDropdownAllEmployeeType(): Observable<EmployeeType> {
 		return this.httpClient.get<EmployeeType>(`${environment.performance}core/employeetype/`);
 	}
+	getDropdownGoalsKeyPerformanceAreasRoleListContent(): Observable<GoalsKeyPerformanceAreasRole> {
+		return this.httpClient.get<GoalsKeyPerformanceAreasRole>(`${environment.performance}core/goalskeyperformanceareasroles/`);
+	}
+
+	getDropdownKeyPerformanceListContent(): Observable<KeyPerformanceList> {
+		return this.httpClient.get<KeyPerformanceList>(`${environment.performance}core/keyperformance/`);
+	}
+
+	getDropdownPerformanceReviewGradesListContent(): Observable<PerformanceReviewGrades> {
+		return this.httpClient.get<PerformanceReviewGrades>(`${environment.performance}core/performance-review-grades/`);
+	  }
+
 }

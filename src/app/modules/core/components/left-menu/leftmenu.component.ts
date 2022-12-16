@@ -138,7 +138,8 @@ export class LeftmenuComponent implements OnInit {
         {
           name: "Appraisal Details",
           routerLink: ["/performance/performance/appraisal-details"]
-        },
+        }
+
       ]
     },
   ];

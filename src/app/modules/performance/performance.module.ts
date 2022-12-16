@@ -13,7 +13,7 @@ import { RoleComponent } from './components/role/role.component';
 import { DesignationComponent } from './components/designation/designation.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { EmployeeComponent } from './components/employee/employee.component';
+import { EmployeeComponent } from './components/employee-details/employee/employee.component';
 import { DepartmentService } from './services/department.service';
 import { PerformanceService } from './services/performance.service';
 import { DivisionService } from './services/division.service';
@@ -41,9 +41,16 @@ import { GoalsKeyperformanceAreasRolesService } from './services/goals-key-perfo
 import { KeyPerformanceAreaComponent } from './components/key-performance-area/key-performance-area.component';
 import { KeyPerformanceAreaService } from './services/key-performance-area.service';
 import { EmployeeTypeService } from './services/employee-type.service';
-import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { EmployeeFormComponent } from './components/employee-details/employee-form/employee-form.component';
 import { AppraisalFormComponent } from './components/appraisal-form/appraisal-form.component';
 import { AppraisalDetailsComponent } from './components/appraisal-details/appraisal-details.component';
+import { GoalsKeyPerformanceAreasRolesFormComponent } from './components/goals-key-performance-areas-roles-form/goals-key-performance-areas-roles-form.component';
+import { EmployeeInfoComponent } from './components/employee-details/employee-info/employee-info.component';
+import { CompanyDetailsComponent } from './components/employee-details/company-details/company-details.component';
+import { JoiningDetailsComponent } from './components/employee-details/joining-details/joining-details.component';
+import { AddressContactDetailsComponent } from './components/employee-details/address-contact-details/address-contact-details.component';
+import { ProfessionalInfoComponent } from './components/employee-details/professional-info/professional-info.component';
+import { PersonalDetailsComponent } from './components/employee-details/personal-details/personal-details.component';
 
 
 @NgModule({
@@ -67,6 +74,13 @@ import { AppraisalDetailsComponent } from './components/appraisal-details/apprai
     PerformanceReviewCyclesComponent,
     AppraisalFormComponent,
     AppraisalDetailsComponent,
+    GoalsKeyPerformanceAreasRolesFormComponent,
+    EmployeeInfoComponent,
+    CompanyDetailsComponent,
+    JoiningDetailsComponent,
+    AddressContactDetailsComponent,
+    ProfessionalInfoComponent,
+    PersonalDetailsComponent,
   
    
   ],

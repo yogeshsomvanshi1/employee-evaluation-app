@@ -9,8 +9,18 @@ export class ValidatorServiceService {
   constructor() { }
 
  private descriptionPattern:string ="^[A-Za-z0-9  \\- @ ! & % _ ? \n / . , : ; ' \"  ]+$";
+ private nameAndDescription:string = '^[A-Za-z0-9-@,.!?%&@ ]+$';
 
   descriptionValidation(){
     return this.descriptionPattern;
   }
+
+  nameAndDescriptions(){
+    return this.nameAndDescription;
+  }
+
 }
+
+
+
+

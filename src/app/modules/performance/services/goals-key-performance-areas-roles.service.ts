@@ -9,7 +9,8 @@ export class GoalsKeyperformanceAreasRolesService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getGoalsKeyPerformanceAreasRoleListContent(param: HttpParams): Observable<{ results: Array<GoalsKeyPerformanceAreasRole>, count: number }> {
+  getGoalsKeyPerformanceAreasRoleListContent(param: HttpParams): Observable<{
+    [x: string]: any; results: Array<GoalsKeyPerformanceAreasRole>, count: number}> {
 		const options = { params: param };
 		return this.httpClient.get<{ results: Array<GoalsKeyPerformanceAreasRole>, count: number }>(`${environment.performance}core/goalskeyperformanceareasroles/`, options);
 	}
@@ -29,4 +30,8 @@ export class GoalsKeyperformanceAreasRolesService {
 	softDelete(kp_id: number) {
 		return this.httpClient.delete(`${environment.performance}core/goalskeyperformanceareasroles/` + kp_id + `/`);
 	}
+
+	getGoalsKeyPerformanceAreasRoleListContents(): Observable<GoalsKeyPerformanceAreasRole> {
+			return this.httpClient.get<GoalsKeyPerformanceAreasRole>(`${environment.performance}core/goalskeyperformanceareasroles/`);
+		}
 }

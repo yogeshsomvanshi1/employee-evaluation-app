@@ -19,7 +19,7 @@ import { alphaNumeric, nameAndDescription } from "src/app/modules/shared/compone
 	styleUrls: ["./department.component.scss"]
 })
 export class DepartmentComponent implements OnInit {
-
+	arr=[1,4,7,8,9,10]
 	@ViewChild('departmentTemplate') departmentTemplate: TemplateRef<BsModalRef>;
 	
 	alertOptions: AlertOptions = { autoClose: true, keepAfterRouteChange: true };
@@ -58,7 +58,7 @@ export class DepartmentComponent implements OnInit {
 				this.dataDataTable = response.tableData;
 			});
 	}
-
+	
 	changePageSortSearch(data: HttpParams) {
 		let offset = data.get('offset')
 		let limit = data.get('limit')
@@ -141,4 +141,6 @@ export class DepartmentComponent implements OnInit {
 	resetForm(){
 		this.departmentForm.reset( this.actionBtn === 'Submit' ? this.defaultIntialValue : this.intialValue );
 	}
+	
+	
 }

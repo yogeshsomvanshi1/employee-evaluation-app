@@ -32,16 +32,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
-                            <label for="weightage" class="per-subheading col-md-4">Weightage</label>
-                            <div class="col-md-8">
-                                <input type="text"numbersOnly id="weightage" formControlName="weightage" class="form-control">
-                                <div *ngIf="keyPerformanceAreasGradeFormControl.weightage?.invalid && keyPerformanceAreasGradeFormControl.weightage?.touched">
-                                    <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.required">Please enter Weightage</span>
-                                    <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength ">Weightage exceeds max-length {{keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength.requiredLength}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <label for="kpa_id" class="per-subheading col-md-4">KPA ID</label>
                             <div class="col-md-8">
                                 <select formControlName="kpa_id" class="form-control  select2  user-select" aria-label="Default select example">
@@ -62,6 +52,16 @@
                                 </select>
                                 <div *ngIf="keyPerformanceAreasGradeFormControl.garde_id?.invalid && keyPerformanceAreasGradeFormControl.garde_id?.touched">
                                     <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.garde_id?.errors?.required">Please Select Grade Id</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="weightage" class="per-subheading col-md-4">Weightage</label>
+                            <div class="col-md-8">
+                                <input type="text"numbersOnly id="weightage" formControlName="weightage" class="form-control">
+                                <div *ngIf="keyPerformanceAreasGradeFormControl.weightage?.invalid && keyPerformanceAreasGradeFormControl.weightage?.touched">
+                                    <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.required">Please enter Weightage</span>
+                                    <span class="validate-text" *ngIf="keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength ">Weightage exceeds max-length {{keyPerformanceAreasGradeFormControl.weightage?.errors?.maxlength.requiredLength}}</span>
                                 </div>
                             </div>
                         </div>

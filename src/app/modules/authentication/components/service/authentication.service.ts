@@ -10,9 +10,8 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
   login(data): Observable<any> {
-    return this.http.post(environment.accessToken + '/token/accessToken', data);
+    return this.http.post(environment.accessToken + '/auth/api/token/', data);
   }
-
   getVerifyRandomCodes(randomcode: any) {
     return this.http.get(environment.accessToken + "/users/varifyrandomcode/" + randomcode, { observe: 'response' })
   }

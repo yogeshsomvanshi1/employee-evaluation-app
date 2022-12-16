@@ -2,10 +2,10 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
-import { TableHeaderMetaData } from '../../../shared/model/table-header-list.model';
-import { EmployeeService } from '../../services/employee.service';
-import { PerformanceService } from '../../services/performance.service';
-import { Employee } from '../../model/employee.model';
+import { TableHeaderMetaData } from '../../../../shared/model/table-header-list.model';
+import { EmployeeService } from '../../../services/employee.service';
+import { PerformanceService } from '../../../services/performance.service';
+import { Employee } from '../../../model/employee.model';
 import { AlertService } from 'src/app/modules/shared/services/alert.service';
 import { AlertOptions } from 'src/app/modules/shared/model/alert.model';
 

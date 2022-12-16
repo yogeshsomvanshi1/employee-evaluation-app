@@ -6,63 +6,56 @@ import { Router } from "@angular/router";
 
 @Injectable()
 export class MyInterceptor implements HttpInterceptor {
-    constructor(public router: Router) { }
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // request = request.clone({
-        //     url: request.url,
-        //     setHeaders: {'Access-Control-Allow-Origin':'*','rejectUnauthorized': 'false'}
-        // });
-        // request = request.clone({
-        //     setHeaders: { 'Content-Type': 'application/json', 'rejectUnauthorized': 'false', 'Access-Control-Allow-Origin': '*' }
-        // });
-        // if (request.url.indexOf('token/accessToken') < 1) {
+    constructor(public router: Router) { }
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+   
 
-        //     const token = "Bearer" + " " + sessionStorage.getItem('access_token');
-        //     if (sessionStorage.getItem('access_token') != null) {
-        //         request = request.clone({
-        //             headers: request.headers
-        //                 .set('Authorization', token),
-        //             setHeaders: { 'Access-Control-Allow-Origin': '*', 'rejectUnauthorized': 'false' }
-        //         });
-        //     }
-        //     else {
+        if (request.url.indexOf('/auth/api/token') < 1) {
 
-        //     }
-        // }
+            const token = "Bearer" + " " + sessionStorage.getItem('access_token');
+            if (sessionStorage.getItem('access_token') != null) {
+                request = request.clone({
+                    headers: request.headers
+                        .set('Authorization', token),
+                  
+                });
+            }
+            else {
+             
+            }
+        }
 
+        return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
 
-        return next.handle(request).pipe(tap((event: HttpEvent<any>) => {
+            if (event instanceof HttpResponse) {
 
-            if (event instanceof HttpResponse) {
+                if (request.method == 'POST') {
+                }
 
-                if (request.method == 'POST') {
-                }
+                if (event.headers.get('token') != null && event.headers.get('token') != undefined) {
+                }
 
-                if (event.headers.get('token') != null && event.headers.get('token') != undefined) {
-                }
+            }
+        }, (err: any) => {
 
-            }
-        }, (err: any) => {
+            if (err instanceof HttpErrorResponse) {
 
-            if (err instanceof HttpErrorResponse) {
+                if (err.status === 401) {
+                   this.router.navigate(['/auth/login'])
+                } else if (err.status == 0) {
 
-                if (err.status === 401) {
-                    // this.router.navigate(['/login'])
-                } else if (err.status == 0) {
+                } else if (err.status == 404) {
 
-                } else if (err.status == 404) {
+                } else if (err.status == 500) {
 
-                } else if (err.status == 500) {
+                }
+                else {
 
-                }
-                else {
+                }
 
-                }
-
-
-            }
-        }
-        ));
-    }
+            }
+        }
+        ));
+    }
 
 }

@@ -1,0 +1,29 @@
+.col-md-6{
+    margin-bottom: 10px;
+}
+
+.box{
+    // padding: 10px;
+    border-color: #E8E9E9;
+}
+.nodata{
+    position: relative;
+    top: 6px;
+    left: 42%;
+}
+table, td, th {
+    border: 1px solid #E8E9E9;
+  }
+table{
+    width: 100%;
+}
+td{
+    // text-align: center;
+    vertical-align: center;
+    padding: 5px 9px 4px 19px;
+  }
+th {
+text-align: center;
+vertical-align: center;
+padding: 5px 9px 4px 19px;
+}
