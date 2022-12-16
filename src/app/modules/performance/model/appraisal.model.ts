@@ -1,0 +1,16 @@
+export interface appraisal {
+              "id": number,
+              "goal_description": string,
+              "kpa_description": string,
+              "appraise_rating": string ,
+              "appraiser_rating": string,
+              "appraise_comments": string,
+              "appraiser_comments": string,
+              "preformance_review_cycle_id": string,
+              "employee_id": string,
+              "goal_id": string,
+              "kpa_id": string,
+              "org_code": string,
+              "is_deleted": boolean,
+              "created_by": string,
+}

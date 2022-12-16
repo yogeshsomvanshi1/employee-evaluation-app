@@ -1,7 +1,14 @@
+import { PersonalDetailsComponent } from './components/employee-details/personal-details/personal-details.component';
+import { ProfessionalInfoComponent } from './components/employee-details/professional-info/professional-info.component';
+import { AddressContactDetailsComponent } from './components/employee-details/address-contact-details/address-contact-details.component';
+import { JoiningDetailsComponent } from './components/employee-details/joining-details/joining-details.component';
+import { CompanyDetailsComponent } from './components/employee-details/company-details/company-details.component';
+import { EmployeeInfoComponent } from './components/employee-details/employee-info/employee-info.component';
+import { GoalsKeyPerformanceAreasRolesFormComponent } from './components/goals-key-performance-areas-roles-form/goals-key-performance-areas-roles-form.component';
 import { AppraisalFormComponent } from './components/appraisal-form/appraisal-form.component';
 import { AppraisalDetailsComponent } from './components/appraisal-details/appraisal-details.component';
 
-import { EmployeeComponent } from './components/employee/employee.component';
+import { EmployeeComponent } from './components/employee-details/employee/employee.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { DesignationComponent } from './components/designation/designation.component';
 import { GradeComponent } from './components/grade/grade.component';
@@ -12,7 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DivisionComponent } from './components/division/division.component';
 import { RoleComponent } from './components/role/role.component';
 import { EmployeeTypeComponent } from './components/employee-type/employee-type.component';
-import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { EmployeeFormComponent } from './components/employee-details/employee-form/employee-form.component';
 import { KeyPerformanceAreasEmployeeGradeComponent } from './components/key-performance-areas-employee-grade/key-performance-areas-employee-grade.component';
 import { GoalsKeyPerformanceAreasRoleComponent } from './components/goals-key-performance-areas-role/goals-key-performance-areas-role.component';
 import { PerformanceReviewTypeComponent } from './components/performance-review-type/performance-review-type.component';
@@ -32,19 +39,28 @@ const routes: Routes = [
     {path: 'designation-table' , component : DesignationComponent},  
     {path: 'employee-table' , component : EmployeeComponent},
     {path: 'employee-type' , component : EmployeeTypeComponent},
-    {path: 'employee-form' , component : EmployeeFormComponent},
     {path: 'designation-table' , component : DesignationComponent},
     {path: 'key-performance-area' , component : KeyPerformanceAreaComponent},
     {path:"key-performance-areas-employeeGrade",component:KeyPerformanceAreasEmployeeGradeComponent},
     {path:"goals-key-performance-areas-role",component:GoalsKeyPerformanceAreasRoleComponent},
+    {path:"goals-key-performance-areas-role-form",component:GoalsKeyPerformanceAreasRolesFormComponent},
     {path:"performance-review-type",component:PerformanceReviewTypeComponent},
     {path:"performance-review-phases",component:PerformanceReviewPhasesComponent},
     {path:"performance-review-grades",component:PerformanceReviewGradesComponent},
     {path:"performance-review-cycles",component:PerformanceReviewCyclesComponent},
     {path:"performance-review-cycle-schedule",component:PerformanceReviewCycleScheduleComponent},
     {path:"appraisal-details",component:AppraisalDetailsComponent},
-    {path:"apparaisal-form",component:AppraisalFormComponent},
+    {path:"appraisal-form",component:AppraisalFormComponent},
     {path:'' , redirectTo: 'welcome' , pathMatch:'full'},
+    {path: 'employee-form' , component : EmployeeFormComponent , children:[
+      {path:'employee-info',component : EmployeeInfoComponent},
+      {path:'company-details',component : CompanyDetailsComponent},
+      {path:'joining-details',component : JoiningDetailsComponent},
+      {path:'adress-contact-details',component : AddressContactDetailsComponent},
+      {path:'professional-details',component : ProfessionalInfoComponent},
+      {path:'personal-details',component : PersonalDetailsComponent}
+    ]},
+
   ]},
   
 

@@ -42,14 +42,15 @@ export class LoginComponent implements OnInit {
 
   }
 
-  submit() {
+  submit() {    
     this.authenticationService.login(this.createUser.value).subscribe((data: any) => {
-      console.log(data)
       sessionStorage.setItem('username', this.createUser.get('username').value);
-      sessionStorage.setItem('access_token', data.access_token);
+      sessionStorage.setItem('access_token', data.access);
       sessionStorage.setItem('session_id', data.session_state);
-      sessionStorage.setItem('userDetails', JSON.stringify(data));
-      sessionStorage.setItem('userId', data.userId);
+      sessionStorage.setItem('emp_code', data.emp_code);
+      
+      // sessionStorage.setItem('userDetails', JSON.stringify(data));
+      // sessionStorage.setItem('userId', data.userId);
       this.router.navigate(["performance/performance"]);
     }, error => {
       if (error.status == 428) {

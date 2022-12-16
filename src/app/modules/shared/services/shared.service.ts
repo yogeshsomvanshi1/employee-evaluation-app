@@ -16,13 +16,13 @@ export class SharedService {
     return this.isStringUrl.asObservable();
   }
 
-  gettabEditData(templateId, tabId, version) {
-    return this.http.get(environment.baseUrl + "/patchTemplateData?" + "templateId=" + templateId + "&tabId=" + tabId + "&version=" + version);
-  }
+  // gettabEditData(templateId, tabId, version) {
+  //   return this.http.get(environment.baseUrl + "/patchTemplateData?" + "templateId=" + templateId + "&tabId=" + tabId + "&version=" + version);
+  // }
 
-  postDynamicData(data) {
-    return this.http.post(environment.baseUrl + "/createTemplateData", data);
-  }
+  // postDynamicData(data) {
+  //   return this.http.post(environment.baseUrl + "/createTemplateData", data);
+  // }
 
   removingSpace(value){
     for (var key in value) {

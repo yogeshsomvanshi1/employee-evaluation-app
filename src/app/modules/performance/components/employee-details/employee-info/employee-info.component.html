@@ -1,0 +1,118 @@
+<form class="">
+    <div class="card  card-height">
+        <div class="card-header pf-head d-flex justify-content-between">
+            <h3 class="card-title">Employee Info </h3>
+        </div>
+        <div class="card-body pb-1">
+            <div class="container-fluid pb-1 performance-evaluation-form">                 
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row mb">
+                            <div class="col-md-4"><label class="form-label">First Name</label></div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <select class="form-control salutatation profile-row-inp"  aria-label="Default select example">
+                                            <option value="" disabled selected>Select </option>
+                                            <option value="MR">Mr</option>
+                                            <option value="DR">Dr</option>
+                                            <option value="MRS">Mrs</option>
+                                            <option value="MISS">Miss</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control profile-row-inp">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb">
+                            <div class="col-md-4"><label class="form-label">Middle Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control profile-row-inp">
+                            </div>
+                        </div>
+                        <div class="row mb">
+                            <div class="col-md-4"><label class="form-label">Last Name</label></div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control profile-row-inp" >
+                            </div>
+                        </div>
+                        <div class="row mb">
+                            <div class="col-md-4"><label class="form-label">Employee Code</label></div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control profile-row-inp">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10 card card-img">
+                                <div class="main-img1">
+                                    <img *ngIf="employeeForm.controls.profile_details.value != '' && employeeForm.controls.profile_details.value != null && employeeForm.controls.profile_details.value !=undefined"
+                                        [src]="employeeForm.controls.profile_details.value" class="img" />
+                                    <input type="file" #file1 hidden (change)="onFileSelect($event)" [(ngModel)]="changedImgPath"   [ngModelOptions]="{standalone: true}">
+                                    <span (click)="file1.click()"><i class="fa fa-camera camera-image"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-5"><label class="form-label">Status</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control">
+                                    <option value="" selected disabled>Select</option>
+                                    <option>Active</option>
+                                    <option>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-5"><label class="form-label">Date of Birthday</label></div>
+                            <div class="col-md-7">
+                                <input type="date" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-5"><label class="form-label">Age</label></div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="card-header pt-0 pf-head d-flex justify-content-between mar">
+            <h3 class="card-title">User Details</h3>
+        </div>
+        <div class="card-body pb-1">
+            <div class="container-fluid performance-evaluation-form">                 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-5"><label class="form-label">User Id</label></div>
+                            <div class="col-md-7">
+                                <select class="form-control">
+                                    <option value="" selected disabled>Select</option>
+                                    <option>emp1</option>
+                                    <option>emp2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex px-2">
+            <button class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>

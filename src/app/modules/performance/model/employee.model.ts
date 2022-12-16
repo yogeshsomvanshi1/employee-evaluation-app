@@ -30,6 +30,7 @@ export interface Employee{
     "emp_type_id": string,
     "div_id": string,
     "org_code": string,
-    deleted: boolean
+    "deleted": boolean,
+    "reviewer_manager_id":string
 
 }

@@ -1,145 +1,167 @@
 <div class="section-body  fixNavMargin">
     <div class="container-fluid">
-        <form [formGroup]="appraisalForm" class="pt-30">
             <div class="card  card-height"> 
                 <div class="card-header pf-head d-flex justify-content-between">
                     <h3 class="card-title">Appraisal Details</h3>
                 </div>
-                <div class="card-body">
-                    <div class="container-fluid performance-evaluation-form">                 
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Employee Name</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" formControlName="emp_fullname" class="form-control">
+                    <div class="card-body">
+                        <div class="container-fluid performance-evaluation-form">                 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Employee Name</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"  [value]="intialValue?.emp_fullname"  disabled  class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Department</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" formControlName="dept_name" class="form-control">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Department</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"  [value]="intialValue?.dept_name " disabled class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Designation</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" formControlName="des_name" class="form-control" >
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Designation</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"  [value]="intialValue?.des_name ?  '':intialValue?.des_name" disabled class="form-control" >
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Reporting To</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" formControlName="reporting_manager_name" class="form-control">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Reporting To</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"   [value]="intialValue?.reporting_manager_name==undefined ?  '':intialValue.reporting_manager_name"  disabled class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Joining Date</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" formControlName="doj" class="form-control" >
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Joining Date</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"    [value]="intialValue?.doj" disabled  class="form-control" >
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-4"><label for="">Reviewer</label></div>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" formControlName="reviewer_manager_name">
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-4"><label for="">Reviewer</label></div>
+                                        <div class="col-md-8">
+                                            <input type="text"   [value]="intialValue?.reviewer_manager_name==undefined ?  '':intialValue?.reviewer_manager_name"  disabled class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-header pf-head d-flex justify-content-between mar">
-                    <h3 class="card-title">Performance Grading for Mandatory KRA</h3>
-                </div>
-                <div class="card-body">
-                    <div class="container-fluid performance-evaluation-form">                 
-                        <div class="container-fluid">
-                            <div class="row pt-30">
-                                <div class="card">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Grade</th>
-                                            <th scope="col">Rating</th>
-                                            <th scope="col">Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr *ngFor="let grade of gradeDescription">
-                                        <td>{{grade.preformance_review}}</td> 
-                                        <td>{{grade.rating_from}}%-{{grade.rating_to}}%</td>
-                                        <td>{{grade.performance_description}}</td>
-                                       </tr>
-                                    </tbody>
-                                </table>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grades">
+                    <div class="card-header pf-head d-flex justify-content-between mar">
+                        <h3 class="card-title">Performance Grading for Mandatory Kpa</h3>
                     </div>
-                </div>
-                <div class="card-header pf-head d-flex justify-content-between">
-                    <h3 class="card-title">Mandatory KRA</h3>
-                </div>
-                <div class="card-body">
-                    <div class="container-fluid performance-evaluation-form">                 
-                        <div class="container-fluid">
-                            <div class="row pt-30">
-                                <div class="card">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">KRA</th>
-                                            <th scope="col">Rating</th>
-                                            <th scope="col">Comments</th>
+                    <div class="card-body">
+                        <div class="container-fluid performance-evaluation-form">                 
+                            <div class="container-fluid">
+                                <div class="row pt-30">
+                                    <div class="card">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Grade</th>
+                                                <th scope="col">Rating</th>
+                                                <th scope="col">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr *ngFor="let grade of gradeDescription">
+                                               
+                                            <td>{{grade.preformance_review}}</td> 
+                                            <td>{{grade.rating_from}}%-{{grade.rating_to}}%</td>
+                                            <td>{{grade.performance_description}}</td>
                                            </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let roleDescription of appraisalRoleData" >
-                                            <td>{{roleDescription.goal_description}}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div>Appraisee Rating</div>
-                                                    <select  class="form-control " aria-label="Default select example">
-                                                        <option selected disabled value=""> select</option>
-                                                        <option value="" *ngFor="let gradeId of gradeDescription">{{gradeId.preformance_review}}</option>
-                                                    </select>
-                                                </div><br> <br>
-                                                <div class="d-flex">
-                                                    <div>Appraiser Rating</div>
-                                                    <select class="form-control " aria-label="Default select example">
-                                                        <option selected disabled value="">Select </option>
-                                                        <option value="" *ngFor="let gradeId of gradeDescription">{{gradeId.preformance_review}}</option>
-                                                     </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <textarea type="text" class="form-control"></textarea> <br> 
-                                                <textarea type="text" class="form-control"></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 mt-3">
-                    <button class="btn btn-primary">{{actionBtn}}</button>
-                    <button class="btn btn-danger mx-2">Reset</button>
+
+                <div class="lst">
+                    <div class="card-header pf-head d-flex justify-content-between">
+                        <!-- <h3 class="card-title">Mandatory KPA</h3> -->
+                    </div>
+                    <form [formGroup]="appraisalMainForm" >
+                        <div class="card-body taskTable"  *ngFor="let kpa of kpaIds">
+                           <div class="card-header pf-head d-flex justify-content-between" > 
+                               <h3 class="card-title"><span><i class="fa-solid fa-star-of-life"></i>  {{kpa.kpa_description }}</span> </h3>
+                               <hr>
+                           </div>
+                           <div class="container-fluid performance-evaluation-form">                 
+                               <div class="container-fluid">
+                                   <div class="row pt-30">
+                                       <div class="card" >
+                                       <table class="table">
+                                           <thead>
+                                               <tr>
+                                                   <th scope="col" class="kraColumn">Goals</th>
+                                                   <th scope="col">Rating</th>
+                                                   <th scope="col">Comments</th>
+                                               </tr>
+                                           </thead>
+                                           <tbody  [formArrayName]="kpa.kpa_id">
+                                            <ng-container *ngFor="let skill of skills(kpa.kpa_id).controls; let i=index"> 
+                                                <tr [formGroupName]="i">
+                                                    <td>
+                                                        <ul>
+                                                            <li>
+                                                        <h6> {{getData(skill) }}</h6>
+                                                    </li>
+                                                        </ul>
+                                                    </td>
+                                                    <td class="td_Dropdown">
+                                                        <div class="d-flex">
+                                                            <div class="appraise"  >Appraisee Rating  </div>
+                                                            <select  formControlName="appraise_rating"  [ngClass]="role=='self' ? 'mandatory':''"  class="form-control appraiseForm"
+                                                                aria-label="Default select example">
+                                                                <option  selected value=""> select</option>
+                                                              
+                                                                <option [value]="gradeId.preformance_review" *ngFor="let gradeId of gradeDescription">{{gradeId?.preformance_review}}</option>
+                                                            </select>
+                                                        </div><br> <br>
+                                                        <div class="d-flex">
+                                                            <div class="appraise" >Appraiser Rating</div>
+                                                            <select formControlName="appraiser_rating"  [ngClass]="role=='reporting_manager' ? 'mandatory':''" class="form-control appraiseForm" 
+                                                                aria-label="Default select example">
+                                                                <option selected  value="">Select </option>
+                                                                <option [value]="gradeId.preformance_review" *ngFor="let gradeId of gradeDescription">{{gradeId?.preformance_review}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <textarea type="text" [ngClass]="role=='self' ? 'mandatory':''"  formControlName="appraise_comments" class="form-control"></textarea> <br>
+                                                        <textarea type="text" [ngClass]=" appraisalMainForm.controls[kpa.kpa_id.appraiser_comments]?.errors?'mandatory': ''"  formControlName="appraiser_comments"  class="form-control"></textarea>
+                                                    </td>
+                                                    </tr>
+                                                </ng-container>
+                                               </tbody>
+                                       </table>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       </form> 
                 </div>
+                    <div class="col-md-12 mt">
+                        <button class="btn btn-primary" [disabled]="appraisalMainForm.invalid" (click)="submit()">{{actionBtn}}</button>
+                        <button class="btn btn-danger mx-2">Reset</button>
+                    </div>
             </div>
-        </form>
     </div>
  </div>
+

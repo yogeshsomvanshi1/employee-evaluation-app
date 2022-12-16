@@ -61,7 +61,7 @@ export class AppraisalDetailsComponent implements OnInit {
 			// this.router.navigate(['/performance/performance/apparaisal-details'])
     } 
 		else if (data.event == "edit") {
-      this.router.navigate(['/performance/performance/apparaisal-form'], { queryParams: { data: data.data.emp_code } });
+      this.router.navigate(['/performance/performance/appraisal-form'], { queryParams: { data: data.data.emp_code } });
     }
     // else if (data.event == "delete") {
     //   this.employeeService.softDelete( data.data.emp_code).subscribe((res) => {
@@ -71,7 +71,7 @@ export class AppraisalDetailsComponent implements OnInit {
     // }
 
   }
-
+ 
   changePageSortSearch(data:HttpParams){
     let offset = data.get('offset')
 		let limit =data.get('limit')

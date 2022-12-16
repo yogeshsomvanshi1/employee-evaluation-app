@@ -1,5 +1,6 @@
 
 export interface KeyPerformanceList {
+    results: string;
     "kpa_id": string,
     "kpa_description": string,
     "is_deleted": boolean,

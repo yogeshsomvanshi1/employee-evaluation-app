@@ -1,3 +1,47 @@
 .col-md-6{
     margin-bottom: 10px;
 }
+.appraise{
+    width: 45%;
+
+}
+.kraColumn{
+    width: 31%;
+}
+.appraiseForm{
+    width: 61%;
+    // padding: 7px 0px 9px 29px;
+}
+.td_Dropdown{
+    width: 34%;
+}
+.card-title{
+    margin-bottom: -18px;
+    color: black;   
+}
+.mt{
+    position: sticky;
+    // padding: 1px 5px 16px 29px;
+    background-color: white;
+    // bottom: 0px;  
+}
+li{
+     line-height: 1.5em;
+     margin-bottom: 15px;
+}
+.card-body{
+    border: none;
+}
+.grades{
+    position: relative;
+    bottom: -43px;
+    margin-top: -56px;
+}
+.taskTable{
+    margin-bottom: -61px !important;
+}
+
+.req:after {
+    content: " *";
+    color: red;
+}

@@ -1,0 +1,200 @@
+<!-- <app-data-table-ui [currentPage]="currentPage" [columns]="columnsMetadata" [permission]="permission" [count]="dataDataTable?.count"
+                    (changePageSortSearch)="changePageSortSearch($event)" [count]="dataDataTable?.count"
+                    (buttonEvent1)="buttonEvent1($event)" [content]="dataDataTable?.results">
+</app-data-table-ui> -->
+
+
+
+<form class="">
+    <div class="card  card-height">
+        <div class="card-header pf-head d-flex justify-content-between">
+            <h3 class="card-title">Educational Qualification</h3>
+            <button class="btn btn-primary" (click)="openEducationModal()">Add</button>
+        </div>
+        <div class="container mt-4">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">School/ University</th>
+                    <th scope="col">Qualification Level</th>
+                    <th scope="col">Year of Passing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Pune University</td>
+                    <td>Master in Computer Science</td>
+                    <td>2021</td>
+                  </tr>                  
+                </tbody>
+              </table>
+        </div>
+
+        <div class="card-header pf-head d-flex justify-content-between">
+            <h3 class="card-title">Professional Information</h3>
+            <button class="btn btn-primary" (click)="openWorkExperienceModal()">Add</button>
+        </div>
+        <div class="container mt-4">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Designation</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Avisys Private Limited</td>
+                    <td>Angular Developer</td>
+                    <td>1000</td>
+                    <td>Bavdhan</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+        </div>
+
+   
+    </div>
+</form>
+
+<ng-template #educationModal class="height-1">
+  <div class="modal-header">
+      <div class="card-header d-flex justify-content-between">
+          <h3 class="card-title prod-name">
+            Educational Information
+          </h3>
+      </div>
+      
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+      </button>
+  </div>
+  <!-- FIXME: All this classes modal-body, section-body container-fluid and card-body we should not require all these this needs a through cleanup but this is the case all over the application so skipping till prioritized -->
+  <div class="modal-body">
+          <form>
+              <div class="card">
+                <div class="card-body">
+                  <div class="container-fluid performance-evaluation-form">                 
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Educational Qualification</label></div>
+                                  <div class="col-md-7">
+                                      <select class="form-control">
+                                          <option value="" selected disabled>Select</option>
+                                          <option>Graduate</option>
+                                          <option>PostGraduate</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">School/ University</label></div>
+                                  <div class="col-md-7">
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Qualification Level</label></div>
+                                  <div class="col-md-7">
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Year of Passing</label></div>
+                                  <div class="col-md-7">
+                                      <select class="form-control">
+                                          <option value="" selected disabled>Select</option>
+                                          <option>2000</option>
+                                          <option>2001</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+          </div>
+  </div>
+</ng-template>
+
+<ng-template #workExperience class="height-1">
+  <div class="modal-header">
+      <div class="card-header d-flex justify-content-between">
+          <h3 class="card-title prod-name">
+            Professional Information 
+          </h3>
+      </div>
+      
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+      </button>
+  </div>
+  <!-- FIXME: All this classes modal-body, section-body container-fluid and card-body we should not require all these this needs a through cleanup but this is the case all over the application so skipping till prioritized -->
+  <div class="modal-body">
+          <form>
+              <div class="card">
+                <div class="card-body">
+                  <div class="container-fluid performance-evaluation-form">                 
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Company</label></div>
+                                  <div class="col-md-7">
+                                     <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Designation</label></div>
+                                  <div class="col-md-7">
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Salary</label></div>
+                                  <div class="col-md-7">
+                                      <input type="text" class="form-control">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="row">
+                                  <div class="col-md-5"><label class="form-label">Address</label></div>
+                                  <div class="col-md-7">
+                                    <input type="text" class="form-control">
+
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+          </div>
+  </div>
+</ng-template>

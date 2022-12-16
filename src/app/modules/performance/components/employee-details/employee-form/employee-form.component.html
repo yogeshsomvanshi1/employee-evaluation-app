@@ -1,0 +1,31 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <!-- <form [formGroup]="employeeForm" class="pt-30"> -->
+            <div class="card  card-height">
+                <div class="card p-3 card-height">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                          <a class="nav-link " [routerLinkActive]="['active']" routerLink="employee-info" role="tab" data-toggle="tab">Employee Info</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link"  routerLink="company-details" [routerLinkActive]="['active']"  role="tab" data-toggle="tab">Company Details </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" routerLink="joining-details" [routerLinkActive]="['active']" role="tab" data-toggle="tab">Joining Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="adress-contact-details" [routerLinkActive]="['active']" role="tab" data-toggle="tab">Address and Contact Details</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" routerLink="professional-details" [routerLinkActive]="['active']" role="tab" data-toggle="tab">Professional Information</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" routerLink="personal-details" [routerLinkActive]="['active']" role="tab" data-toggle="tab">Personal Details</a>
+                          </li>
+                      </ul>
+                      <router-outlet></router-outlet>
+                  </div>
+            </div>
+        <!-- </form> -->
+    </div>
+</div>       
